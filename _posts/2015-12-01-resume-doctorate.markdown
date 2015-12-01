@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Notes on the doctorate final steps"
+title:  "Doctorate final steps?"
 categories: doctorate, plan
 comments: true
 published: true
@@ -44,7 +44,7 @@ and maybe some delivery to peer review journals.
 
 ### Further notes
 
-I should try to integrate this jekyll instance to aa shouts and other rdf data.
+I should try to integrate this Jekyll instance to aa shouts and other rdf data.
 
 The software and data apparatus are constantly published.
 
