@@ -1,14 +1,16 @@
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
+title: ttm rgk hybrid rfabbri - homepage
+email: renato.fabbri@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  my homepage about complex and social networks, linked data/semantic web,
+  natural language processing/text mining/computational linguistics,
+  data audiovisualization, computer music and any other subject in which
+  I get interested.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "http://ttm.github.io" # the base hostname & protocol for your site
+twitter_username: renatogk
+github_username: ttm 
 
 # Build settings
 markdown: kramdown
+timezone: America/Rio_de_Janeiro

@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "Labicbr"
+categories: trip, report
+comments: true
+published: true
+---
+Just got back from Rio de Janeiro.
+Two weeks in a row participating in [Labicbr][labicbr],
+a nice Iberoamerican gathering for citizen innovation
+([pics and interaction][labicpll]).
+
+We developed and tested a prototype of a connective and artistic
+hardware and software technology designed to ease social participation:
+[the magic box][mbox]. I helped mainly with [data visualization and
+semantic web support][repocm].
+The main repositories of the project are [here][cmp],
+it might interest also the (closed) [Caixa Mágica fb group][cmg].
+
+Overall, the event was marked by knowledge exchange and relationships
+for the development and understanding of citizenship.
+
+
+
+[tart]:      https://github.com/ttm/articleStabilityInteractionNetworks/raw/master/paper.pdf
+[labicbr]:   http://www.ciudadania20.org/pt-pt/labicbr/  
+[labicpll]:  https://www.facebook.com/groups/1645390789044342/
+[mbox]:    https://github.com/ttm/caixamagica 
+[cmp]:   https://github.com/caixamagica/ 
+[cmg]:   https://www.facebook.com/groups/952476861475886/
+
