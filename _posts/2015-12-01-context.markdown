@@ -25,7 +25,8 @@ for the development and understanding of citizenship.
 [tart]:      https://github.com/ttm/articleStabilityInteractionNetworks/raw/master/paper.pdf
 [labicbr]:   http://www.ciudadania20.org/pt-pt/labicbr/  
 [labicpll]:  https://www.facebook.com/groups/1645390789044342/
-[mbox]:    https://github.com/ttm/caixamagica 
+[mbox]:    http://www.ciudadania20.org/pt-pt/colaboradoreslabicbr/
+[repocm]:    https://github.com/ttm/caixamagica 
 [cmp]:   https://github.com/caixamagica/ 
 [cmg]:   https://www.facebook.com/groups/952476861475886/
 

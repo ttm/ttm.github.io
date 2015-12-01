@@ -5,26 +5,26 @@ categories: doctorate, plan
 comments: true
 published: true
 ---
-To finish my doctorate, the minimum is:
+To finish my doctorate, the minimum is to:
 
-* Merge the [article on topological stability][atop] ([Supporting Information][sitop])
+* merge the [article on topological stability][atop] ([Supporting Information][sitop])
 and the [article on textual differentiation][atxt] ([Supporting Information][sitxt])
 through massive analysis of topological and textual social data.
 
 It seems proper to end at least:
 
-* End the [report on the ubiquity of inequality][ueq].
-* End the [report on the Kolmogorov-Smirnov and 'c' statistics][kol].
+* the [report on the ubiquity of inequality][ueq].
+* The [report on the Kolmogorov-Smirnov and 'c' statistics][kol].
+
+Maybe too much, but it also seems proper to:
+
+* describe the linked data legacy developed in this research.
+* Describe the method for the creation of ontologies from databases.
 * Deepen the [Anthropological physics fundamentals][anp] and maybe contextualize it in a "complex networks gradus ad parnassum".
 
-And also proper, but already too much, to make a:
+Which are scattered on [git repositories][ttmgh] and documents such as my last [pnud product][pnud5].
 
-* Description of the linked data legacy developed in this research.
-* Description of the method for the creation of ontologies from databases.
-
-Both scattered on [git repositories][ttmgh] and documents such as my last [pnud product][pnud5].
-
-### Table with next days
+### Planning for today and the next days
 
 Weekday   || Dec ||| milestones
 ----------||-----|||----------
@@ -39,7 +39,8 @@ Tuesday   || 08  ||| review with collabs
 Wednesday || 09  ||| review with collabs
 Thursday  || 10  ||| review with collabs; evaluate the pertinence of further documents and the monograph
 
-
+To this should follow final adjustments with other interested parties
+and maybe some delivery to peer review journals.
 
 ### Further notes
 
