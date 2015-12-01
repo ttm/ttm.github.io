@@ -11,6 +11,7 @@ url: "http://ttm.github.io" # the base hostname & protocol for your site
 twitter_username: renatogk
 facebook_username: renato.fabbri
 github_username: ttm 
+irc_channel: labmacambira 
 
 # Build settings
 markdown: kramdown

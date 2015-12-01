@@ -59,6 +59,21 @@
           </li>
           {% endif %}
 
+          {% if site.irc_channel%}
+          <li>
+            <a href="http://webchat.freenode.net/?channels=#{{ site.irc_channel}}">
+              <span class="icon  icon--irc" style="color:#828282;margin:4px">
+			# 
+              </span>
+
+
+              <span class="username">{{ site.irc_channel}}</span>
+            </a>
+          </li>
+          {% endif %}
+
+
+
         </ul>
       </div>
 
