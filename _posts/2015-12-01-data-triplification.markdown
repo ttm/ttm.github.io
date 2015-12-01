@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Doctorate final steps?"
+title:  "Open linked social data"
 categories: doctorate, plan
 comments: true
 published: true
@@ -48,9 +48,6 @@ I should try to integrate this Jekyll instance to aa shouts and other rdf data.
 
 The software and data apparatus are constantly published.
 
-The [article on the Social Participation Ontology][aops] might be merged with other writings 
-or receive a final hand.
-
 [atop]:       https://github.com/ttm/articleStabilityInteractionNetworks/raw/master/paper.pdf
 [sitop]:      https://github.com/ttm/articleStabilityInteractionNetworks/raw/master/supportingInformation.pdf
 [atxt]:       https://github.com/ttm/artigoTextoNasRedes/raw/master/paper.pdf
@@ -60,4 +57,3 @@ or receive a final hand.
 [ttmgh]:      https://github.com/ttm 
 [pnud5]:       https://github.com/ttm/pnud5  
 [anp]:       https://www.academia.edu/10356773/What_are_you_and_I_anthropological_physics_fundamentals_
-[aops]:       https://github.com/ttm/ops/
