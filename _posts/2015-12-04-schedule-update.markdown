@@ -12,7 +12,7 @@ took 2 days, not one.
 
 ### Planning for today and the next days
 
-Weekday   || Dec  ||| milestones
+Weekday   || December  ||| milestones
 ----------||------|||----------
 Wed-Thu   || 02-3 ||| [finish twitter, facebook, irc, email and other data rendering][gh]
 Friday    || 04   ||| render tables to SI; publish software
