@@ -5,7 +5,7 @@ categories: doctorate, resource
 comments: true
 published: true
 ---
-After two days of finding data and converting it to RDF,
+After two days finding data and converting it to RDF,
 I finally finished a first set of datasets, all in
 this [Github organization repo][gh].
 It consists of dozens of friendship and interaction networks from Facebook,
