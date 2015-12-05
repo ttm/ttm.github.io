@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Semantic notes for social networks"
-categories: doc semantic repport
+categories: doc semantic report
 comments: true
 published: true
 ---
@@ -46,14 +46,13 @@ rdf/xml files to load. A workaround was to edit the files with vim.
 
 Steps:
 
-- Upload RDF to Jena
+- upload RDF to Jena
 - query to get network
 - make Erdös partitioning
 - write graphml file (or similar),
 - write RDF file with ids of Erdos Partitioning and other info
 - if necessary, write also the text produced by each agent
-
-upload files into repo when possible
+- upload files into repo when feasible.
 
 
 [sched]: http://ttm.github.io/doctorate,/plan/2015/12/01/resume-doctorate.html
