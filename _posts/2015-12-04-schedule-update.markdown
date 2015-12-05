@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Update of intended schedule"
-categories: doctorate, schedule
+categories: doc schedule
 comments: true
 published: true
 ---

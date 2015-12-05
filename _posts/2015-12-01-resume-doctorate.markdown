@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Doctorate final steps?"
-categories: doctorate, plan
+categories: doc plan
 comments: true
 published: true
 ---

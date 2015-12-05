@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Labicbr"
-categories: trip, report
+categories: trip report
 comments: true
 published: true
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Availability of open linked social data"
-categories: doctorate, resource
+categories: doc resource
 comments: true
 published: true
 ---
