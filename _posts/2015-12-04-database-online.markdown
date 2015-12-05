@@ -7,7 +7,7 @@ published: true
 ---
 After two days finding data and converting it to RDF,
 I finally finished a first set of datasets, all in
-this [Github organization repo][gh].
+these [Github organization repos][gh].
 It consists of dozens of friendship and interaction networks from Facebook,
 about a dozen of sets of tweets, about a dozen of irc logs and some email lists.
 More exquisite data include linked data from the Algorithmic Autoregulation, and from the Participabr and Cidade Democrática participation portals.
