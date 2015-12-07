@@ -6,8 +6,16 @@ comments: true
 published: true
 ---
 In making the networks from [this open and linked social data][gh],
-a quasi-trivial pattern emerged: only two similar SparQL queries
-were used to retrieving the edges:
+only three similar SparQL queries
+were used to retrieve the edges:
+
+{% highlight sparql %}
+SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?i1  prefix:relatesTo ?i2 .
+                               ?i1  prefix:someLabel ?l1 .
+                               ?i2  prefix:someLabel ?l2 . }
+{% endhighlight %}
+
+or:
 
 {% highlight sparql %}
 SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?item prefix:relatesToFoo ?i1 .
@@ -16,7 +24,7 @@ SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?item prefix:relatesToFoo ?i1 .
                                ?i2   prefix:someLabel ?l2 . }
 {% endhighlight %}
 
-or:
+where often "relatesToFoo" is "relatesToBar". Or:
 
 {% highlight sparql %}
 SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?item1 prefix:relatesToFoo ?item2 .
@@ -26,8 +34,8 @@ SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?item1 prefix:relatesToFoo ?item2 .
                                ?i2    prefix:someLabel    ?l2 . }
 {% endhighlight %}
 
-where ?i1 ?i2 ?l1 ?l2 stand for both individuals and their names
-or nicks and ?l1 ?l2 are dispensable.
+In all cases, ?i1 ?i2 ?l1 ?l2 stand for both individual ids (?i1 and ?i2) and their names
+or nicks (?l1 ?l2) which are usually dispensable.
 These patterns are used alike for relationship and interaction networks
 as can be seen in [this implementation][sparqlscript].
 
