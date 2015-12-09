@@ -24,18 +24,19 @@ SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?item prefix:relatesToFoo ?i1 .
                                ?i2   prefix:someLabel ?l2 . }
 {% endhighlight %}
 
-where often "relatesToFoo" is "relatesToBar". Or:
+or:
 
 {% highlight sparql %}
-SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?item1 prefix:relatesToFoo ?item2 .
-                               ?item1 prefix:relatesToBar ?i1 .
-                               ?item2 prefix:relatesToBaz ?i2 .
+SELECT ?i1 ?l1 ?i2 ?l2 WHERE { ?item1 prefix:relatesToBaz ?item2 .
+                               ?item1 prefix:relatesToFoo ?i1 .
+                               ?item2 prefix:relatesToBar ?i2 .
                                ?i1    prefix:someLabel    ?l1 .
                                ?i2    prefix:someLabel    ?l2 . }
 {% endhighlight %}
 
-In all cases, ?i1 ?i2 ?l1 ?l2 stand for both individual ids (?i1 and ?i2) and their names
-or nicks (?l1 ?l2) which are usually dispensable.
+where often "relatesToFoo" is "relatesToBar" and ?i1 ?i2 ?l1 ?l2
+stand for both individual ids (?i1 and ?i2) and their names
+or nicks (?l1 ?l2, which are usually dispensable).
 These patterns are used alike for relationship and interaction networks
 as can be seen in [this implementation][sparqlscript].
 
