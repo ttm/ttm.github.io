@@ -56,3 +56,22 @@ vim-dispatch and vim-python-tools
 
 ===
 ./configure --enable-perlinterp --enable-python3interp --enable-rubyinterp --enable-cscope --enable-gui=auto --enable-gtk2-check --enable-gnome-check --with-features=huge --enable-multibyte --with-x --with-compiledby="xorpd" --with-python3-config-dir=/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu --prefix=/opt/vim74 --with-vim-name=vim3
+
+===
+
+rope, vim python mode, música com os audios renderizados pelos scripts em tabs diferentes.
+byobu, nerdtree, fugitive.
+Tabs, automate, restructure, refactoring,, flint, jobs, screen, imux, gnome-terminal, terminator, autocompletion, byobu inside byobu, 
+
+
+===
+Algorítmo genérico para selecionar os que gerarem áudio e que mais agradarem (ajuste de fitness).
+Usar para gerar música através dos dados sociais. Deixar para os comentarios e likes alterarem o fitness.
+Fazer em python mesmo, sem andar nas tabs do vim.
+Cada indivíduo consiste em uma string que, se gerar música (ou especificacoes para), possui fitness>0.
+Se demorar para sempre -> 0. Os critérios para o fitness, espectrais e rítmicos, podem ser tunados iterativamente
+pelo usuário.
+Uma estratégia dinâmica pode ser: alternar iterações com operações mais garantidas de gerar sons, para popular,
+introduzir mutações que dizimam a população para gerar diversidade.
+
+

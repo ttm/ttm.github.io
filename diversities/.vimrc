@@ -37,6 +37,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'davidhalter/jedi-vim'
 
 " Bundle 'Valloric/YouCompleteMe'
 Bundle 'klen/python-mode'
@@ -65,7 +66,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 let g:pymode_python = 'python3'
 " let g:pymode_options_colorcolumn = 0
-let g:pymode_lint_unmodified = 1
+" let g:pymode_lint_unmodified = 1
 let g:pymode_lint_on_fly = 1
 let g:pymode_rope = 1
 
