@@ -11,7 +11,7 @@ and hybrid sectors, such as banking and some of the ONGs.
 The individuals, as civilians, are left out of such harnessing.
 This is a core motivation.
 
- Other motivation include:
+Other motivation include:
 
 - benchmarking, research
 
