@@ -14,3 +14,5 @@ Also, integration with HTML is desirable to ease access.
 Here I will post my first attempt to integrate these slides
 into Jekyll in github pages.
 
+{% include presentation.html %}
+

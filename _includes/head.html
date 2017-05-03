@@ -8,4 +8,8 @@
 
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    {% if page.jsarr %}
+        <script src="https://raw.githubusercontent.com/impress/impress.js/master/js/impress.js"></script>
+        <script>impress().init();</script>
+    {% endif %}
 </head>
