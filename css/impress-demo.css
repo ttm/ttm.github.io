@@ -719,3 +719,23 @@ ul {list-style-type: circle; margin-left: 50px; font-size: 60%}
     right: 0;
 }
 .mjx-chtml .MJXc-display .MJXp-math {text-align:left; }
+.MathJax_Display .MJXp-display {
+  text-align: left !important;
+  }
+
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+    background-color: #fff;
+}
+table#t01 th {
+color: black;
+       background-color: #ddd;
+}
+#t01 { font-size:40%; }
+
+td {
+    padding:0 15px 0 15px;
+}
+img.latex {margin-top:5px; margin-bottom:-10px;}
