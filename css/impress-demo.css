@@ -49,6 +49,7 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -86,12 +87,12 @@ body {
     min-height: 740px;
 
     background: rgb(215, 215, 215);
-    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    /* background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
     background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));*/
 }
 
 /*
@@ -165,7 +166,8 @@ a:focus {
 
 .step {
     position: relative;
-    width: 900px;
+    width: 1000px;
+    height: 600px;
     padding: 40px;
     margin: 20px auto;
 
@@ -189,11 +191,11 @@ a:focus {
     margin: 0;
     opacity: 0.3;
 
-    -webkit-transition: opacity 1s;
-    -moz-transition:    opacity 1s;
-    -ms-transition:     opacity 1s;
-    -o-transition:      opacity 1s;
-    transition:         opacity 1s;
+    -webkit-transition: opacity .2s;
+    -moz-transition:    opacity .2s;
+    -ms-transition:     opacity .2s;
+    -o-transition:      opacity .2s;
+    transition:         opacity .2s;
 }
 
 .impress-enabled .step.active { opacity: 1 }
@@ -701,3 +703,19 @@ a:focus {
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+.verticalLine {
+  border-left: thin solid #000000;
+  }
+h1 {font-size: 100%;}
+h2 {font-size: 70%;}
+p {font-size: 45%;}
+.frontimage {height: 60px; background: #000000}
+ul {list-style-type: circle; margin-left: 50px; font-size: 60%}
+.ul1 {list-style-type: circle; margin-left: 50px; font-size: 40%}
+.pnumber {
+    font-size: 40%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.mjx-chtml .MJXc-display .MJXp-math {text-align:left; }
