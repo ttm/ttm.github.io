@@ -98,7 +98,7 @@
         <li>Materials and methods</li>
         <ul>
             <li>data from email and other sources</li>
-            <li>Circular statistics of temporal activity</li>
+            <li>circular statistics of temporal activity</li>
             <li>complex networks: metrics, PCA and Erdös Sectioning</li>
             <li>text mining: adaptation of the Kolmogorov-Smirnov test, Wordnet</li>
         </ul>
@@ -108,10 +108,11 @@
             <li>textual differentiation</li>
             <li>Versinus method for evolutive network visualization</li>
             <li>Linked Open Social Database</li>
-            <li>Other results</li>
+            <li>other results</li>
         </ul>
         <li>Conclusions and further work</li>
     </ul>
+       <p class="pnumber">1</p> 
     </div>
 
     <div class="step verticalLine" data-x="3000" data-y="-3500">
@@ -134,19 +135,23 @@
     </ul>
     <p>There are collateral results in <b>dynamic graph visualization</b> and
     <b>linked data</b>. They enabled and shaped the core analysis.</p>
-       <p class="pnumber">(4)</p> 
+       <p class="pnumber">2</p> 
     </div>
 
     <div class="step verticalLine" data-x="5000" data-y="-1500">
     <h1>Introduction</h1>
         <img src="/assets/CienciasComFronteiras.png" height=500>
+       <p class="pnumber">3</p> 
     </div>
+
     <div class="step verticalLine" data-x="7000" data-y="-1500">
     <h1>Introduction</h1>
     <iframe height="415" width="700"
     src="https://www.youtube.com/embed/1EOnEVmqmmc">
     </iframe>
+       <p class="pnumber">4</p> 
     </div>
+
     <div class="step verticalLine" data-x="3000" data-y="-1500">
     <h1>Introduction</h1>
         <p>
@@ -176,7 +181,7 @@ processa informação, exibe mecanismos adaptativos,
 pode exibir mecanismos de reprodução.
  Um sistema complexo é integrado a outros sistemas complexos
 e ao meio em que subsiste.</p>
-       <p class="pnumber">(3)</p> 
+       <p class="pnumber">5</p> 
     </div>
 
 
@@ -192,6 +197,7 @@ e ao meio em que subsiste.</p>
         <li>Programming, APIs and protocols</li>
         <li>Art</li>
     </ul>
+       <p class="pnumber">6</p> 
     </div>
 
     <div class="step verticalLine" data-x="11000" data-y="-1500">
@@ -209,7 +215,9 @@ e ao meio em que subsiste.</p>
             <li>Algorithmic Autoregulation (AA)</li>
         </ul>
     </ul>
+       <p class="pnumber">7</p> 
     </div>
+
     <div class="step verticalLine" data-x="13000" data-y="-1500">
     <h1>Methods</h1>
     <p><br/></p>
@@ -232,6 +240,7 @@ e ao meio em que subsiste.</p>
         are generic for observations in Riemannian manifolds and was used
         to observe the distribution of sent times from email
         messages.</p>
+       <p class="pnumber">8</p> 
     </div>
 
     <div class="step verticalLine" data-x="15000" data-y="-1500">
@@ -261,17 +270,18 @@ m_n=\frac{1}{N}\sum_{i=1}^N z_i^n \text{o n-\'esimo momento}
 <p>Usamos também \(\frac{b_h}{b_l}\) entre a maior \(b_h\) e a menor
 \(b_l\)
 incidência nos histogramas.</p>
+       <p class="pnumber">9</p> 
 
     </div>
 
     <div class="step verticalLine" data-x="17000" data-y="-1500">
     <h1>Interaction networks attainment</h1>
         <img src="/assets/criaRede3_.png" height=400>
+       <p class="pnumber">10</p> 
     </div>
 
     <div class="step verticalLine" data-x="19000" data-y="-1500">
     <h1>Erdös sectioning</h1>
-
         <img src="/assets/fser__.png" height=200>
 <div lang="latex">
     \sum_{x=k_i}^{k_j} \widetilde{P}(x) < \sum_{x=k_i}^{k_j} P(x)
@@ -285,7 +295,7 @@ incidência nos histogramas.</p>
 <div lang="latex">
 p_e=\frac{z}{N(N-1)}
 </div>
-
+       <p class="pnumber">11</p> 
     </div>
 
     <div class="step verticalLine" data-x="21000" data-y="-1500">
@@ -295,7 +305,7 @@ p_e=\frac{z}{N(N-1)}
 <i>k</i>
 through all <i>l</i> instances and of eigenvalues <i>k</i> through all
 <i>l</i> instances:</p>
-<p>
+<p id="lefteq">
 \begin{eqnarray} 
 \mu_{V'}[j,k]   &=\frac{\sum_l^L V'[j,k,l]}{L}\nonumber\\
 \sigma_{V'}[j,k]&=\sqrt{\frac{(\mu_{V'}-V'[j,k,l])^2}{L}}\\\nonumber
@@ -306,12 +316,16 @@ through all <i>l</i> instances and of eigenvalues <i>k</i> through all
 <p>We used standard measures of (in, out, total-) degree, (in, out, total-) strength,
 betweenness centrality and clustering coefficient.
 We also used non-standard measures of assymetry and disequilibrium.</p>
+       <p class="pnumber">12</p> 
     </div>
     <script>
         function toLeft2(){
             p=document.getElementById("lefteq");
             for (i=0; i < p.children.length; i++){
                 p.children[i].setAttribute("style","text-align:left");
+                for (j=0; j < p.children[i].children.length; j++){
+                    p.children[i].children[j].setAttribute("style","text-align:left;font-size:80%;color:black;");
+                }
             }
         }
         setTimeout(toLeft2, 2000);
@@ -337,13 +351,14 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <td>1.63</td> <td>1.73</td>  <td>1.95</td>
     </tr>
 </table>
-
+       <p class="pnumber">13</p> 
     </div>
 
     <div class="step verticalLine" data-x="25000" data-y="-1500">
     <h1>Audiovisualization of data</h1>
     <br/>
         <img src="/assets/arteRede.jpg" height=350>
+       <p class="pnumber">14</p> 
     </div>
 
     <div class="step verticalLine" data-x="27000" data-y="-1500">
@@ -362,6 +377,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     data for some months. 
     USP cloud services started charging so we had to withdraw these
     services.</p>
+       <p class="pnumber">15</p> 
     </div>
 
     <div class="step verticalLine" data-x="29000" data-y="-1500">
@@ -375,6 +391,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         systems.</li>
         <li>Anthropological physics.</li>
     </ul>
+       <p class="pnumber">16</p> 
     </div>
 
     <div class="step verticalLine" data-x="31000" data-y="-1500">
@@ -388,6 +405,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <li>The Versinus dynamic graph visualization method.</li>
         <li>Software development.</li>
     </ul>
+       <p class="pnumber">17</p> 
     </div>
 
     <div class="step verticalLine" data-x="33000" data-y="-1500">
@@ -403,11 +421,13 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <li>Stability of the principal components (PCA).</li>
         <li>Human typology from Erdös sectors.</li>
     </ul>
+       <p class="pnumber">18</p> 
     </div>
 
     <div class="step verticalLine" data-x="35000" data-y="-1500">
     <h1>Temporal and topological stability</h1>
         <img src="/assets/topoStab.png" height=500>
+       <p class="pnumber">19</p> 
     </div>
 
     <div class="step verticalLine" data-x="37000" data-y="-1500">
@@ -426,11 +446,13 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <li>Persistence of the differences in incident and existent
         words.</li>
     </ul>
+       <p class="pnumber">20</p> 
     </div>
 
     <div class="step verticalLine" data-x="39000" data-y="-1500">
     <h1>Textual differentiation</h1>
         <img src="/assets/textDiff.png" height=500>
+       <p class="pnumber">21</p> 
     </div>
 
     <div class="step verticalLine" data-x="41000" data-y="-1500"></p>
@@ -445,6 +467,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     and out strengths. Color corresponds to clustering coefficient.
     Music is synthesized using the total activity of the four most
     active hubs.</p>
+       <p class="pnumber">22</p> 
     </div>
 
     <div class="step verticalLine" data-x="43000" data-y="-1500">
@@ -460,6 +483,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     </ul>
     <p><br/></p>
         <img src="/assets/obsPNPS_mesam.png" height=200>
+       <p class="pnumber">23</p> 
     </div>
 
     <div class="step verticalLine" data-x="45000" data-y="-1500">
@@ -472,7 +496,9 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         related images and measurements. Sonifications.</li>
         <li>Artistic presentations: sonic skull, freakcoding.</li>
     </ul>
+       <p class="pnumber">24</p> 
     </div>
+
     <div class="step verticalLine" data-x="47000" data-y="-1500">
     <h1>Software</h1>
     <p><br/></p>
@@ -493,6 +519,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         networks. The Visuals package.</li>
         <li>Routines rendering music and data sonification. The Musics package.</li>
     </ul>
+       <p class="pnumber">25</p> 
     </div>
 
     <div class="step verticalLine" data-x="49000" data-y="-1500">
@@ -519,6 +546,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         measurements, sentiment analysis, other measures of text and
         topology.</li>
     </ul>
+       <p class="pnumber">26</p> 
     </div>
 
     <div class="step verticalLine" data-x="51000" data-y="-1500">
