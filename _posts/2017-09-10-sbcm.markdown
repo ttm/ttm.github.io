@@ -1,0 +1,43 @@
+---
+layout: post
+title:  "notes on SBCM participation"
+categories: computer music vivace
+comments: true
+published: true
+---
+From September 3rd to 6th
+I participated in the 16th
+Brazilian Symposium on Computer Music
+([SBCM2017](http://compmus.ime.usp.br/sbcm/2017/))
+and presented the [Vivace livecoding language and
+platform](https://github.com/ttm/cmj-vivace/raw/master/sbcm/sbcm2017-template.pdf).
+Most importantly, for me:
+* I got in touch with the Romanian-American composer [Tipei](http://ems.music.uiuc.edu/people/tipei/).
+He had very interesting thoughts on musical theory, history and computer
+music.
+* People liked the work on Vivace quite allot and kept asking me about
+  it and making explicit their appreciation of the work and intentions
+  of usage.
+* I learned about recent work of a number of researchers that interests
+  me: [Tiago Tavares](http://www.dca.fee.unicamp.br/~tavares/),
+  [Flávio Schiavoni](http://dcomp.ufsj.edu.br/~fls/),
+  [Marcelo Queiroz](https://www.ime.usp.br/~mqz/)
+  and [José Padovani](http://zepadovani.info/),
+  to name just a few.
+* Learned about the possibilities of decomposing a signal
+into AM and FM modulators with Antonio Goulart.
+* Learned some bits about Ubiquitous music from [Damián Keller](https://ccrma.stanford.edu/~dkeller/).
+* Learned a bit about recognizing features of specific genres of music
+from [Xavier Serra](https://www.upf.edu/web/xavier-serra).
+* Grasped some interesting considerations about blending harmonies from
+  different genres from [Emilios Cambouropoulos](http://users.auth.gr/emilios/)
+* Listened to interesting musical pieces in the daily concerts.
+* I applied to become a member of the
+[Brazilian Committee for Computer
+Music](http://www.sbc.org.br/14-comissoes/385-computacao-musical).
+* Some other stuff I don't recall at the moment but will add to this
+  list.
+
+
+
+
