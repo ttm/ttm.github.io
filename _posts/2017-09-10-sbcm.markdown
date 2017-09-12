@@ -30,7 +30,7 @@ into AM and FM modulators with Antonio Goulart.
 * Learned a bit about recognizing features of specific genres of music
 from [Xavier Serra](https://www.upf.edu/web/xavier-serra).
 * Grasped some interesting considerations about blending harmonies from
-  different genres from [Emilios Cambouropoulos](http://users.auth.gr/emilios/),
+  different genres from [Emilios Cambouropoulos](http://users.auth.gr/emilios/).
 * Listened to interesting musical pieces in the daily concerts.
 * I applied to become a member of the
 [Brazilian Committee for Computer
