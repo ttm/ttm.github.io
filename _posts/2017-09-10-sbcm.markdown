@@ -23,7 +23,7 @@ music.
 * People liked the work on Vivace quite a lot and kept asking me about
   it and making explicit their appreciation of the work and intentions
   of usage.
-* I learned about recent work of a number of researchers that interests
+* I learned about recent works of a number of researchers that interests
   me: [Tiago Tavares](http://www.dca.fee.unicamp.br/~tavares/),
   [Flávio Schiavoni](http://dcomp.ufsj.edu.br/~fls/),
   [Marcelo Queiroz](https://www.ime.usp.br/~mqz/)
