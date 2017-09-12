@@ -11,6 +11,11 @@ Brazilian Symposium on Computer Music
 ([SBCM2017](http://compmus.ime.usp.br/sbcm/2017/))
 and presented the [Vivace livecoding language and
 platform](https://github.com/ttm/cmj-vivace/raw/master/sbcm/sbcm2017-template.pdf).
+Here is a [screencast where I recorded the presentation when practicing](https://youtu.be/EKUz3M9kPBI). 
+The final presentation was better, but the screencast
+is good enough.
+Here are [the slides](https://github.com/ttm/cmj-vivace/blob/master/sbcm/presentation.md)
+I used.
 Most importantly, for me:
 * I got in touch with the Romanian-American composer [Tipei](http://ems.music.uiuc.edu/people/tipei/).
 He had very interesting thoughts on musical theory, history and computer

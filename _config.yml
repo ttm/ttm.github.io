@@ -7,11 +7,30 @@ description: > # this means to ignore newlines until "baseurl:"
   data audiovisualization, computer music and other stuff which interests me.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://ttm.github.io" # the base hostname & protocol for your site
+author: Renato Fabbri
+twitter:
+    username: renatogk
+facebook:
+    publisher: renato.fabbri
 twitter_username: renatogk
 facebook_username: renato.fabbri
 github_username: ttm 
 irc_channel: labmacambira 
 
+social:
+    name: Renato Fabbri
+    links:
+        - https://github.com/ttm
+        - https://www.facebook.com/renato.fabbri
+        - https://www.linkedin.com/in/renatofabbri
+
 # Build settings
 markdown: kramdown
 timezone: America/Rio_de_Janeiro
+
+# for search engine optimization
+plugins_dir:
+      - jekyll-seo-tag
+
+gems:
+   - jekyll-seo-tag
