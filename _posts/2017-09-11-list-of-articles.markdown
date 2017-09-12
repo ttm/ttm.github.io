@@ -76,3 +76,4 @@ has directions to find them all.
 This process is very briefly described in this [doctoral thesis](https://github.com/ttm/thesis/raw/master/thesis-rfabbri.pdf).
 * Sonic doin: using continuous and intermittent sounds for therapy.
 We should use the MASS framework (mentioned above) for this.
+* About AA, what it is, what it is not and how it can be harnessed.
