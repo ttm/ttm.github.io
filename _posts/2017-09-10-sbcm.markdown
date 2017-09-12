@@ -31,7 +31,7 @@ music.
   to name just a few.
 * Learned about the possibilities of decomposing a signal
 into AM and FM modulators with Antonio Goulart.
-* Learned some bits about Ubiquitous music from [Damián Keller](https://ccrma.stanford.edu/~dkeller/).
+* Learned some bits about Ubiquitous Music from [Damián Keller](https://ccrma.stanford.edu/~dkeller/).
 * Learned a bit about recognizing features of specific genres of music
 from [Xavier Serra](https://www.upf.edu/web/xavier-serra).
 * Grasped some interesting considerations about blending harmonies from
