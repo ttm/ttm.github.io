@@ -15,7 +15,7 @@ Most importantly, for me:
 * I got in touch with the Romanian-American composer [Tipei](http://ems.music.uiuc.edu/people/tipei/).
 He had very interesting thoughts on musical theory, history and computer
 music.
-* People liked the work on Vivace quite allot and kept asking me about
+* People liked the work on Vivace quite a lot and kept asking me about
   it and making explicit their appreciation of the work and intentions
   of usage.
 * I learned about recent work of a number of researchers that interests
@@ -30,12 +30,12 @@ into AM and FM modulators with Antonio Goulart.
 * Learned a bit about recognizing features of specific genres of music
 from [Xavier Serra](https://www.upf.edu/web/xavier-serra).
 * Grasped some interesting considerations about blending harmonies from
-  different genres from [Emilios Cambouropoulos](http://users.auth.gr/emilios/)
+  different genres from [Emilios Cambouropoulos](http://users.auth.gr/emilios/),
 * Listened to interesting musical pieces in the daily concerts.
 * I applied to become a member of the
 [Brazilian Committee for Computer
 Music](http://www.sbc.org.br/14-comissoes/385-computacao-musical).
-* Some other stuff I don't recall at the moment but will add to this
+* Some other stuff I don't recall at the moment but might add to this
   list.
 
 
