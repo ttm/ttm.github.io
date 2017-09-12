@@ -25,10 +25,13 @@ and I should distinguish them at least between: idealized, written and published
 Here it goes.
 For now I have made only a list of the unpublished ideas and
 did not differentiate the ones I have written about from the ones which
-have received documentation:
+have not received a 'natural language' documentation:
 * Decomposition of a (original) sound using any other sound as the basis.
 The basis sound should be used in many scales to represent the original
 sound reasonably well.
+The idea is simply to multiply one sound by the other sample-by-sample
+and then sum. This is the scalar multiplication of one sound by the
+other, i.e. the magnitude of the projection of one sound into the other.
 * A scientific account of the [AirHackTable](http://wiki.nosdigitais.teia.org.br/AirHackTable)
 * Meta-sieves: mathematical structures to be mapped to sound.
 This idea is very incipient and I don't know how much it makes sense
@@ -67,7 +70,7 @@ has directions to find them all.
 * Integral serialism with permutations and algebraic groups (for musical
   composition).
 * Vocabulary and Ontology for the MASS framework mentioned above.
-* Deepen the concept of the [Anthropological Physica](http://www.academia.edu/10356773/What_are_you_and_I_anthropological_physics_fundamentals_).
+* Deepen the concept of the [Anthropological Physics](http://www.academia.edu/10356773/What_are_you_and_I_anthropological_physics_fundamentals_).
 * Finish the [analysis of the work by Machado de Assis by text mining](https://sourceforge.net/p/labmacambira/rcpln/ci/master/tree/pln/trabLetras/resumoLetras.pdf?format=raw).
 * Describe the process of constructing OWL ontologies from raw data.
 This process is very briefly described in this [doctoral thesis](https://github.com/ttm/thesis/raw/master/thesis-rfabbri.pdf).
