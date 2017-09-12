@@ -5,11 +5,15 @@ comments: true
 permalink: /about/
 ---
 
-I seem to be manifested
-as a Brazilian researcher, developer and artist named Renato Fabbri.
+I seem to be
+a Brazilian researcher, software developer and artist named Renato Fabbri.
 
-This is a recent pic of me by a Portinari wall:
+This is a pic of me by a Portinari wall:
 
 ![an alt text](/assets/eu.jpg){: .mypic}
+
+And at my hacking blob:
+
+![an alt text](/assets/2017-09-11-230032.jpg){: .mypic2}
 
 cheers.
