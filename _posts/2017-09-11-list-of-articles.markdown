@@ -77,3 +77,4 @@ This process is very briefly described in this [doctoral thesis](https://github.
 * Sonic doin: using continuous and intermittent sounds for therapy.
 We should use the MASS framework (mentioned above) for this.
 * About AA, what it is, what it is not and how it can be harnessed.
+* About the music Python Package to synthesize music.
