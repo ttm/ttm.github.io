@@ -8,10 +8,6 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://ttm.github.io" # the base hostname & protocol for your site
 author: Renato Fabbri
-twitter:
-    username: renatogk
-facebook:
-    publisher: renato.fabbri
 twitter_username: renatogk
 facebook_username: renato.fabbri
 github_username: ttm 
@@ -32,5 +28,5 @@ timezone: America/Rio_de_Janeiro
 plugins_dir:
       - jekyll-seo-tag
 
-gems:
+plugins:
    - jekyll-seo-tag
