@@ -89,3 +89,32 @@ Maybe talk to João Bueno, Jane Borges or seek other partners in the pedagogy fi
 * Implementation of peals (change ringing) in Python (implement 3 trios at least, make expansions).
 * An article about audiovisual analytics conceptualization (including time-variant interfaces that uses the perception rhythms).
 Include AAVO and a design and implementation possibilities (with emphasis on web, sandbox, user shareable states, etc).
+* A description of the musical compositions endeavors I've made
+(and include the musics, videos, texts and scripts which I can recover).
+* Vocoder via Fourier, wavelets, other established bases and arbitrary bases (any sound actually).
+* Routines for generation music from arbitrary structures (e.g. sound files, permutations, groups, peals, scales, rhythms...)
+* Describe the Erdõs sectioning in further detail:
+  - Can use (in-out)degree or (in-out) strengths or a combination of them.
+  - Implement a python toolbox to perform the sectioning (classification)
+  - Make it available through algorithmia
+  - Explain the naming (why sectioning and not partitioning (sectorialization?), why Erdõs?); it is a shorthand for "sectioning of the network vertices into the hubs, intermediary and peripheral vertices by a comparison of the connectivity distribution against that of an Erdös-Rényi model.
+  - Discuss the strengths and weaknesses of current implementation:
+    * Strengths: well behaved; true to the qualitative description
+    * Weaknesses: using the degree mean to derive the sectioning while the mean is nos to meaningful in scale-free networks;
+    problems with sampling and oscillation of the histogram;
+    might not be the best method for any network and might classify vertices when it is not meaninful;
+    there might be better to consider another number of classes of vertices
+  - History and context of the concept of hubs, intermediary and peripheral vertices
+  - Possibilities of other ways to perform the sectioning:
+    * spectral graph theory
+    * dry cut with percentages of hubs (~1-5%) intermediary (~10-25%) and peripheral (~60-85%)
+    * percentages derived from characteristics of the graph
+  - (Human) Typology derived from the sectioning, why it is ~ok (less prompt to yield stigmatization because it varies in time, scale and network)
+  - Futher work:
+    * Consider heterogeneous (e.g. bipartite) networks and multigraphs
+    * Address the Weaknesses described.
+
+
+Already sketched:
+* Versinus
+  - Implement a toolbox to render versinus images and animations.
