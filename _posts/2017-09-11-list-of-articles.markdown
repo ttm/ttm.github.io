@@ -116,7 +116,7 @@ Include AAVO and a design and implementation possibilities (with emphasis on web
   - Possibilities of usage of the established lexicons for SKOS vocabularies and OWL ontologies 
   - Possibilities of the usage of the methodologies
 * A description of the Common Ontology (CO):
-  - Includes bonding SKOS and OWL and URIs for expressing potential relations [1]
+  - Includes bonding SKOS and OWL and URIs for expressing potential relations [[1]]
 * A description of the Common Resource (CR) protocol:
   - Text written RDF triples bonding at least Markup language (and other resources in personal notes)
   - Describe the Common Ontology in CR
