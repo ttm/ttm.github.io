@@ -110,11 +110,27 @@ Include AAVO and a design and implementation possibilities (with emphasis on web
     * dry cut with percentages of hubs (~1-5%) intermediary (~10-25%) and peripheral (~60-85%)
     * percentages derived from characteristics of the graph
   - (Human) Typology derived from the sectioning, why it is ~ok (less prompt to yield stigmatization because it varies in time, scale and network)
-  - Futher work:
+  - Further work:
     * Consider heterogeneous (e.g. bipartite) networks and multigraphs
     * Address the Weaknesses described.
+* A consideration of the German lexicographical tradition for the semantic web:
+  - Results in terms of the contributions to current semantic web
+  - Possibilities of usage of the established lexicons for SKOS vocabularies and OWL ontologies 
+  - Possibilities of the usage of the methodologies
+* A description of the Common Ontology (CO):
+  - Includes bonding SKOS and OWL and URIs for expressing potential relations [1]
+* A description of the Common Resource (CR) protocol:
+  - Text written RDF triples bonding at least Markup language (and other resources in personal notes)
+  - Describe the Common Ontology in CR
+  - Envision possibilities to write algorithms in Coffescript and a condensed notation for Python
+
+[1]: https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf
 
 
-Some of the already sketched:
+Some of the already sketched, finished or almost:
 * Versinus
-  - Implement a toolbox to render versinus images and animations.
+  - Implement a toolbox to render versinus images and animations (audiovisualizations)
+* Ubiquity of inequality (by power laws)
+* Social Participation Ontology
+* Differences between the linguistic production of the Erdõs Sectors
+* LOSD (Linked Open Social Database)
