@@ -125,7 +125,7 @@ Include AAVO and a design and implementation possibilities (with emphasis on web
 [1]: https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf
 
 
-### Some of the already sketched, finished or almost:
+## Some of the already sketched, finished or almost:
 * Versinus
   - Implement a toolbox to render versinus images and animations (audiovisualizations)
 * Ubiquity of inequality (by power laws)
