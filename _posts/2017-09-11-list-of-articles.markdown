@@ -39,8 +39,6 @@ within the framework proposed by Xenakis.
 Meta-sieves are at the moment conceptualized (by me) as any mathematical
 structure that filters a given domain: a probabilistic distribution,
 a group, a ring, etc.
-* [Ideal Ideas](https://github.com/ttm/idealIdeas/raw/master/pensamento.pdf):
-a physical model of the mind.
 * A very brief account of the [MASS](https://github.com/ttm/dissertacao/raw/master/article/acm/sample-acmsmall.pdf)
 framework for describing musical elements in PCM audio.
 This document should contain only the equations, algorithms and very brief
@@ -134,3 +132,6 @@ Some of the already sketched, finished or almost:
 * Social Participation Ontology
 * Differences between the linguistic production of the Erdõs Sectors
 * LOSD (Linked Open Social Database)
+* Pimp the EMC articles and send them to journals
+* [Ideal Ideas](https://github.com/ttm/idealIdeas/raw/master/pensamento.pdf):
+a physical model of the mind.
