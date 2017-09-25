@@ -115,6 +115,6 @@ Include AAVO and a design and implementation possibilities (with emphasis on web
     * Address the Weaknesses described.
 
 
-Already sketched:
+Some of the already sketched:
 * Versinus
   - Implement a toolbox to render versinus images and animations.
