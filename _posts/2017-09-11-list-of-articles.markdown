@@ -121,6 +121,12 @@ Include AAVO and a design and implementation possibilities (with emphasis on web
   - Text written RDF triples bonding at least Markup language (and other resources in personal notes)
   - Describe the Common Ontology in CR
   - Envision possibilities to write algorithms in Coffescript and a condensed notation for Python
+* Describe meta-vibratos (vibratos with a secondary oscillatory pattern, VV in MASS)
+and meta-tremolos. Describe their implementation with and without glissandi (PV in MASS).
+Achieve a general implementation for any number of oscillatory patterns and transitions.
+* Think about the implications of using Weber and Fechner and Steven's Laws for loudness (and pitch!).
+What are the implications and the implementations.
+  - See: https://doi.org/10.1017/S0140525X0004855X
 
 [1]: https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf
 
