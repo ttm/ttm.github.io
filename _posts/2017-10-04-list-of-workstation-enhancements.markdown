@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Articles written and to be written"
+title:  "Enhancements to the work tools"
 categories: research
 comments: true
 published: true
@@ -11,7 +11,11 @@ I enhanced my laptop environment recently with:
 * Vim 8: for True Color, python scripting and latest improvements.
 
 There are many other things I can improve, and this post will
-be dedicated to them:
+be dedicated to them.
+I consider my knowledge a work tool
+and include things to be read or watched.
+
+System (Linux):
 * A keyboard shortcut to open sound configuration window.
 
 Vim:
