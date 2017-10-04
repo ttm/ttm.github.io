@@ -127,7 +127,25 @@ Achieve a general implementation for any number of oscillatory patterns and tran
 * Think about the implications of using Weber and Fechner and Steven's Laws for loudness (and pitch!).
 What are the implications and the implementations.
   - See: https://doi.org/10.1017/S0140525X0004855X
-
+* All my Vim tricks (or A Decade of Vim).
+Make an article and screencast where I explain all the tricks I use in this
+more than 10 years using vim. The goals are:
+  - To register my current usage of Vim.
+  - To help users in understanding how to use Vim.
+  - To have feedback of other advanced users in order to know better ways to use Vim.
+  - Better letter sequences for commands.
+* Artigo "On the transitions of amplitude and frequency:
+fades, tremolos, AM, glissandi, vibratos, FM, spatial localization and Doppler Effect"
+  - transições lineares e exponenciais
+  - descrever alphas para distorções
+  - fade exponencial com linear p chegar no zero
+  - uso de LUTs para vibratos, glissandi, FM, Doppler
+  - Doppler a partir de um som pre-existente
+  - combinação de vibratos e glissandi
+  - transição de localização espacial
+  - tudo implementado na massa e music
+  - acompanha suíte transitions q ilustra os potenciais musicais do arcabouco
+  
 [1]: https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf
 
 
