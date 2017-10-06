@@ -145,6 +145,32 @@ fades, tremolos, AM, glissandi, vibratos, FM, spatial localization and Doppler E
   - transição de localização espacial
   - tudo implementado na massa e music
   - acompanha suíte transitions q ilustra os potenciais musicais do arcabouco
+* A complete model for reverberation:
+  - Account for any directionality pattern for the source
+  - Account for any positioning of the listener (and let it be more that one to generalize)
+  - Account for any shape of a room
+  - Account for any absorbtion pattern for the room's surfaces
+  - Apply a distance-dependent HRTF for when a sonic front reaches the ear.
+* Generalized octaves:
+  - f.2 an octave
+  - f.3/2=f.(1.5) a half octave, a fifth
+  - f.(1.25) a quarter octave, ~ a major third
+  - f.(1.125) an octeth of an octave, ~ a major second
+	- f.(1.0625) an 16h of an octave, ~ a minor second
+* Symmetry, metric to frequency: fractalization of space into self-similar bases
+	- If you have a basis, for example measure spaces,  or just the axis with a proposed quantification of something, you can place one between the other two. You can place two apples between two apples, you can place two speed values between two speeds.
+And three, and four....
+The octavesa are when you divide it by 2,
+Or multiply your fequency by two.
+The other intervals: 3 in one, 7 in two,
+are other frequencies, other Fourier components.
+Be m_i a set of measurements.
+m'_i = m_i or m'= d(m+i) (distancia entre os dados, normaliza com media e desvio padrao)
+F_k(m_i) = c_k, frequencia e fase do seu conjunto de dados.
+Eles podem ser ordenados pelo valor deles mesmo, em ordem crescente,
+
+Each octave is a sinudoid if you make the fourier transform.
+
   
 [1]: https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf
 
