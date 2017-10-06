@@ -168,8 +168,8 @@ Be m_i a set of measurements.
 m'_i = m_i or m'= d(m+i) (distancia entre os dados, normaliza com media e desvio padrao)
 F_k(m_i) = c_k, frequencia e fase do seu conjunto de dados.
 Eles podem ser ordenados pelo valor deles mesmo, em ordem crescente,
-
 Each octave is a sinudoid if you make the fourier transform.
+* Métodos de vis científica para visinfo : revisão da literatura q já faz isso, possibilidades teóricas e aplicação p redes, texto, audo e música. 
 
   
 [1]: https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf

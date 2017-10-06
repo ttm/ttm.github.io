@@ -5,7 +5,6 @@ categories: research
 comments: true
 published: true
 ---
-
 I enhanced my laptop environment recently with:
 * Byobu: for avoiding many terminal tabs and windows
 * Vim 8: for True Color, python scripting and latest improvements.
@@ -90,6 +89,8 @@ results I already have.
 	- complex networks;
 	- text mining;
 	- Make the enthough courses;
+	- Signal processing:
+	  * https://www.youtube.com/watch?v=rkvEM5Y3N60 (Oppenheim!)
 * Books on data visualization:
 	- Munzner
 	- Ward
