@@ -32,6 +32,7 @@ Vim:
 	- As a last resort, one can use a vmap to do something
 	not used in the visual mode, but just to use its namespace.
 	- Break paragraph in the periods. And other clues (, and : and $ and '(')
+	- Use C-S-(HJKL) for window resizing.
 	if the resulting lines are longer then X (~80) chars.
 * What is the right move to fall into the end of the previous word?
 * Make the real-time updating of the logging file work.
@@ -57,6 +58,8 @@ Vim:
 		- Might be related to a screencast
 		(which might be just another message)
 	- send each message to IRC channels?
+* Plugin to generate images for equations and import images
+to VIM's interface. Useful for presentations.
 
 * Work with compilation of latex files from inside vim.
 
