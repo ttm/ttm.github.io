@@ -171,9 +171,111 @@ Eles podem ser ordenados pelo valor deles mesmo, em ordem crescente,
 Each octave is a sinudoid if you make the fourier transform.
 * Métodos de vis científica para visinfo : revisão da literatura q já faz isso, possibilidades teóricas e aplicação p redes, texto, audo e música. 
 * Plugin to generate images for equations and import images
-to VIM's interface. Useful for presentations
+to VIM's interface. Useful for presentations.
+* Vim article with the consideration of:
+  - Make a screencast (or series of them) with the content.
+  - Name:
+    * On the Vim editor
+    * 10 years of Vim editor
+    * Vim features and tweaks
+  - Useful features grasped in the more than ~10 years of usage.
+    * Standard configuration files and directories and My .vim/vimrc
+    * Spell and spelllang (en and pt_br)
+    * Tabs, splits, buffers and namespaces (& % $ and the following)
+    * Mappings and abbreviations
+    * Macros and registers for copy and paste
+    * History of commands
+    * List of markers
+    * Undo
+    * Scripting, Functions, Vimscript and Python
+    * Plugins
+      - Standard features
+      - Writting plugins
+      - Plugin systems: usage for using and writing plugins
+    * Colour:
+      - Standard, 8 and 16 bits, and true color, Screen/Byobu
+      - Gruvebox, Solarize and other colourschemes
+    * Fonts:
+      - Cools nd popular fonts
+      - How to set fonts in xterm, gnome-terminal and GVim.
+    * Verbosing, logs and possibilities of using it to study your own
+    usage (often used commands and typed sequences).
+    * Highlighting
+    * Bash and Vim commands
+    * Help commands, files, tutor, and usr\_toc
+    * Compiling, standard features and plugins
+    * Quickfix
+  - A description of the ctags usage Molinar described.
+  - A description of these issues in special and a plugin for each:
+    * The letter sequences which are available (zX, gX) and usable
+    for mappings (jj, _, gr, <ctrl-[hjkl]>...).
+    * The popular choices for leader and localleader keys.
+    And their fit for use with different keyboad layouts
+    (at least for English and Portuguese).
+    * Dealing with swp and swo files.
+    Use the content in
+    [this post](http://ttm.github.io/research/2017/11/02/vim-swp-swo.html)
+    by myself.
+    * Slides presentation in Vim:
+      - Macros or mappings for changing slides
+      and for opening figures.
+      - Possibilities of integreating figures
+      and equations.
+    * Highlighting text
+      - Exemplify plugin with the Toki Pona plugin.
+      - Show how to change colour of token sets
+      and the token sets on the fly.
+      Maybe make a plugin to help on this,
+      maybe saving the resulting colourscheme
+      of on-the-fly changes.
+    * Bash commands and:
+      - Running Python files
+      - Compiling Latex files
+    * Web navigation (open links, search on Google)
+* A Latex article in resemblance with the Vim article:
+  - Describe Tex and Latex, their relation and basic notions.
+  - Descibe Latex usage with the commands: pdflatex, bibtex, latex, make, etc.
+  - Describe tweaks
+    * To reference sections and bibliographical items from another document
+    * To write inline and listings of codes
+    (see at least the [dissertation](https://github.com/ttm/dissertacao/),
+    [ops](https://github.com/ttm/ops) and other documents).
+    * To place figures and tables
+    * To load external files
+      - Tables.
+      Make a Python function that receives a csv file and writes a latex table
+      (Use routines in gmaneLegacy and percolation).
+  - Describe basic canonical choices:
+    * Single and double columns
+    * Basic document, articles and books (dissertations, thesis)
+    * Basic elements: graphics, tables, code, links (decent setting of href), footnotes.
+    * Title page
+    * Bibliographical styles of reference and item description
+    * utf8, latin
+    * Equations
+      - split, multiline, equation, environments
+      - mix of systems and single lines
+    * Colors and fonts (sizes)
+    * Spaces and breaks (line, page)
+    * Page layout (magins, fixed headings and footers)
+  - Other features:
+    - Diagrams
+    - ??
+* Same proposal as for Vim and Latex, but for:
+  - The semantic web
+  - Python
+  - Linux
+  - Data visualization, complex networks, computer-aided language processing (text mining, analytics and NLP)
+* "On the hub, intermediary and peripheral vertices of networks:
+Erdös sectorialization and alternatives":
+  - Dry cut on percentages (e.g. 5, 20, 75%)
+  - Using the Fourier espectrum
+  - Further work:
+    * Wavelets
+    * AI 
 
-  
+
+
 [1]: https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf
 
 
@@ -187,3 +289,11 @@ to VIM's interface. Useful for presentations
 * Pimp the EMC articles and send them to journals
 * [Ideal Ideas](https://github.com/ttm/idealIdeas/raw/master/pensamento.pdf):
 a physical model of the mind.
+
+
+## People to write with:
+* Luciana Furlanetto
+* Maju Martins
+* Silvério
+* Daniel Borges
+* Cravelho

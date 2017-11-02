@@ -54,7 +54,12 @@ both files opened with :diffthis command.
 The original file is diff(ered) against
 the file yield by .%.swp (maybe call it SWP%).
 The user handles the files from then on.
-When the SWP file closes, delete the .%.swp file.
+When the SWP% file closes, delete the .%.swp file.
 Maybe let the user confirm removal of the .swp file.
+
+The more .%.swX files are created whenever
+there are .%.swp and .%.swo and .%.swY files,
+where X and Y are characters defined in order by
+Vim.
 
 

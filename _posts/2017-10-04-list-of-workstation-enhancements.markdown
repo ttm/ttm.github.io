@@ -60,6 +60,7 @@ Vim:
 	- send each message to IRC channels?
 * Plugin to generate images for equations and import images
 to VIM's interface. Useful for presentations.
+* Plugin for dealing with the .swp and .swo files
 
 * Work with compilation of latex files from inside vim.
 
