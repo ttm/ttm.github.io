@@ -267,12 +267,18 @@ to VIM's interface. Useful for presentations.
   - Linux
   - Data visualization, complex networks, computer-aided language processing (text mining, analytics and NLP)
 * "On the hub, intermediary and peripheral vertices of networks:
-Erdös sectorialization and alternatives":
+* Erdös sectorialization and alternatives":
   - Dry cut on percentages (e.g. 5, 20, 75%)
   - Using the Fourier espectrum
+  - Make these options available through PyPI and Algorithmia
   - Further work:
     * Wavelets
     * AI 
+ * Articles presenting:
+   - A package with canonical Swarm Intelligence algorithms (ACO, PSO, etc)
+   - A package with canonical Bayesian learning methods
+   - A package with canonical Fuzzy learning methods
+   - A package with canonical Evolutive learning methods
 
 
 
