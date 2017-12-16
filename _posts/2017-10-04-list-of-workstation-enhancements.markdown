@@ -34,7 +34,6 @@ Vim:
 	- Break paragraph in the periods. And other clues (, and : and $ and '(')
 	- Use C-S-(HJKL) for window resizing.
 	if the resulting lines are longer then X (~80) chars.
-* What is the right move to fall into the end of the previous word?
 * Make the real-time updating of the logging file work.
 * Learn better about what is new in version 8.
 * Get more syntax highlighting plugins.

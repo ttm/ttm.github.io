@@ -279,6 +279,130 @@ to VIM's interface. Useful for presentations.
    - A package with canonical Bayesian learning methods
    - A package with canonical Fuzzy learning methods
    - A package with canonical Evolutive learning methods
+* Chernoff bodies:
+  - Glifos em corpos humanos mapeados para os dados
+  - Explorar o corpo masculino e feminino e traços sexuais
+* Colóquio:
+  * AAVO completo:
+    - Core e expansão
+    - Consideração da Interface de visualização
+    - Da LOSD
+    - Estado talvez com os conceitos faltates na Core.
+    Talvez com a expansão melhorada.
+    - Inferências e um script para realizar recomendação
+    de métodos e outras coisas.
+    Talvez já conectar com a LOSD e fazer gambis.
+  * Linked Open Social Data as social participationn ontologies and data
+    - LOSD
+    - Ontologias de participação Social
+    - Pnud1-5
+* Nuvem:
+  - Consideração da sociedade pela sociedade:
+    * O que fizemos até aqui
+    * Qual a questão e contexto atual: com as tecnologias,
+    é importante a interface com o ferramental para análise dos dados,
+    até para fazer frente aos outros poderes.
+    * Como podemos trabalhar o tema: conexão com Nuvem, com Nexos e com IFSC/ICMC.
+  - Audiovisualização social: conceitualização inicial
+    * Cada dado possui uma pessoa ou população associada.
+    * AAVO
+    * Integração com o software de mineração de dados
+    * Possibilidades de construção conjunta
+* Linked data and the semantic web: an overview on current technology and of the harnessing possibilities:
+  - RDF(S), OWL, SKOS, RIF, SparQL
+    - Make a repository of such files (updated)
+    - Put also graphs that hold the relations that imply a class restriction or property axiom, range and domain.
+    - Put the set that comply and break with OWL DL, Full etc.
+    - Make distinct all between RDF, RDFS and OWL and SKOS.
+      * Advocate RDFS with [Ontology Enhancements](https://arxiv.org/abs/1710.09952)
+      especially for rapid development and as a template for ontologies.
+      Classes are OWL, but only hold ordinary properties, and (po:potential) range and domain.
+      * OWL capabilities should be considered completely seperate.
+  - DBPedia, LOV, other sources of data, dataHub, data.world
+  - Tools for visualizing and making ontologies and linked data
+  - Results and discussion: overview of possibilities,
+  possible enhancements, tools to make, research on linked data methods
+  and in mining data.
+* Biblical vent: phrases and morals seem sublime and abominable
+  - Phrases to meditate and guide the soul
+  - Phrases miss used (never saw an honest soul beg)
+  - Phrases I only can understand as abominable
+  - Moral and ethic issues
+  - Narratives in which I find wisdom and missguidance
+  - A textual analysis of the Bible
+  - A toolbox for obtaining insights about the Bible
+  (word and phrase search, sections, authors, etc)
+* Conlangs:
+  - Idealizada para escrita cientifica (artigos) e apresentação científica
+  - outra idealizada para explorar o pensamento
+  - outra idealizada para comunicar os pensamentos rapidamente e informalmente a alguém ou várias pessoas
+
+* Adicionar o Milgram aos egalitrian aspects of scale-free
+* Vim from the perspective of HCI
+or Vim: HCI description.
+Vim: a HCI description
+* VOV: Vim Ontology and Vocabulary
+* Text-based data visualization:
+  * Syntax highlighting
+  * Images and graphs to asciiart.
+    - As a aesthetic approach
+    - For complying with limitations of the platform (e.g. Vim editor).
+  * Slides and pages,
+  * Opening image and pdf files through external commands (:!eog evince, :term).
+  * A Vim plugin for changing background and foreground colors incrementally,
+  and correctly associating keywords and highlighting groups.
+  * Another for importing images as ascii art and making charts using ascii,
+  with colors, positions, etc.
+* Specific conlangs for different contexts, they are modes with a very simple vocabulary.
+  - Each with about 120 tokens such as toki pona or something else.
+  - Have a version of words in English and Portuguese and Spanish and French etc.
+  - For scientific writing, is parsed into an RDF + python artificial languages.
+  Should yield the results stated in the text as tests and results and exposition
+  of the material to the reader.
+  - Language for exploring the thought.
+  - Language for representing data and software directly (not as scientific writing).
+  - Specific vocabularies are added as needed. See how this works in Lojban.
+  - "The first formal language is thought to be the one used by Gottlob Frege in his Begriffsschrift (1879), literally meaning "concept writing", and which Frege described as a "formal language of pure thought."[2]
+    * from https://en.wikipedia.org/wiki/Formal_language
+* Article about allowing irregular day and night activities.
+* a capela:
+  - puro: soh vale voz
+  - misturado: vale voz e ruido gutural labial, percussivo, soprado etc.
+  - fora: vale percussao corporal
+* Estudar sobre cor:
+  - Teoria do Goethe
+  - Do Kandinsky?
+  - Do Schopenhauer: https://en.wikipedia.org/wiki/On_Vision_and_Colors
+  - Do Paul Klee
+  - Newton
+  - Ludwig Wittgenstein and Erwin Schrödinger 
+  - Thomas Johann Seebeck, Arthur Schopenhauer (see: On Vision and Colors), Hermann von Helmholtz, Rudolf Steiner, Ludwig Wittgenstein, Werner Heisenberg, Kurt Gödel, and Mitchell Feigenbaum. (todos sobre o Goethe)
+  - De quem mais tem?
+  - Teoria canonica de cores: https://en.wikipedia.org/wiki/Color_theory
+  - https://en.wikipedia.org/wiki/Evolutionary_aesthetics
+  - https://en.wikipedia.org/wiki/Effects_of_blue_light_technology
+  - https://en.wikipedia.org/wiki/Color_psychology
+  - https://en.wikipedia.org/wiki/Color_constancy
+  - https://en.wikipedia.org/wiki/Chromostereopsis
+  - https://en.wikipedia.org/wiki/Category:Optical_illusions
+* General guidelines (best practices?) for syntax highlighting derived from:
+  - Data visualization theory
+  - Visual cognition theory
+  - Design theory
+  - Visual arts theory
+  - Programs dedicated to syntax highlighting
+* Syntax highlighting and color schemes:
+  - Derived from the guidelines on the previous article
+  - With color palettes related to mythological figures
+    - African entities: exu, obatalá, umulu... 
+    - Egyptian, Greek entities and from elsewhere
+  - Taking advantage of color properties, e.g.
+  red for detail-oriented tasks, blue for creativity and staying awake.
+  - Apply them at least in for Vim 
+
+
+
+
 
 
 
