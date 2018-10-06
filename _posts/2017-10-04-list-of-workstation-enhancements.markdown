@@ -60,8 +60,45 @@ Vim:
 * Plugin to generate images for equations and import images
 to VIM's interface. Useful for presentations.
 * Plugin for dealing with the .swp and .swo files
-
 * Work with compilation of latex files from inside vim.
+* Make a Vim plugin/gadget with which one might
+select some lines of Python code, and it would open
+a template with those lines positioned as convenient,
+with all the previous lines executed in an outer function
+or script.
+A rudimentary routine might clean the outer script
+by:
+0. a = locals().keys()
+1. go to the last line of the script + selected lines
+2. in each line:
+  3. check if there is any variable not known.
+  4. If the line is one of the selected lines,
+  any variable defined is kept in the watched list.
+  5. Any unknown variable needed to obtain a variable in
+  the watched list is added to the list.
+  5.1. In a more conservative and less error prone implementation,
+  any variable, known or not, used to calculate a variable
+  in the watched list, gets added to the list.
+  6. If the line contains a definition of a variable on the watched
+  list, it gets marked to be kept in the final outer script.
+  7. Keep all 'import * ' statements
+(Repeat steps 3-7 until the script + selected lines ends.)
+8. write the outer script using the lines marked.
+
+If the selected lines are inside a function or class,
+special care should be taken to look for used variables
+in the local scope and then to the global namespace.
+Inside a function: look for definition inside the function,
+then in the global namespace.
+Inside a class:
+  - If inside a function of the class,
+  look for vars in the scope of the function
+  and then in the scope of the class (self.)
+  and then in the global scope.
+  - If outside function, check for scope of the class and higher
+  - If in function/class arguments, check for scope of class and higher
+
+
 
 IPython:
 * Make an intensive study on using and making magic commands.

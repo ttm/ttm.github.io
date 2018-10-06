@@ -394,11 +394,59 @@ Vim: a HCI description
 * Syntax highlighting and color schemes:
   - Derived from the guidelines on the previous article
   - With color palettes related to mythological figures
-    - African entities: exu, obatalá, umulu... 
+    - African entities: exu (red, black and yellow), obatalá, umulu... 
     - Egyptian, Greek entities and from elsewhere
   - Taking advantage of color properties, e.g.
   red for detail-oriented tasks, blue for creativity and staying awake.
+  Maybe green for exploration.
   - Apply them at least in for Vim 
+  - Alternate colors (especially background colors) from time to time.
+  - Color schemes for syntax highlighting: general guidelines, best practices and example implementations
+    - Introduction and related work
+      * SH - what it is and why it is so important
+    - Materials and methods
+      * Dataviz theory
+      * Existing software:
+        - That uses SH
+        - That is dedicated to SH
+        - To obtain color schemes
+      * Theory of design and visual arts
+    - Results and discussion
+      * Background color and foreground colors
+      * Periodic changes of the color scheme
+      * General guidelines
+      * Best practices (same as general guidelines?)
+      * Color schemes
+        - Keys colors
+        - Mythology-inspired color schemes
+        - Various colors for various groups of tokens:
+          * Optimal palettes without constrains
+          * Optimal palettes given the background and maybe some of the foreground colors
+      * Facilities for fine-tuning
+      * Implementations in Vim
+        - Coloring mode:
+          * For picking specific colors for the groups in the buffer or all the groups
+          * For fine-tuning the colors
+          * For saving and loading the color-schemes
+        - Color schemes
+          * as specified above
+    - Conclusions and further work
+      * Enhance the color schemes upon usage and feedback
+      * Consider other aspects of syntax highlighting:
+        - Bold, italic
+        - Specific languages and context:
+          * Coloring following syntax rules and/or set of tokens
+    - The only specific reference: https://en.wikipedia.org/wiki/Syntax_highlighting
+* A description of the possibilities, experiments and tools I
+  developed to harness the influence of colors in the convenient
+  context of writting (code, articles, books, webpages, etc), i.e. in
+  the context of syntax highlighting.
+  Make the realcolors tools available with prv to sync notes from all
+  users and guide development.
+  (measure time with each color in bg and fg. Scores of the users for
+  how stimulant, confortable, readability, beautiful, exotic, etc, it is.
+* "Change and method ringing for musical composition: with emphasis on
+  the symmetries and unit synthesis for music and sound"
 
 
 
