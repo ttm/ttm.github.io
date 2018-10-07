@@ -54,21 +54,16 @@
         
     -->
     <div id="bored" class="step verticalLine" data-x="-1000" data-y="-1500">
-    <h1>Topological stability and textual differentiation in human interaction networks:</h1>
-    <h2>statistical analysis, visualization and linked data</h2>
+    <h1>Sistemas complexos e redes complexas:</h1>
+    <h2>fundamentos e aplicações para sistemas sociais humanos</h2>
     <br/>
-        <p><b>Advisor:</b> Prof. Dr. Osvaldo Novais de Oliveira Junior</p>
-        <p><b>Candidate:</b> Renato Fabbri</p>
-        <p>Doctoral thesis defense in Computational Physics, May/08/2017</p>
-        <p>São Carlos Institute of Physics, University of São Paulo</p>
+        <p><b>Pesquisador:</b> Renato Fabbri</p>
+        <p>Instituto de Ciências Matemáticas e de Computação (ICMC/USP)</p>
+        <p>FAPESP, projeto 2017/05838-3</p>
 
         <br/>
-        <img class="frontimage" src="/assets/ifsc.jpeg">
-        <img class="frontimage" src="/assets/cnpq.jpg">
-        <img class="frontimage" src="/assets/undp.jpg">
-        <img class="frontimage" src="/assets/1852.png">
-        <img class="frontimage" src="/assets/NEXOS.png">
-        <img class="frontimage" src="/assets/original-logo.png">
+        <img class="frontimage" style="background: white" src="/assets/icmc.png">
+        <img class="frontimage" src="/assets/fapesp.jpg">
     </div>
 
     <!--
@@ -87,77 +82,56 @@
         
     -->
     <div class="step verticalLine" data-x="1000" data-y="-1500">
-    <h1>Outline</h1>
+    <h1>Roteiro</h1>
     <ul>
-        <li>Introduction</li>
+        <li>Introdução</li>
         <ul>
-            <li>complex and human interaction networks</li>
-            <li>text mining, visualization, linked data</li>
+            <li>sistemas complexos e redes complexas</li>
+            <li>redes em estruturas sociais humanas e na linguagem</li>
         </ul>
-        <li>Materials and methods</li>
+        <li>Materiais</li>
+        <li>Alguns métodos</li>
         <ul>
-            <li>data from email and other sources</li>
-            <li>circular statistics of temporal activity</li>
-            <li>complex networks: metrics, PCA and Erdös Sectioning</li>
-            <li>text mining: adaptation of the Kolmogorov-Smirnov test, Wordnet</li>
+            <li>medidas fundamentais/básicas</li>
+            <li>PCA</li>
+            <li>setorialização de Erdös</li>
+            <li>adaptação do teste de Kolmogorov-Smirnov</li>
+            <li>wordnet</li>
         </ul>
-        <li>Results and discussion</li>
+        <li>Alguns resultados e discussão</li>
         <ul>
-            <li>topological stability</li>
-            <li>textual differentiation</li>
-            <li>Versinus method for evolutive network visualization</li>
-            <li>Linked Open Social Database</li>
-            <li>other results</li>
+            <li>estabilidade topológica</li>
+            <li>diferenciação textual</li>
+            <li>audiovisualização de redes</li>
+            <li>LOSD: linked open social database</li>
+            <li>bots</li>
         </ul>
-        <li>Conclusions and further work</li>
+        <li>Conclusões e trabalhos futuros</li>
     </ul>
        <p class="pnumber">1</p> 
     </div>
 
-    <div class="step verticalLine" data-x="3000" data-y="-3500">
-    <h1>Outline</h1>
-    <br/>
-    <p>How stable are the scale-free and other topological features
-        in social networks?
-        How does text and topology relate in social interaction
-        networks?</p>
-    <p>These questions are important for us to characterize our social systems.</p>
-    <p>We relied in the literature and data mining to reach
-    two main results presented in this work:</p>
-    <ul class="ul1">
-        <li>The stability of the networks with respect to hubs,
-        intermediary and peripheral participants,
-        to PCA formation of the components and to circular statistics of
-        activity along time.</li>
-        <li>Differentiation of linguistic features from hubs,
-        intermediary and peripheral participants.</li>
-    </ul>
-    <p>There are subsidiary results in <b>dynamic graph visualization</b> and
-    <b>linked data</b>. They enabled and shaped the core analysis.</p>
+    <div class="step verticalLine" data-x="5000" data-y="-1500">
+    <h1>Instrodução</h1>
+        <img src="/assets/CienciasComFronteiras.png" height=500>
        <p class="pnumber">2</p> 
     </div>
 
-    <div class="step verticalLine" data-x="5000" data-y="-1500">
-    <h1>Introduction</h1>
-        <img src="/assets/CienciasComFronteiras.png" height=500>
-       <p class="pnumber">3</p> 
-    </div>
-
     <div class="step verticalLine" data-x="7000" data-y="-1500">
-    <h1>Introduction</h1>
+    <h1>Instrodução</h1>
     <iframe height="415" width="700"
     src="https://www.youtube.com/embed/1EOnEVmqmmc">
     </iframe>
-       <p class="pnumber">4</p> 
+       <p class="pnumber">3</p> 
     </div>
 
     <div class="step verticalLine" data-x="3000" data-y="-1500">
     <h1>Introduction</h1>
-        <p>There are \(10^{80}\) <b>atoms in the observable universe</b>,
-a scale reference.
-Consider \(N\) the number of individuals needed to yield
-<b>more possible networks than atoms in the universe</b>.
-Each edge is a Bernoulli variable: the edge may be present or not.</p>
+        <p>Considere \(\approx 10^{80}\) <b>átomos no universo observável</b>,
+uma escala de referência.
+Seja \(N\) o número de indivíduos necessários para haver
+<b>mais redes possíveis que átomos no universo</b>.
+Cada aresta é uma variável de Bernoulli: a aresta pode estar presente ou não:</p>
 <p><br/></p>
 <div lang="latex">
 2^{N \choose 2} > 10^{80} \Rightarrow 
@@ -165,143 +139,106 @@ log_2[2^{N \choose 2}] > log_2(10^{80}) \Rightarrow
 {N \choose 2} > \frac{log_{10}(10^{80})}{log_{10}2} \Rightarrow \nonumber\\
 \Rightarrow \frac{N.(N-1)}{2} > \frac{80}{log_{10}2} \Rightarrow N > 23.5988
 </div>
-<p>I.e. only 24 vertices are needed for there to be more possible networks
-than atoms in the universe. This endorses the utility of <b>paradigms</b> for networks,
-and of <b>generic measures</b> for each vertex and for the network,
-instrumental for <b>complex networks</b>, including
-<b>human interaction networks</b>.</p>
+<p>I.e. com apenas 24 vértices, existem mais redes possíveis que átomos no universo.
+Isso explicita a utilidade dos <b>paradigmss</b> para redes,
+e de <b>medidas genéricas</b> para cada vértice e para cada rede,
+instrumentais para a área das <b>redes complexas</b>, incluindo
+<b>redes de interação e relacionamento humanas</b>.</p>
 
-<p><b>Complex System</b> \(\Rightarrow\)
-consists of several parts whose interaction exhibits
-emerging behavior.
-It is usual to consider that a complex system:
-processes information, exhibits adaptive mechanisms,
-may have reproduction capabilities.
-A complex system is integrated with other complex systems
-and the environment in which it subsists.</p>
-       <p class="pnumber">5</p> 
+<p><b>Sistema Complexo</b> \(\Rightarrow\)
+consiste de partes cuja interação apresenta comportamento
+emergente.
+É usual considerar que um sistema complexo:
+processa informação, possui mecanismos de adaptação,
+pode apresentar mecanismos de reprodução.
+Um sistema complexo é integrado a outros sistemas complexos
+e ao meio em que subsiste.</p>
+       <p class="pnumber">4</p> 
     </div>
 
 
     <div class="step verticalLine" data-x="9000" data-y="-1500">
-    <h1>Introduction</h1>
-    <p><br/></p>
+    <h1>Introdução</h1>
+    <p><br/>Exemplos de áreas em que as redes complexas são utilizadas:</p>
     <ul>
-        <li>Complex networks</li>
-        <li>Text mining</li>
-        <li>Network visualization</li>
-        <li>Linked data</li>
-        <li>Social participation</li>
-        <li>Programming, APIs and protocols</li>
-        <li>Art</li>
+        <li>Redes complexas (pesquisa de base/fundamental)</li>
+        <li>Mineração de texto</li>
+        <li>Visualização de dados/redes</li>
+        <li>Dados ligados</li>
+        <li>Participação social</li>
+        <li>Programação, APIs, protocolos</li>
+        <li>Arte</li>
+    </ul>
+       <p class="pnumber">5</p> 
+    </div>
+
+    <div class="step verticalLine" data-x="11000" data-y="-1500">
+    <h1>Materiais</h1>
+    <p><br/>Resultados obtidos com dados de:</p>
+    <ul>
+        <li>Emails (da base de dados Gmane)</li>
+        <li>Facebook</li>
+        <li>Twitter</li>
+        <li>IRC</li>
+        <li>Cidade Democrática</li>
+        <li>ParticipaBR</li>
+        <li>Autorregulação Algorítmica (AA)</li>
     </ul>
        <p class="pnumber">6</p> 
     </div>
 
-    <div class="step verticalLine" data-x="11000" data-y="-1500">
-    <h1>Materials</h1>
+    <div class="step verticalLine" data-x="13000" data-y="-1500">
+    <h1>Métodos</h1>
     <p><br/></p>
-    <ul>
-        <li>Emails from the Gmane database</li>
-        <li>Data from:</li>
-        <ul style="font-size:80%">
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>IRC</li>
-            <li>Cidade Democrática</li>
-            <li>ParticipaBR</li>
-            <li>Algorithmic Autoregulation (AA)</li>
-        </ul>
+    <ul class="ul1">
+        <li>Obtenção de redes (de relacionamento ou interação)</li>
+        <li>PCA de medidas topológicas</li>
+        <li>Setorialização de Erdös</li>
     </ul>
+    <p>O método principal que utilizamos para observar diferenciação linguística
+    dentre os setores de Erdös é uma adaptação do <b>teste de Kolmogorov-Smirnov</b>.</p>
+    <p>Para realizar a pesquisa, tivemos que utilizar métodos para:</p>
+    <ul class="ul1">
+        <li>Audiovisualização das redes</li>
+        <li>Representação dos dados como dados ligados</li>
+        <li>Considerações tipológicas e humanísticas</li>
+    </ul>
+        <p>Estatísticas direcionais (ou circulares ou esféricas)
+        são genéricas para manifolds Riemannianos e foram usados para observar
+        as distribuições de atividade ao logo do tempo.</p>
        <p class="pnumber">7</p> 
     </div>
 
-    <div class="step verticalLine" data-x="13000" data-y="-1500">
-    <h1>Methods</h1>
+    <div class="step verticalLine" data-x="17000" data-y="-1500">
+    <h1>Obtenção das redes de interação</h1>
     <p><br/></p>
-    <p>These are the methods considered for studying the topology of the
-    systems:</p>
-    <ul class="ul1">
-        <li>Interaction networks attainment</li>
-        <li>PCA of topological metrics</li>
-        <li>Erdös sectioning</li>
-    </ul>
-    <p>The core method used to observe textual differences in the Erdös sectors
-    is an <b>adaptation of the Kolmogorov-Smirnov test</b>.</p>
-    <p>For enabling the research, we had to use methods for:</p>
-    <ul class="ul1">
-        <li>Audiovisualization of networks</li>
-        <li>Linked representation of data</li>
-        <li>Typological and humanistic considerations</li>
-    </ul>
-        <p>Directional statistics (or spherical or <b>circular statistics</b>)
-        are generic for observations in Riemannian manifolds and was used
-        to observe the distribution of sent times from email
-        messages.</p>
+        <img src="/assets/criaRede3_.png" height=350>
        <p class="pnumber">8</p> 
     </div>
 
-    <div class="step verticalLine" data-x="15000" data-y="-1500">
-    <h1>Circular statistics</h1>
-<p>Consider each measure over time:</p>
-
-<div lang="latex" style="font-size:150%">
-\theta=2\pi \frac{measure}{period}\\
-
-z_i= e^{i\theta} \\
-m_n=\frac{1}{N}\sum_{i=1}^N z_i^n \;\;\text{ are the moments}
-</div>
-<p>The norm and angle of the moments:</p>
-<div lang="latex" style="font-size:150%">
-    R_n=|m_n| \nonumber \\
-    \theta_\mu=Arg(m_1) \\
-    \theta_\mu'=\frac{period}{2\pi} \theta_\mu \nonumber
-</div>
-
-<p>The angle is measure of localization and the dispersion is given by:</p>
-<div lang="latex">
-    Var(z)=1 - R_1 \nonumber\\
-    S(z)= \sqrt{-2\ln(R_1)}\\
-    \delta(z)=\frac{1-R_2}{2 R_1^2} \nonumber
-</div>
-
-<p>We also used \(\frac{b_h}{b_l}\) between the largest \(b_h\) and the
-smallest \(b_l\) incidence in the histograms.</p>
-       <p class="pnumber">9</p> 
-
-    </div>
-
-    <div class="step verticalLine" data-x="17000" data-y="-1500">
-    <h1>Interaction networks attainment</h1>
-    <p><br/></p>
-        <img src="/assets/criaRede3_.png" height=350>
-       <p class="pnumber">10</p> 
-    </div>
-
     <div class="step verticalLine" data-x="19000" data-y="-1500">
-    <h1>Erdös sectioning</h1>
+    <h1>Setorialização de Erdös</h1>
         <img src="/assets/fser__.png" height=200>
 <div lang="latex">
-    \sum_{x=k_i}^{k_j} \widetilde{P}(x) < \sum_{x=k_i}^{k_j} P(x) \Rightarrow \text{i is intermediary}
+    \sum_{x=k_i}^{k_j} \widetilde{P}(x) < \sum_{x=k_i}^{k_j} P(x) \Rightarrow \text{i \'e intermedi\'ario}
 </div>
 
+<p>com</p>
 <div lang="latex">
     P(k)=\binom{2(N-1)}{k}p_e^k(1-p_e)^{2(N-1)-k}
 </div>
-<p>where</p>
+<p>onde</p>
 <div lang="latex">
 p_e=\frac{z}{N(N-1)}
 </div>
-       <p class="pnumber">11</p> 
+       <p class="pnumber">9</p> 
     </div>
 
     <div class="step verticalLine" data-x="21000" data-y="-1500">
-    <h1>PCA in topological metrics</h1>
+    <h1>PCA de medidas topológicas</h1>
 <p><br/></p>
-<p>Mean and standard deviation of measurements <i>j</i> in eigenvectors
-<i>k</i>
-through all <i>l</i> instances and of eigenvalues <i>k</i> through all
-<i>l</i> instances:</p>
+<p>Abrir scripts.</p>
+<p>Medidas utilizadas:</p>
 <p id="lefteq">
 \begin{eqnarray} 
 \mu_{V'}[j,k]   &=\frac{\sum_l^L V'[j,k,l]}{L}\nonumber\\
@@ -310,10 +247,9 @@ through all <i>l</i> instances and of eigenvalues <i>k</i> through all
 \sigma_{D'}[k]&=\sqrt{\frac{(\mu_{D'}-D'[k,l])^2}{L}}
 \end{eqnarray}
 </p>
-<p>We used standard measures of (in, out, total-) degree, (in, out, total-) strength,
-betweenness centrality and clustering coefficient.
-We also used non-standard measures of asymmetry and disequilibrium.</p>
-       <p class="pnumber">12</p> 
+<p>Utilizamos medidas padrão de grau e força (totais, de entrada e saída), centralidade de betweenness, e coeficiente de clusterização.
+Também utilizamos medidas não-padrão de "assimetria" e "disequilíbrio".</p>
+       <p class="pnumber">10</p> 
     </div>
     <script>
         function toLeft2(){
@@ -329,7 +265,7 @@ We also used non-standard measures of asymmetry and disequilibrium.</p>
     </script>
 
     <div class="step verticalLine" data-x="23000" data-y="-1500">
-    <h1>Adaptation of the Kolmogorov-Smirnov two sample test</h1>
+    <h1>Adaptação do teste de Kolmogorov-Smirnov de duas amostras</h1>
         <img src="/assets/300px-KS2_Example.png" height=150>
 
 <div lang="latex">
@@ -348,108 +284,98 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <td>1.63</td> <td>1.73</td>  <td>1.95</td>
     </tr>
 </table>
-       <p class="pnumber">13</p> 
+       <p class="pnumber">11</p> 
     </div>
 
     <div class="step verticalLine" data-x="25000" data-y="-1500">
-    <h1>Audiovisualization of data</h1>
+    <h1>Audiovisualização dos dados</h1>
     <br/>
         <img src="/assets/arteRede.jpg" height=350>
-       <p class="pnumber">14</p> 
+       <p class="pnumber">12</p> 
     </div>
 
     <div class="step verticalLine" data-x="27000" data-y="-1500">
-    <h1>Linked data representations and ontologies</h1>
+    <h1>Representações em dados ligados e ontologias</h1>
     <br/>
-    <p>To enable our research start a social dataset which fits our
-    needs, we developed:</p>
+    <p>Para dar suporte à pesquisa, desenvolvemos:</p>
     <ul class="ul1">
-        <li>translation of relational data into RDF by means of Python
-        scripts.</li>
-        <li>Formalization of social participation instances and
-        mechanisms in OWL</li>
+        <li>tradução de dados relacionais (e.g. SQL) para RDF através de scripts Python.</li>
+        <li>Formalização de instâncias e mecanismos de participação social em OWL.</li>
     </ul>
     <br/>
-    <p>We maintained online infrastructure to navigate and query the linked
-    data for some months. 
-    USP cloud services started charging so we had to withdraw these
-    services.</p>
-       <p class="pnumber">15</p> 
+    <p>Mantivemos uma infraestrutura online para navegação e busca nestes dados ligados 2m 2015.
+    Os serviços de computação em nuvem começaram a ser cobrados,
+    motivo pelo qual retiramos o serviço.</p>
+       <p class="pnumber">13</p> 
     </div>
 
     <div class="step verticalLine" data-x="29000" data-y="-1500">
-    <h1>Typological and humanistic considerations</h1>
+    <h1>Considerações tipológicas e humanísticas</h1>
     <br/>
     <ul class="ul1" style="font-size:70%">
-        <li>Our networks are constituted by human beings.</li>
-        <li>Prejudice factors.</li>
-        <li>The environment in which the network is observed.</li>
-        <li>(Percolatory) Experiments and performances in social
-        systems.</li>
-        <li>Anthropological physics.</li>
+        <li>Estas redes são constituídas de seres humanos.</li>
+        <li>Fatores com potencial para o preconceito.</li>
+        <li>O ambiente em que a rede é observada.</li>
+        <li>Experimentos percolatórios e performances em sistemas sociais virtuais.</li>
+        <li>Física antropológica.</li>
+    </ul>
+       <p class="pnumber">14</p> 
+    </div>
+
+    <div class="step verticalLine" data-x="31000" data-y="-1500">
+    <h1>Resultados</h1>
+    <br/>
+    <ul class="ul1" style="font-size:70%">
+        <li>Estabilidade temporal e topológica.</li>
+        <li>Diferenciação textual gritante.</li>
+        <li>Inicialização da nuvem brasileira de dados ligados de participação social.</li>
+        <li>Versinus: um método para (áudio)visualização de redes em evolução temporal.</li>
+        <li>Desenvolvimento de software.</li>
+    </ul>
+       <p class="pnumber">15</p> 
+    </div>
+
+    <div class="step verticalLine" data-x="33000" data-y="-1500">
+    <h1>Estabilidade temporal de atividade e topológica</h1>
+    <br/>
+    <ul class="ul1" style="font-size:60%">
+        <li>Estatísticas circulares mantiveram-se as mesmas para as listas de email, nas escalas de segundos a semestres.</li>
+        <li>Frações fixas de participantes em cada setor de Erdös, em concordância com a literatura.</li>
+        <li>Estabilidade das componentes principais (PCA).</li>
+        <li>Tipologia humana dos setores de Erdös.</li>
     </ul>
        <p class="pnumber">16</p> 
     </div>
 
-    <div class="step verticalLine" data-x="31000" data-y="-1500">
-    <h1>Results</h1>
+    <div class="step verticalLine" data-x="35000" data-y="500">
+    <h1>Estabilidade temporal e topológica</h1>
     <br/>
-    <ul class="ul1" style="font-size:70%">
-        <li>Temporal and topological stability.</li>
-        <li>Textual differentiation.</li>
-        <li>Initialization of the (Brazilian) social participation data
-        cloud.</li>
-        <li>The Versinus dynamic graph visualization method.</li>
-        <li>Software development.</li>
-    </ul>
+        <img src="/assets/InText-WLAU-S1000__.png" height=300>
        <p class="pnumber">17</p> 
     </div>
 
-    <div class="step verticalLine" data-x="33000" data-y="-1500">
-    <h1>Temporal and topological stability</h1>
-    <br/>
-    <ul class="ul1" style="font-size:60%">
-        <li>Circular statistics are about the same in every email list
-        and in all scales from seconds to semesters.</li>
-        <li>Fixed fractions of participants in each of the Erdös
-        sectors, in accordance with the literature. This might be the
-        first use of the method and verification of the consistency of
-        the hubs, intermediary and peripheral sectors.</li>
-        <li>Stability of the principal components (PCA).</li>
-        <li>Human typology from Erdös sectors.</li>
-    </ul>
+    <div class="step verticalLine" data-x="35000" data-y="-3500">
+    <h1>Estabilidade temporal e topológica</h1>
+    <p><br/></p>
+        <img src="/assets/pca.png" height=400>
        <p class="pnumber">18</p> 
     </div>
 
-    <div class="step verticalLine" data-x="35000" data-y="500">
-    <h1>Temporal and topological stability</h1>
+    <div class="step verticalLine" data-x="35000" data-y="2500">
+    <h1>Estabilidade temporal e topológica</h1>
     <br/>
-        <img src="/assets/InText-WLAU-S1000__.png" height=300>
+        <img src="/assets/circularStats.png" height=250>
        <p class="pnumber">19</p> 
     </div>
 
-    <div class="step verticalLine" data-x="35000" data-y="-3500">
-    <h1>Temporal and topological stability</h1>
-    <p><br/></p>
-        <img src="/assets/pca.png" height=400>
+    <div class="step verticalLine" data-x="35000" data-y="4500">
+    <h1>Estabilidade temporal e topológica</h1>
+        <img src="/assets/tableTime.png" height=450>
        <p class="pnumber">20</p> 
     </div>
 
-    <div class="step verticalLine" data-x="35000" data-y="2500">
-    <h1>Temporal and topological stability</h1>
-    <br/>
-        <img src="/assets/circularStats.png" height=250>
-       <p class="pnumber">21</p> 
-    </div>
-
-    <div class="step verticalLine" data-x="35000" data-y="4500">
-    <h1>Temporal and topological stability</h1>
-        <img src="/assets/tableTime.png" height=450>
-       <p class="pnumber">22</p> 
-    </div>
-
     <div class="step verticalLine" data-x="37000" data-y="-1500">
-    <h1>Textual differentiation</h1>
+    <h1>Diferenciação linguística</h1>
     <p><br/></p>
     <ul class="ul1" style="font-size:60%">
         <li>The texts produced by each of the Erdös sectors are extremely
@@ -464,65 +390,63 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <li>Persistence of the differences in incident and existent
         words.</li>
     </ul>
-       <p class="pnumber">23</p> 
+       <p class="pnumber">21</p> 
     </div>
 
     <div class="step verticalLine" data-x="39000" data-y="-1500">
-    <h1>Textual differentiation</h1>
+    <h1>Diferenciação linguística</h1>
         <img src="/assets/textDiff.png" height=500>
-       <p class="pnumber">24</p> 
+       <p class="pnumber">22</p> 
     </div>
 
     <div class="step verticalLine" data-x="39000" data-y="500">
-    <h1>Textual differentiation</h1>
+    <h1>Diferenciação linguística</h1>
     <p><br/></p>
         <img src="/assets/textDiffSents.png" height=350>
         <img src="/assets/textDiffPOS.png" height=350>
-       <p class="pnumber">25</p> 
+       <p class="pnumber">23</p> 
     </div>
 
     <div class="step verticalLine" data-x="41000" data-y="-1500"></p>
-    <h1>Audiovisualization with Versinus</h1>
+    <h1>Audiovisualização com Versinus</h1>
     <p><br/></p>
     <iframe height="50%" width="50%"
     src="https://www.youtube.com/embed/1EOnEVmqmmc">
     </iframe>
-    <p>In Versinus (Latim versus+sinus meaning line+sinusoid),
-    the Erdös sectors are positioned on the first and second half of the
-    sinusoid and on the upper line. Vertex size corresponds to in
-    and out strengths. Color corresponds to clustering coefficient.
-    Music is synthesized using the total activity of the four most
-    active hubs.</p>
-       <p class="pnumber">26</p> 
+    <p>No Versinus (Latim versus+sinus meaning line+sinusoid),
+    os setores de Erdös são posicionados nos meio-perídos da senóide
+    e na reta superior. O tamanho dos vértices correspondem às forças de entrada
+    e saída. A cor reflete o coeficiente de clusterização.
+    A música é sintetizada utilizando a força total dos 4 hubs mais ativos.
+       <p class="pnumber">24</p> 
     </div>
 
     <div class="step verticalLine" data-x="43000" data-y="-1500">
     <h1>Linked social data</h1>
     <p><br/></p>
     <ul class="ul1" style="font-size:60%">
-        <li>Formalizations of ontologies (OWL) and vocabularies (SKOS) 
-        of
-        social structures. OPS, OPA, OPP, Ontologiaa, OCD, OBS,
+        <li>Formalização de ontologias (OWL) e vocabulários (SKOS) 
+        de estruturas sociais. OPS, OPA, OPP, Ontologiaa, OCD, OBS,
         VBS.</li>
-        <li>Python scripts for translating relational data into RDF.</li>
-        <li>Data-oriented ontology synthesis method.</li>
+        <li>Scripts Python para tradução de dados relacionais para RDF.</li>
+        <li>Método de síntese de ontologias orientado aos dados.</li>
     </ul>
     <p><br/></p>
         <img src="/assets/obsPNPS_mesam.png" height=200>
-       <p class="pnumber">27</p> 
+       <p class="pnumber">25</p> 
     </div>
 
     <div class="step verticalLine" data-x="45000" data-y="-1500">
-    <h1>Art and sensory mappings</h1>
+    <h1>Arte e mapeamentos sensoriais</h1>
     <p><br/></p>
     <ul class="ul1" style="font-size:60%">
         <li>Four hubs dance. Social prelude.</li>
         <li>Versinus.</li>
         <li>Other pieces: online app (PHP+Python) for rendering email
         related images and measurements. Sonifications.</li>
-        <li>Artistic presentations: sonic skull, freakcoding.</li>
+        <li>Apresentações artísticas: crânio sonante, freakcoding.</li>
     </ul>
-       <p class="pnumber">28</p> 
+       <p class="pnumber">26</p> 
     </div>
 
     <div class="step verticalLine" data-x="47000" data-y="-1500">
@@ -541,38 +465,28 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         IRC. The Social package.</li>
         <li>Routines for representing as RDF the relational data from
         email lists in the Gmane database. The Gmane package.</li>
-        <li>Routines rendering data visualizations with emphasis on
-        networks. The Visuals package.</li>
         <li>Routines rendering music and data sonification. The Music package.</li>
     </ul>
-       <p class="pnumber">29</p> 
+       <p class="pnumber">27</p> 
     </div>
 
     <div class="step verticalLine" data-x="49000" data-y="-1500">
-    <h1>Conclusions</h1>
+    <h1>Conclusões</h1>
     <p><br/></p>
     <ul class="ul1">
-        <li>We believe that the stability of the human interaction networks
-        is better quantified and qualified by the invariance of the
-        fraction of participants in each sector, the small dispersion of
-        the principal components and the circular statistics.</li>
-        <li>The texts produced by each sector are very different. The
-        differences are in some cases easy to interpret from data.</li>
-        <li>Data, ontologies and software legacy.</li>
-        <li>Typologies derived from the analysis.</li>
-        <li>Two published articles (not related to the thesis).</li>
-        <li>The article on the stability of interaction networks has
-        been accepted for publication in Physica A.</li>
-        <li>Other articles are being submitted to journals (about power
-        laws and music).</li>
-        <li>Other articles are being revisited and enhanced for
-        publication (on the textual differentiation, on ontologies, on
-        Versinus, on the adaptation of the Kolmogorov-Smirnov two-sample text).</li>
-        <li>Many possibilities for next steps e.g. inclusion of TF-IDF
-        measurements, sentiment analysis, other measures of text and
-        topology, visual analytics.</li>
+        <li>Entendemos que a estabilidade das redes de interação humana estão
+          melhor quantificadas e qualificadas através da invariância da fração
+          de participantes em cada setor, da dispersão pequena das componentes principais
+          e das estatísticas circulares.</li>
+        <li>A linguagem apresentada por cada setor é bastante diferente.
+          Em alguns casos, é fácil verificar estas diferenças na leitura direta dos textos.</li>
+        <li>Legado em dados, ontologias e software.</li>
+        <li>Tipologias derivadas das análises.</li>
+        <li>Muitas possibilidades para passos seguintes:
+          inclusão de medidas relacionadas ao TF-IDF, análise de sentimento,
+          inclusão de outras medidas de texto e topologia, analítica (áudio)visual.</li>
     </ul>
-       <p class="pnumber">30</p> 
+       <p class="pnumber">28</p> 
     </div>
 
     <div class="step verticalLine" data-x="51000" data-y="-1500">
@@ -594,7 +508,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         visualization. 2016.</li>
         <li>BERNERS-LEE, T. Linked data. 2006.</li>
     </ul>
-       <p class="pnumber">31</p> 
+       <p class="pnumber">29</p> 
     </div>
 
 
@@ -608,19 +522,15 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     <p><br/></p>
     <p><br/></p>
     <p><br/></p>
-    <h1 style="text-align:center">Thank you!</h1>
+    <h1 style="text-align:center">Obrigado!</h1>
     <p><br/></p>
     <p><br/></p>
     <p><br/></p>
     <p><br/></p>
     <p><br/></p>
     <p><br/></p>
-        <img class="frontimage" src="/assets/ifsc.jpeg">
-        <img class="frontimage" src="/assets/cnpq.jpg">
-        <img class="frontimage" src="/assets/undp.jpg">
-        <img class="frontimage" src="/assets/1852.png">
-        <img class="frontimage" src="/assets/NEXOS.png">
-        <img class="frontimage" src="/assets/original-logo.png">
+        <img class="frontimage" style="background: white" src="/assets/icmc.png">
+        <img class="frontimage" src="/assets/fapesp.jpg">
     </div>
 </div>
 <script src="/assets/impress.js"></script>
