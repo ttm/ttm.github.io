@@ -447,6 +447,14 @@ Vim: a HCI description
   how stimulant, confortable, readability, beautiful, exotic, etc, it is.
 * "Change and method ringing for musical composition: with emphasis on
   the symmetries and unit synthesis for music and sound"
+* Synthesis of evolving networks:
+  - minimal algorithms and formats
+  - algorithms and formats that might be considered paradigmatic:
+    * because they mimic real world data
+      - use real data to obtain statistics and make the networks with such statistics
+    * because they are extensions of static network models
+      - use models such as preferential attachment, geographic and small world,
+      to make evolving networks
 
 
 
