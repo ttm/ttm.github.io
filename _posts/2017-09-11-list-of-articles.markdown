@@ -455,7 +455,16 @@ Vim: a HCI description
     * because they are extensions of static network models
       - use models such as preferential attachment, geographic and small world,
       to make evolving networks
-
+* Explore each Babylon element's potential for visual analytics
+* Describe the binaural model developed in estudosParaAAlma
+  - explore the idea of glissandi with beats at 40Hz and other frequencies (and vibrato)
+  - explore the idea of binaural music (notes are comprized of a freq+freq which entails the binaural freq)
+  - explore the idea of using non-pure tones (eg. 2 saw tooths: 200, 240, 400, 440, etc)
+  - possibilities of placebo exploitation: 432Hz, frequencies of XXX, etc...
+  - explore multiple beat frequencies, multiple waveforms
+  - make the equations for finding the frequencies where the intended binaural freq difference X (say 40Hz) match a specific interval (say 4J or 3m).
+  - applications: study, research, enhancement for using a visual analytics tool
+  - hypotheses: changing the frequencies used to result the beat is a good practice to avoid wastage of cochlea regions for static tones are not found in nature
 
 
 
