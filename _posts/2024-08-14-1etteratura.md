@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "1etteratura"
-categories: doc plan
+categories: literature science heresy art technology
 comments: true
 published: true
 ---
 
+## Heresies
 
+# 
