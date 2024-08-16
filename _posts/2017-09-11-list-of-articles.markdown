@@ -5,6 +5,20 @@ categories: research
 comments: true
 published: true
 ---
+
+* impact of alpha in power law's limits [k_l, k_r], and its limits in alpha.
+    See Appendix of https://zenodo.org/records/3973549
+
+* Ambiguous Acronims:
+    AA is the AA
+    OA, OI ecc, are strong AAs, because they have only vowels
+    PA, GI, etc, are weak AAs, because they have consonants
+    PG JR, etc, are very weak AAs, because they have only consonants
+    measure these numbers in different languages
+        considering all words (or all non-stop words, almost the same)
+        considering only radicals or lemmas
+        considering a Luhn cut
+
 There are many documents I have written or idealized in the
 past years.
 Most of these documents are scientific articles and
