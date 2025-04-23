@@ -6,7 +6,24 @@ tags: [prompt-engineering, AI, LLM, guida, deep-learning]
 layout: post
 ---
 
-# Advanced Prompt Engineering for Expert LLM Users
+## Table of Contents
+
+1. [Conceptual Overview of Prompt Engineering](#conceptual-overview-of-prompt-engineering)
+2. [Prompt Design Techniques by Domain](#prompt-design-techniques-by-domain)  
+   2.1. [Scientific Research & Computational Tasks](#scientific-research--computational-tasks)  
+   2.2. [Coding and Technical Problem-Solving](#coding-and-technical-problem-solving)  
+   2.3. [Creative Writing (Poetry, Spiritual Texts, Stories)](#creative-writing-poetry-spiritual-texts-stories)  
+   2.4. [Image Generation & Artistic Exploration](#image-generation--artistic-exploration)
+
+3. [Prompt Models and Templates by Domain](#prompt-models-and-templates-by-domain)  
+   3.1. [Scientific Research & Analysis Templates](#scientific-research--analysis-templates)  
+   3.2. [Coding & Technical Templates](#coding--technical-templates)  
+   3.3. [Creative & Content Writing Templates](#creative--content-writing-templates)  
+   3.4. [Image Prompt Templates](#image-prompt-templates)
+
+4. [Practical Exercises for Prompt Mastery](#practical-exercises-for-prompt-mastery)
+5. [Understanding LLM Behavior and Avoiding Common Pitfalls](#understanding-llm-behavior-and-avoiding-common-pitfalls)
+6. [Closing Thoughts](#closing-thoughts)
 
 ## Conceptual Overview of Prompt Engineering
 
@@ -215,8 +232,8 @@ By being aware of these behaviors, you can adjust your prompting strategy proact
 
 In summary, **prompt engineering is as much about managing the conversation with the AI as it is about writing the initial prompt**. If the output is not what you wanted, it’s an opportunity to refine your prompt and try again – not a failure. Even experts rarely get the perfect answer on the first try; they succeed by iterating and understanding the model’s hints. Each “mistake” the model makes is telling you something about how it interpreted your prompt. Use that feedback loop: clarify, constrain, or expand your prompt accordingly.
 
----
+## Closing Thoughts
 
-**Closing Thoughts:** Prompt engineering for LLMs is a continually evolving skill. As models get more advanced, some techniques may change, but the core principle remains: **effective communication**. You already have deep expertise in physics, coding, and writing – think of prompt engineering as extending that expertise into a dialogue with the AI. By combining your domain knowledge with the prompting strategies covered in this guide, you can unlock even more powerful results from models like ChatGPT and Copilot. Keep this guide as a reference, but don’t hesitate to experiment beyond it. Every interaction is a chance to learn something new about how the model works. Stay curious, keep refining, and enjoy the process of co-creating with AI. Happy prompting!
+Prompt engineering for LLMs is a continually evolving skill. As models get more advanced, some techniques may change, but the core principle remains: **effective communication**. You already have deep expertise in physics, coding, and writing – think of prompt engineering as extending that expertise into a dialogue with the AI. By combining your domain knowledge with the prompting strategies covered in this guide, you can unlock even more powerful results from models like ChatGPT and Copilot. Keep this guide as a reference, but don’t hesitate to experiment beyond it. Every interaction is a chance to learn something new about how the model works. Stay curious, keep refining, and enjoy the process of co-creating with AI. Happy prompting!
 
 :::

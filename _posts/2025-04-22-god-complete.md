@@ -2,7 +2,6 @@
 title: "La Probabilità dell'Esistenza di Dio: un'Analisi Matematica e Scientifica"
 date: 2025-04-22
 author: Renato Fabbri
-categories: [filosofia, matematica, scienza]
 tags: [probabilità, bayes, cosmologia, epistemologia, Dio]
 ---
 
