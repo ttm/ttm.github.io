@@ -16,18 +16,35 @@ published: true
 
 ## Table of Contents
 
-- [1 Sensory Stimulation and Audiovisual Entrainment](#sensory-stimulation-and-audiovisual-entrainment)
-- [1.1 Introduction](#introduction)
-- [1.2 How Sensory Stimulation Affects the Brain and Body](#how-sensory-stimulation-affects-the-brain-and-body)
-- [1.3 Techniques of Audiovisual Stimulation](#techniques-of-audiovisual-stimulation)
-- [1.4 Brainwave Entrainment: Theory and Evidence](#brainwave-entrainment-theory-and-evidence)
-- [1.5 Platforms and Devices for Audiovisual Stimulation](#platforms-and-devices-for-audiovisual-stimulation)
-- [1.6 DIY and Everyday Approaches Without Special Equipment](#diy-and-everyday-approaches-without-special-equipment)
-- [1.7 Current Applications in Health and Wellbeing](#current-applications-in-health-and-wellbeing)
-- [1.8 Future and Emerging Applications](#future-and-emerging-applications)
-- [1.9 References](#references)
-
-Great! I’ll write a deep and well-cited guide on sensory stimulation with a focus on audiovisual methods, especially brainwave entrainment, covering how it works, known and potential techniques, and its current and future applications for health and wellbeing. I’ll also explore mathematical and physical modeling where applicable. I’ll let you know as soon as the full article is ready for your review.
+1. [Introduction](#introduction)
+2. [How Sensory Stimulation Affects the Brain and Body](#how-sensory-stimulation-affects-the-brain-and-body)
+3. [Techniques of Audiovisual Stimulation](#techniques-of-audiovisual-stimulation)  
+   3.1 [Auditory Entrainment Techniques](#auditory-entrainment-techniques)  
+   3.2 [Visual (Photic) Entrainment Techniques](#visual-photic-entrainment-techniques)  
+   3.3 [Combined Audiovisual and Multisensory Methods](#combined-audiovisual-and-multisensory-methods)  
+   3.4 [Other Experimental Variations](#other-experimental-variations)
+4. [Brainwave Entrainment: Theory and Evidence](#brainwave-entrainment-theory-and-evidence)
+5. [Platforms and Devices for Audiovisual Stimulation](#platforms-and-devices-for-audiovisual-stimulation)
+6. [DIY and Everyday Approaches Without Special Equipment](#diy-and-everyday-approaches-without-special-equipment)
+7. [Current Applications in Health and Wellbeing](#current-applications-in-health-and-wellbeing)  
+   7.1 [Stress and Anxiety Reduction](#stress-and-anxiety-reduction)  
+   7.2 [Improving Sleep and Insomnia](#improving-sleep-and-insomnia)  
+   7.3 [Depression and Mood Enhancement](#depression-and-mood-enhancement)  
+   7.4 [Attention, ADHD, and Cognitive Performance](#attention-adhd-and-cognitive-performance)  
+   7.5 [Pain Reduction and Headache/Migraine](#pain-reduction-and-headachemigraine)  
+   7.6 [Sensory Integration and Neurodevelopmental Disorders](#sensory-integration-and-neurodevelopmental-disorders)  
+   7.7 [Neurorehabilitation and Brain Injury](#neurorehabilitation-and-brain-injury)  
+   7.8 [PTSD and Trauma](#ptsd-and-trauma)  
+   7.9 [Cognitive Decline and Dementia](#cognitive-decline-and-dementia)
+8. [Future and Emerging Applications](#future-and-emerging-applications)  
+   8.1 [Treatment of Neurodegenerative Diseases](#treatment-of-neurodegenerative-diseases)  
+   8.2 [Enhancing Neuroplasticity for Rehabilitation](#enhancing-neuroplasticity-for-rehabilitation)  
+   8.3 [Brain-Computer Interfaces (BCI) and Performance](#brain-computer-interfaces-bci-and-performance)  
+   8.4 [Mental Health and Meditation Aids](#mental-health-and-meditation-aids)  
+   8.5 [“Technodelics” and Consciousness Exploration](#technodelics-and-consciousness-exploration)  
+   8.6 [Academic and Neuroscience Research Tool](#academic-and-neuroscience-research-tool)  
+   8.7 [Integration with Other Neuromodulation Techniques](#integration-with-other-neuromodulation-techniques)
+9. [References](#references)
 
 ## Introduction
 
