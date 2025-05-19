@@ -81,7 +81,7 @@ Prompting might seem like a new idea that came with ChatGPT, but its roots go ba
 
 One of the earliest breakthrough moments for prompt-based interaction with models came with the advent of **few-shot learning** in large language models. In 2018, researchers began framing many NLP tasks as question-answer prompts to a single model, hinting that a unified approach was possible. But it was OpenAI’s **GPT-3** (2020) that truly popularized _in-context learning_. The GPT-3 model, with 175 billion parameters, showed a surprising ability: you could give it a task description and a few examples of input-output pairs in the prompt (hence “few-shot”), and it could generalize to produce the correct output for new inputs without any parameter update. The famous paper titled _“Language Models are Few-Shot Learners”_ demonstrated that, for instance, if you wanted GPT-3 to translate a sentence, you could just write:
 
-```
+```yaml
 Translate English to French:
 English: I have a pen.
 French: J'ai un stylo.
@@ -107,6 +107,8 @@ A standard prompt might just ask the model for the answer (“A: \_\_\_?”), wh
 **A**: _Let’s think step by step._
 
 This cue encourages the model to produce a reasoning process: “They had 23 originally, used 20, leaving 3, then bought 6 more, totaling 9. So the answer is 9.” The model then outputs the final answer. Google reported that using CoT prompts with their 540B parameter PaLM model dramatically improved performance on tasks like math word problems – PaLM with CoT reached \~58% on a math benchmark (GSM8K), versus \~18% with a direct prompt. In fact, CoT prompting allowed these large models to **match or surpass** some task-specific fine-tuned models at the time. The catch was that chain-of-thought prompting only worked well for sufficiently large models (roughly >100B parameters) – another emergent behavior.
+
+![Comparison of standard prompting (left) vs. chain-of-thought prompting (right) on math problems. In the CoT approach, the model is induced to break the problem into intermediate steps (highlighted in blue), leading to the correct final answer (green).](/assets/standard-vs-CoT.png)
 
 &#x20;_Comparison of standard prompting (left) vs. chain-of-thought prompting (right) on math problems. In the CoT approach, the model is induced to break the problem into intermediate steps (highlighted in blue), leading to the correct final answer (green)._
 
@@ -158,7 +160,7 @@ In essence, _the prompt should contain or reference everything the model needs t
 
 Finally, consider **ordering** and highlighting context. It’s often effective to put the task instruction at the very beginning of the prompt and then include the context, separated by a clear delimiter (like a line of dashes or a token like `"""`). For example:
 
-```
+```python
 Summarize the text below into 3 key bullet points.
 
 Text: """
@@ -192,14 +194,14 @@ This is extremely useful for making the output easier to read or parse by a prog
 
 A handy approach is to **provide an example of the format**. This is like a mini few-shot demonstration specifically for structure. For instance:
 
-```
+```yaml
 Provide a brief report in the format:
 
 Title: <title here>
 Overview: <one sentence overview>
 Details:
-- Bullet 1
-- Bullet 2
+  - Bullet 1
+  - Bullet 2
 
 Now, generate the report for the following scenario: ...
 ```
@@ -315,7 +317,7 @@ When to use one-shot or few-shot:
 
 **One-shot example:** Suppose you want the model to convert movie titles into emojis for fun. You prompt:
 
-```
+```yaml
 Convert movie titles into string of relevant emojis.
 
 Example:
@@ -330,7 +332,7 @@ Here, we gave one example (“The Lion King” -> some emojis). Now the model is
 
 **Few-shot example:** You’re creating a mini FAQ bot with Q\&A. You might prompt:
 
-```
+```yaml
 Q: What is the capital of France?
 A: Paris.
 
@@ -345,7 +347,7 @@ By providing two QA pairs, you both supply facts (if needed, though the model kn
 
 Few-shot shines for tasks like classification or transformation where examples really clarify the task. For instance, sentiment analysis:
 
-```
+```yaml
 Text: "I absolutely loved the new restaurant!" -> Sentiment: Positive
 Text: "The movie was okay, nothing special." -> Sentiment: Neutral
 Text: "This product is terrible and broke on day one." -> Sentiment: Negative
@@ -371,7 +373,7 @@ It’s worth noting: few-shot prompts are performing a kind of **in-context lear
 
 **Exercise (Design Few-Shot):** Say you want the model to generate analogies for technology concepts. Craft a few-shot prompt with 2 examples. For instance:
 
-```
+```yaml
 Concept: The Internet
 Analogy: The internet is like a vast library where each book is a website and librarians help you find information instantly.
 
@@ -1032,7 +1034,7 @@ One notable difference: GPT often ends with a definitive answer even for open qu
 
   The model card docs show these tokens. If you’re using a high-level interface (like huggingface’s pipeline with the right prompt template), this might be handled for you. But if not, you might have to include those special tokens. E.g.,
 
-  ```
+  ```yaml
   <<SYS>>You are a helpful assistant...<</SYS>>
   User: How to make pasta?
   Assistant:
@@ -1101,14 +1103,14 @@ To get the best out of each:
 - More multimodal (so describing images or generating them).
   For prompting, that means we might soon routinely write prompts that include data like:
 
-```
+```yaml
 [VISUAL INPUT: <image_url_or_data>]
 Question: ...
 ```
 
 And the model handles it. Or:
 
-```
+```php
 <SearchQuery> something </SearchQuery>
 ```
 

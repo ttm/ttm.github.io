@@ -81,6 +81,8 @@ By adhering to these principles, you set the AI up for success. A clear, detaile
 
 **Example – Poor vs. Better Prompt:** To illustrate, imagine you want a product description for a new tech gadget. A poor prompt might be: “_Write a product description for my new gadget._” The result will likely be generic and may even invent features. A better prompt would be: _“You are a product marketer. Write a **3-paragraph** product description for a new **smart home speaker** called HomeSync. **Highlight its unique features:** 12-hour battery, voice assistant integration, and adaptive sound. **Target the description to tech-savvy homeowners**. Use an **enthusiastic and modern tone**, and end with a call-to-action encouraging readers to learn more on our website.”_ This improved prompt specifies the role, format, product name and type, key features to mention, target audience, tone, and even a closing style. The resulting output is far more likely to be on-target, and need only minor tweaks.
 
+![Working with AI](/assets/working-with-AI.png)
+
 &#x20;_Illustration: Working with an AI assistant is like collaborating with a robot colleague. Clear instructions and context ensure the "colleague" (the AI) understands your business task and produces useful results. In prompt engineering, you provide the guidance (in plain language), and the AI brings vast knowledge and speed to help accomplish the task._
 
 ### Iterative Development Process
@@ -88,6 +90,8 @@ By adhering to these principles, you set the AI up for success. A clear, detaile
 Even with the above principles, you won’t always get a perfect result on the first try. Prompt engineering is inherently an **iterative** process. You craft a prompt, run it, evaluate the output, refine the prompt (or the approach), and try again. Much like editing a draft or debugging code, you improve the prompt step by step until the AI’s output meets your needs. This iterative loop is normal – think of each interaction as a chance to clarify your instructions or give better info to the model.
 
 A typical workflow might look like this:
+
+![Prompt Engineering Workflow](/assets/prompt-eng-workflow.png)
 
 &#x20;_Figure: A prompt engineering workflow is iterative【19†】. First, **define the task** clearly. Next, **write an initial prompt** with context and instructions. **Test** it with the AI model and then **evaluate the results** – did it follow instructions? Is the content accurate and useful? If not, **refine the prompt** (or provide additional info or adjust wording) and test again. Repeat this loop until satisfied, then **deploy** the final prompt or use the output in your work. In practice, you might go through several cycles of prompt refinement._
 
@@ -180,13 +184,13 @@ Marketing is an area where creative content and clear messaging are paramount �
 
 A good strategy is to feed the model something like:
 
-```
+```yaml
 Product: GlowSip Kids Water Bottle
 Features:
-- Glows in the dark
-- BPA-free, safe materials
-- Choke-safe cap design
-- 300 ml capacity, easy grip
+  - Glows in the dark
+  - BPA-free, safe materials
+  - Choke-safe cap design
+  - 300 ml capacity, easy grip
 Value Proposition: Makes hydration fun and safe for kids; peace of mind for parents.
 Target Audience: Parents of kids ages 5-12.
 Tone: Fun, friendly, and informative.
@@ -259,10 +263,10 @@ Public Relations (PR) and strategic communications involve managing how your bus
 
 **Press Releases:** Press releases have a fairly standard format (headline, sub-headline, date/location, body with quotes, boilerplate). To use AI for drafting a press release, provide the core factual details and even suggest a quote if you have one in mind. Example prompt:
 
-```
+```yaml
 You are a PR specialist. Write a press release announcing [Company]’s new [product/service or milestone].
 
-**Details:**
+Details:
 - Company Name: XYZ Tech
 - Announcement: Launching a new AI-powered analytics platform called InsightPro.
 - Date/Location: To be released from San Francisco on May 25, 2025.
@@ -321,7 +325,7 @@ Interfacing with investors is a critical part of many businesses, especially sta
 
 **Investor Update Letters:** For companies that already have investors (or even for board updates), writing periodic updates can be streamlined with AI. Suppose you have raw metrics and happenings of the last quarter. You might feed bullet points:
 
-```
+```diff
 Q1 Highlights:
 - Revenue: $500k (up 25% QoQ)
 - New customers: 50 (total 300)

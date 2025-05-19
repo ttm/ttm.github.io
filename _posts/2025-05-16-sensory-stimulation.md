@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "Guide to Sensory Stimulation and Audiovisual Entrainment"
+title: "Elementary Sensory Stimulation and Audiovisual Entrainment"
 date: 2025-05-19
 tags:
   [
