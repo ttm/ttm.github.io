@@ -7,6 +7,10 @@ permalink: /about/
 
 I seem to be an Italo-Brazilian researcher, software dev/eng/architect and artist named Renato Fabbri.
 
+This is me in 2025:
+
+![This is me in 2025](/assets/eu2025.jpeg){: .mypic3}
+
 This is a pic of me by a Portinari wall:
 
 ![an alt text](/assets/eu.jpg){: .mypic}
