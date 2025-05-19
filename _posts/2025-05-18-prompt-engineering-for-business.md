@@ -6,8 +6,6 @@ tags: [AI, Business, LLM, Prompt Engineering]
 published: true
 ---
 
-# Prompt Engineering for Business: A Strategic Guide for Founders, Creators, and Professionals
-
 ## Table of Contents
 
 1. [Introduction](#introduction)
