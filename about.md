@@ -5,7 +5,7 @@ comments: true
 permalink: /about/
 ---
 
-I seem to be an Italo-Brazilian physicist, researcher, software dev/eng/architect and artist named Renato Fabbri.
+I seem to be an Italo-Brazilian physicist, researcher, software dev/eng/architect and artist/musician named Renato Fabbri (PhD).
 
 This is me in 2025 by my son and grandmother:
 
