@@ -5,9 +5,9 @@ comments: true
 permalink: /about/
 ---
 
-I seem to be an Italo-Brazilian researcher, software dev/eng/architect and artist named Renato Fabbri.
+I seem to be an Italo-Brazilian physicist, researcher, software dev/eng/architect and artist named Renato Fabbri.
 
-This is me in 2025:
+This is me in 2025 by my son and grandmother:
 
 ![This is me in 2025](/assets/eu2025.jpeg){: .mypic3}
 
