@@ -1,9 +1,10 @@
 ---
 layout: article
 title: "Prompt Engineering for Business: A Strategic Guide for Founders, Creators, and Professionals"
-date: 2025-05-19
+date: 2025-05-18
 tags: [AI, Business, LLM, Prompt Engineering]
 published: true
+redirect_from: 2025/05/19/prompt-engineering-for-business
 ---
 
 ## Table of Contents

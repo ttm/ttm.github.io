@@ -1,8 +1,9 @@
 ---
 layout: article
 title: "Advanced Introduction to Prompt Engineering"
-date: 2025-05-19
+date: 2025-05-17
 tags: [AI, Prompt Engineering, LLM]
+redirect_from: 2025/05/19/prompt-engineering
 ---
 
 ## Table of Contents
