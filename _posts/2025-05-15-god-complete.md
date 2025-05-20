@@ -1,7 +1,7 @@
 ---
 layout: article
 title: "The Probability of God's Existence: A Mathematical and Scientific Inquiry"
-date: 2025-05-19
+date: 2025-05-15
 tags: [probability, theology, cosmology, philosophy-of-religion]
 published: true
 ---
