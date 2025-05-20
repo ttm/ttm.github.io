@@ -1,7 +1,7 @@
 ---
 layout: article
 title: "Elementary Sensory Stimulation and Audiovisual Entrainment"
-date: 2025-05-19
+date: 2025-05-16
 tags:
   [
     audiovisual stimulation,
