@@ -19,4 +19,8 @@ And at what was once my hacking blob:
 
 ![an alt text](/assets/2017-09-11-230032.jpg){: .mypic2}
 
-∴cheers∴
+∴ cheers ∴
+
+.☨.
+
+✡ ⭑ ✬ ☽ ☀️ ☾ ✬ ⭑ ✡
