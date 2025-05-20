@@ -2,14 +2,15 @@
 title: Renato Fabbri (ttm rgk hybrid o0o0o rfabbri) - homepage
 email: renato.fabbri@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  welcome to my (home)page about complex and social networks, linked data/semantic web,
-  natural language processing/text mining/computational linguistics,
-  data audiovisualization, computer music and other stuff which interests me.
+  Complex and social networks, Linked data/semantic web,
+  Natural language processing/text mining/computational linguistics,
+  Data audiovisualization, Computer music, Sensory stimulation and brainwave entrainment.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://ttm.github.io" # the base hostname & protocol for your site
 author: Renato Fabbri
-twitter_username: renatogk
+twitter_username: BioSynCare
 facebook_username: renato.fabbri
+instagram_username: renato.fabbri.renato
 github_username: ttm
 irc_channel: labmacambira
 

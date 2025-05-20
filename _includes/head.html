@@ -19,7 +19,7 @@
     impress().init();
   </script>
   {% endif %} {% seo %}
-  <link id="favicon" rel="icon" type="image/png" href="favicon_light.ico" />
+  <link id="favicon" rel="icon" type="image/png" href="/favicon_light.ico" />
   <script>
     // Function to update favicon based on theme
     function updateFavicon() {
@@ -27,7 +27,7 @@
       const isDarkMode = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
-      favicon.href = isDarkMode ? "favicon_dark.ico" : "favicon_light.ico";
+      favicon.href = isDarkMode ? "/favicon_dark.ico" : "/favicon_light.ico";
       console.log("Favicon updated to: " + favicon.href);
     }
 
