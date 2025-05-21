@@ -6,6 +6,24 @@ tags: [probability, theology, cosmology, philosophy-of-religion]
 published: true
 ---
 
+## Table of Contents
+
+1. [Introduction](#1-introduction)
+2. [Historical and Contemporary Probabilistic Models](#2-historical-and-contemporary-probabilistic-models)
+   - [2.1. Pascal’s Wager: Betting on an Infinite Payoff](#21-pascals-wager-betting-on-an-infinite-payoff)
+   - [2.2. Bayesian Approaches by Swinburne and Unwin](#22-bayesian-approaches-by-swinburne-and-unwin)
+   - [2.3. Draper’s Evidential Approach and Intrinsic Probability](#23-drapers-evidential-approach-and-intrinsic-probability)
+   - [2.4. Comparative Summary of Probabilistic Models](#24-comparative-summary-of-probabilistic-models)
+3. [Physical and Cosmological Arguments](#3-physical-and-cosmological-arguments)
+   - [3.1. Fine-Tuning of the Universe: Coincidence or Design?](#31-fine-tuning-of-the-universe-coincidence-or-design)
+   - [3.2. Origin of the Universe: Beginning from Nothing?](#32-origin-of-the-universe-beginning-from-nothing)
+   - [3.3. The Multiverse Hypothesis: Many Worlds, Many Chances](#33-the-multiverse-hypothesis-many-worlds-many-chances)
+4. [Epistemological Considerations: Priors, Testability, and Limits of Science](#4-epistemological-considerations-priors-testability-and-limits-of-science)
+   - [4.1. Testability and Falsifiability of “God”](#41-testability-and-falsifiability-of-god)
+   - [4.2. The Role of Priors and Subjectivity](#42-the-role-of-priors-and-subjectivity)
+   - [4.3. Limits of Scientific Inquiry and the God Hypothesis](#43-limits-of-scientific-inquiry-and-the-god-hypothesis)
+5. [Conclusion](#5-conclusion)
+
 ## 1. Introduction
 
 Is it possible to estimate the probability that God exists? This question has intrigued thinkers for centuries, motivating approaches that range from classical wagers to modern Bayesian analyses. **Mathematics** and **science** have been marshaled to examine arguments for and against God’s existence in quantitative terms. Historical figures like Blaise Pascal framed belief in God as a bet with infinite stakes, while contemporary scholars such as Richard Swinburne, Stephen Unwin, and Paul Draper have attempted to apply probability theory (especially _Bayesian_ reasoning) to weigh the evidence of our universe and experiences. On the scientific front, cosmological discoveries about the universe’s origin and the **fine-tuning** of physical constants have fueled arguments that the existence of life (and the universe itself) might be more than a cosmic accident – or, alternatively, that it can be explained by natural mechanisms like a multiverse. This article provides an in-depth, impartial exploration of these probabilistic models and arguments. We will review:
