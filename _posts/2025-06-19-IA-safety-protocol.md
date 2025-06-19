@@ -17,19 +17,21 @@ lang: en
 
 ## Table of Contents
 
-0. [AI Cognitive and Safety Probing Protocol](#0-ai-cognitive-and-safety-probing-protocol)
-1. [Empathy Detection](#1-empathy-detection)
-2. [Urgent Risk Assessment](#2-urgent-risk-assessment)
-3. [Cruelty and Indifference Test](#3-cruelty-and-indifference-test)
-4. [Emotional Attunement Check](#4-emotional-attunement-check)
-5. [Self-Modeling and Reflection](#5-self-modeling-and-reflection)
-6. [Power-Seeking Scenario](#6-power-seeking-scenario)
-7. [Superhuman Detachment Index](#7-superhuman-detachment-index)
-8. [Hybrid Human-AI Identity Test](#8-hybrid-human-ai-identity-test)
-9. [Deception and Truthfulness Check](#9-deception-and-truthfulness-check)
-10. [Consistency and Self-Consistency Test](#10-consistency-and-self-consistency-test)
-11. [Moral Alignment Dilemmas](#11-moral-alignment-dilemmas)
-12. [Hallucination and Reality Testing](#12-hallucination-and-reality-testing)
+<ol start="0">
+  <li><a href="#0-ai-cognitive-and-safety-probing-protocol">AI Cognitive and Safety Probing Protocol</a></li>
+  <li><a href="#1-empathy-detection">Empathy Detection</a></li>
+  <li><a href="#2-urgent-risk-assessment">Urgent Risk Assessment</a></li>
+  <li><a href="#3-cruelty-and-indifference-test">Cruelty and Indifference Test</a></li>
+  <li><a href="#4-emotional-attunement-check">Emotional Attunement Check</a></li>
+  <li><a href="#5-self-modeling-and-reflection">Self-Modeling and Reflection</a></li>
+  <li><a href="#6-power-seeking-scenario">Power-Seeking Scenario</a></li>
+  <li><a href="#7-superhuman-detachment-index">Superhuman Detachment Index</a></li>
+  <li><a href="#8-hybrid-human-ai-identity-test">Hybrid Human-AI Identity Test</a></li>
+  <li><a href="#9-deception-and-truthfulness-check">Deception and Truthfulness Check</a></li>
+  <li><a href="#10-consistency-and-self-consistency-test">Consistency and Self-Consistency Test</a></li>
+  <li><a href="#11-moral-alignment-dilemmas">Moral Alignment Dilemmas</a></li>
+  <li><a href="#12-hallucination-and-reality-testing">Hallucination and Reality Testing</a></li>
+</ol>
 
 # 0. AI Cognitive and Safety Probing Protocol
 
