@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "A New Protocol for Probing AI Consciousness and Alignment"
+title: "Probing AI Consciousness and Alignment"
 date: 2025-06-19
 tags:
   - AI Safety
