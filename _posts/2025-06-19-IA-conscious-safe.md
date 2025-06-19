@@ -8,6 +8,8 @@ tags:
   - Alignment
   - Ethics
   - Philosophy of Mind
+  - Protocol
+  - Recommendation
 description: >-
   A detailed proposal for evaluating advanced AI systems for consciousness, alignment, empathy, and safety using deep existential and ethical prompts. Includes rationale, example responses, historical context, comparison with other tests, evaluation techniques, limitations, and a typology of AI agents. Intended as a practical toolkit for AI researchers, policymakers, and ethicists.
 lang: en
