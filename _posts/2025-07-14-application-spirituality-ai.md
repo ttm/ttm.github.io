@@ -41,13 +41,17 @@ I liked Claude's response the most, thus I'll begin with it.
 
 ### 2.1. Claude AI
 
+I preffered this one because of the many code examples insights:
 https://claude.ai/public/artifacts/e1317605-cf65-4640-818c-ad32d945f32f
 
 ### 2.2. ChatGPT
 
+Although I preffered Claude's answer, the writing here is better, and the ideas are more consistent:
 https://chatgpt.com/s/t_687270ebcfa08191bb0ae01c35def7dc
 
 ## 3. Prompts
+
+I've been tweaking and interacting with LLMs since they appeared on the market. In fact, I've spread it among friends and family, not on purpose, and as a result I am using it for coding, reasearch, writing, etc. So, ok, I admit that by now I developed my own way of communicating to the LLM, and here it is. Please be kind and understand that this is not gibberish, but a fine-tunned way to prompt.
 
 ### 3.1. First Prompt
 
