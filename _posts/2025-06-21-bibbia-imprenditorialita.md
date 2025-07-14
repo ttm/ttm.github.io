@@ -2,10 +2,11 @@
 layout: article
 title: "Imprenditorialità Biblica: Principi dal Lancio al Successo"
 date: 2025-06-21
-categories: [business, bibbia, etica, startup]
 tags:
   [
+    business,
     imprenditorialità,
+    startup,
     bibbia,
     leadership,
     valori,
