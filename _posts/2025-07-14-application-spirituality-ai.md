@@ -41,7 +41,7 @@ I liked Claude's response the most, thus I'll begin with it.
 
 ### 2.1. Claude AI
 
-I preffered this one because of the many code examples insights:
+I preffered this one because of the many code examples and related insights:
 https://claude.ai/public/artifacts/e1317605-cf65-4640-818c-ad32d945f32f
 
 ### 2.2. ChatGPT
