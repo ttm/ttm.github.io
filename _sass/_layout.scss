@@ -10,6 +10,16 @@
     position: relative;
 }
 
+#theme-toggle {
+    float: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 56px;
+    margin-right: 10px;
+}
+
 .site-title {
     font-size: 26px;
     line-height: 56px;
@@ -84,13 +94,6 @@
             padding: 5px 10px;
         }
 
-        #theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-            margin-left: 10px;
-        }
     }
 }
 
