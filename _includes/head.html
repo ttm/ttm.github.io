@@ -24,11 +24,11 @@
     // Function to update favicon based on theme
     function updateFavicon() {
       const favicon = document.getElementById("favicon");
-      const isDarkMode = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
+      const html = document.documentElement;
+      const attrTheme = html.getAttribute("data-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const isDarkMode = attrTheme ? attrTheme === "dark" : prefersDark;
       favicon.href = isDarkMode ? "/favicon_dark.ico" : "/favicon_light.ico";
-      console.log("Favicon updated to: " + favicon.href);
     }
 
     // Toggle between light and dark themes
@@ -44,6 +44,9 @@
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       document.documentElement.setAttribute("data-theme", savedTheme);
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
     }
     updateFavicon();
 
