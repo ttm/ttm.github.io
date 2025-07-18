@@ -102,3 +102,23 @@ $on-laptop:        800px;
 [data-theme="dark"] .footer-col-wrapper {
   color: lighten($grey-color, 20%);
 }
+
+[data-theme="light"] body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+[data-theme="light"] a,
+[data-theme="light"] .site-title,
+[data-theme="light"] .page-link {
+  color: $brand-color;
+}
+
+[data-theme="light"] .site-header {
+  border-top-color: $grey-color-dark;
+  border-bottom-color: $grey-color-light;
+}
+
+[data-theme="light"] .footer-col-wrapper {
+  color: $grey-color;
+}
