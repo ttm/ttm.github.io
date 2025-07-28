@@ -55,7 +55,70 @@ $on-laptop:        800px;
 }
 
 .mypic2 {
-	width: 390px; 
-	//position: absolute;
+        width: 390px;
+        //position: absolute;
         //clip: rect(70px,160px,200px,0px);
+}
+
+// Basic dark mode styles
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #eee;
+  }
+
+  a,
+  .site-title,
+  .page-link {
+    color: lighten($brand-color, 20%);
+  }
+
+  .site-header {
+    border-top-color: $grey-color-dark;
+    border-bottom-color: $grey-color;
+  }
+
+  .footer-col-wrapper {
+    color: lighten($grey-color, 20%);
+  }
+}
+
+[data-theme="dark"] body {
+  background-color: #121212;
+  color: #eee;
+}
+
+[data-theme="dark"] a,
+[data-theme="dark"] .site-title,
+[data-theme="dark"] .page-link {
+  color: lighten($brand-color, 20%);
+}
+
+[data-theme="dark"] .site-header {
+  border-top-color: $grey-color-dark;
+  border-bottom-color: $grey-color;
+}
+
+[data-theme="dark"] .footer-col-wrapper {
+  color: lighten($grey-color, 20%);
+}
+
+[data-theme="light"] body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+[data-theme="light"] a,
+[data-theme="light"] .site-title,
+[data-theme="light"] .page-link {
+  color: $brand-color;
+}
+
+[data-theme="light"] .site-header {
+  border-top-color: $grey-color-dark;
+  border-bottom-color: $grey-color-light;
+}
+
+[data-theme="light"] .footer-col-wrapper {
+  color: $grey-color;
 }
