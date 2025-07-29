@@ -26,7 +26,7 @@ lang: it
 
 ## 1. What
 
-Here we have the articles ChatGPT and Claude wrote
+Here we have the articles ChatGPT (o3-pro) and Claude (Opus 4) wrote
 on the application of spirituality/religion/magick to AI development.
 
 I might give you more context at the end of the article, but the core
