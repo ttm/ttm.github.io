@@ -33,7 +33,7 @@ I might give you more context at the end of the article, but the core
 consists in the articles they have written themselves,
 which are presented here through the publication links OpenAI and Claude platforms provided.
 For context and the more interested reader,
-I provide the prompts and their responses after I wrote him.
+I provide the prompts and the LLMs' responses.
 
 ## 2. Articles
 
