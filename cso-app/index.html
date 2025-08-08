@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Swarm Optimization Explorer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #4A90E2;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+        .controls {
+            flex: 1 1 300px;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            margin-right: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .controls h2 {
+            margin-top: 0;
+        }
+        .controls label {
+            display: block;
+            margin: 0.5rem 0 0.25rem;
+            font-weight: bold;
+        }
+        .controls input, .controls select {
+            width: 100%;
+            padding: 0.4rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .controls button {
+            padding: 0.6rem 1rem;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #357ABD;
+        }
+        .chart-container {
+            flex: 2 1 600px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        canvas {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cultural Swarm Optimization Explorer</h1>
+        <p>Play with parameters, run simulations, and visualize optimization trajectories</p>
+    </header>
+    <div class="container">
+        <div class="controls">
+            <h2>Simulation Settings</h2>
+            <label for="particles">Number of Particles</label>
+            <input type="number" id="particles" min="10" max="200" value="50">
+
+            <label for="societies">Number of Societies</label>
+            <input type="number" id="societies" min="1" max="10" value="5">
+
+            <label for="w">Inertia Weight (w)</label>
+            <input type="number" id="w" step="0.1" value="0.7">
+
+            <label for="c1">Cognitive Coefficient (c1)</label>
+            <input type="number" id="c1" step="0.1" value="1.5">
+
+            <label for="c2">Social Coefficient (c2)</label>
+            <input type="number" id="c2" step="0.1" value="1.0">
+
+            <label for="c3">Civilization Coefficient (c3)</label>
+            <input type="number" id="c3" step="0.1" value="1.0">
+
+            <label for="iterations">Iterations</label>
+            <input type="number" id="iterations" min="10" max="500" value="100">
+
+            <label for="objective">Objective Function</label>
+            <select id="objective">
+                <option value="sphere">Sphere</option>
+                <option value="rastrigin">Rastrigin</option>
+                <option value="rosenbrock">Rosenbrock</option>
+            </select>
+
+            <button id="runButton">Run Simulation</button>
+            <p id="finalResult" style="margin-top:1rem;font-weight:bold;"></p>
+        </div>
+        <div class="chart-container">
+            <h2>Best Value Over Iterations</h2>
+            <canvas id="chartCanvas" width="600" height="400"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Objective functions
+        function sphere(pos) {
+            let sum = 0;
+            for (let i = 0; i < pos.length; i++) {
+                sum += pos[i] * pos[i];
+            }
+            return sum;
+        }
+
+        function rastrigin(pos) {
+            let sum = 10 * pos.length;
+            for (let i = 0; i < pos.length; i++) {
+                sum += pos[i] * pos[i] - 10 * Math.cos(2 * Math.PI * pos[i]);
+            }
+            return sum;
+        }
+
+        function rosenbrock(pos) {
+            let sum = 0;
+            for (let i = 0; i < pos.length - 1; i++) {
+                sum += 100 * Math.pow(pos[i+1] - pos[i] * pos[i], 2) + Math.pow(pos[i] - 1, 2);
+            }
+            return sum;
+        }
+
+        // Draw simple line chart on canvas
+        function drawChart(values) {
+            const canvas = document.getElementById('chartCanvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+
+            // Find min and max
+            let minVal = Math.min(...values);
+            let maxVal = Math.max(...values);
+            // Add small margin
+            const margin = 20;
+            const chartW = w - 2 * margin;
+            const chartH = h - 2 * margin;
+
+            // Draw axes
+            ctx.strokeStyle = '#555';
+            ctx.lineWidth = 1;
+            // Y-axis
+            ctx.beginPath();
+            ctx.moveTo(margin, margin);
+            ctx.lineTo(margin, h - margin);
+            ctx.stroke();
+            // X-axis
+            ctx.beginPath();
+            ctx.moveTo(margin, h - margin);
+            ctx.lineTo(w - margin, h - margin);
+            ctx.stroke();
+
+            // Draw ticks and labels
+            ctx.font = '12px Arial';
+            ctx.fillStyle = '#333';
+            // Y-axis ticks
+            const yTicks = 5;
+            for (let i = 0; i <= yTicks; i++) {
+                const y = margin + (chartH * i / yTicks);
+                const val = (maxVal - minVal) * (1 - i / yTicks) + minVal;
+                ctx.beginPath();
+                ctx.moveTo(margin - 5, y);
+                ctx.lineTo(margin, y);
+                ctx.stroke();
+                ctx.fillText(val.toFixed(2), 2, y + 4);
+            }
+            // X-axis ticks
+            const xTicks = values.length - 1;
+            for (let i = 0; i <= xTicks; i += Math.max(1, Math.floor(xTicks / 10))) {
+                const x = margin + (chartW * i / xTicks);
+                ctx.beginPath();
+                ctx.moveTo(x, h - margin);
+                ctx.lineTo(x, h - margin + 5);
+                ctx.stroke();
+                ctx.fillText(i.toString(), x - 5, h - margin + 15);
+            }
+
+            // Draw line
+            ctx.strokeStyle = '#4A90E2';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let i = 0; i < values.length; i++) {
+                const x = margin + (chartW * i / (values.length - 1));
+                const y = margin + (chartH * (1 - (values[i] - minVal) / (maxVal - minVal)));
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+
+        // Main simulation function
+        function runCSO() {
+            const nParticles = parseInt(document.getElementById('particles').value);
+            const nSocieties = parseInt(document.getElementById('societies').value);
+            const w = parseFloat(document.getElementById('w').value);
+            const c1 = parseFloat(document.getElementById('c1').value);
+            const c2 = parseFloat(document.getElementById('c2').value);
+            const c3 = parseFloat(document.getElementById('c3').value);
+            const iterations = parseInt(document.getElementById('iterations').value);
+            const objective = document.getElementById('objective').value;
+
+            // Select objective function
+            let objectiveFunc;
+            const dim = 2; // 2D for visualization simplicity
+            let bounds;
+            if (objective === 'sphere') {
+                objectiveFunc = sphere;
+                bounds = [-5, 5];
+            } else if (objective === 'rastrigin') {
+                objectiveFunc = rastrigin;
+                bounds = [-5.12, 5.12];
+            } else if (objective === 'rosenbrock') {
+                objectiveFunc = rosenbrock;
+                bounds = [-3, 3];
+            }
+
+            // Initialize particles, velocities
+            const positions = [];
+            const velocities = [];
+            const pbest = [];
+            const pbestVal = [];
+            // Assign each particle to a society
+            const societyOf = new Array(nParticles);
+            const societies = [];
+            for (let s = 0; s < nSocieties; s++) societies.push([]);
+            for (let i = 0; i < nParticles; i++) {
+                // Initialize random position
+                const pos = [];
+                const vel = [];
+                for (let d = 0; d < dim; d++) {
+                    pos.push(Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
+                    vel.push(0);
+                }
+                positions.push(pos);
+                velocities.push(vel);
+                pbest.push([...pos]);
+                pbestVal.push(objectiveFunc(pos));
+                // assign society in round-robin
+                const sid = i % nSocieties;
+                societyOf[i] = sid;
+                societies[sid].push(i);
+            }
+            // Group best and civilization best
+            const gbestValSoc = new Array(nSocieties).fill(Infinity);
+            const gbestPosSoc = new Array(nSocieties);
+            let globalBestVal = Infinity;
+            let globalBestPos = null;
+
+            const bestHistory = [];
+            for (let iter = 0; iter < iterations; iter++) {
+                // Update group bests and global best
+                for (let s = 0; s < nSocieties; s++) {
+                    gbestValSoc[s] = Infinity;
+                    gbestPosSoc[s] = null;
+                }
+                globalBestVal = Infinity;
+                globalBestPos = null;
+                for (let i = 0; i < nParticles; i++) {
+                    const val = pbestVal[i];
+                    const sid = societyOf[i];
+                    if (val < gbestValSoc[sid]) {
+                        gbestValSoc[sid] = val;
+                        gbestPosSoc[sid] = [...pbest[i]];
+                    }
+                    if (val < globalBestVal) {
+                        globalBestVal = val;
+                        globalBestPos = [...pbest[i]];
+                    }
+                }
+                // Update velocities and positions
+                for (let i = 0; i < nParticles; i++) {
+                    const sid = societyOf[i];
+                    for (let d = 0; d < dim; d++) {
+                        const r1 = Math.random();
+                        const r2 = Math.random();
+                        const r3 = Math.random();
+                        const cognitive = c1 * r1 * (pbest[i][d] - positions[i][d]);
+                        const social = c2 * r2 * (gbestPosSoc[sid][d] - positions[i][d]);
+                        const civil = c3 * r3 * (globalBestPos[d] - positions[i][d]);
+                        velocities[i][d] = w * velocities[i][d] + cognitive + social + civil;
+                        positions[i][d] += velocities[i][d];
+                        // enforce bounds
+                        if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
+                        if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
+                    }
+                    // evaluate
+                    const val = objectiveFunc(positions[i]);
+                    if (val < pbestVal[i]) {
+                        pbestVal[i] = val;
+                        pbest[i] = [...positions[i]];
+                    }
+                }
+                bestHistory.push(globalBestVal);
+            }
+            drawChart(bestHistory);
+            document.getElementById('finalResult').textContent = 'Final best value: ' + globalBestVal.toFixed(5);
+        }
+
+        document.getElementById('runButton').addEventListener('click', runCSO);
+    </script>
+</body>
+</html>
