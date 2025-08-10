@@ -52,6 +52,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-right: 0.5rem;
         }
         .controls button:hover {
             background-color: #357ABD;
@@ -65,7 +66,12 @@
         }
         canvas {
             width: 100%;
-            height: 400px;
+            height: 500px;
+        }
+
+        #legend {
+            margin-top: 1rem;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -105,12 +111,22 @@
                 <option value="rosenbrock">Rosenbrock</option>
             </select>
 
-            <button id="runButton">Run Simulation</button>
+            <label for="algorithm">Algorithm</label>
+            <select id="algorithm">
+                <option value="civilized">Civilized PSO</option>
+                <option value="standard">Standard PSO</option>
+                <option value="competitive">Competitive Swarm</option>
+                <option value="predator">Predator‑Prey PSO</option>
+            </select>
+
+            <button id="runButton">Run Algorithm</button>
+            <button id="compareButton">Compare All</button>
             <p id="finalResult" style="margin-top:1rem;font-weight:bold;"></p>
         </div>
         <div class="chart-container">
             <h2>Best Value Over Iterations</h2>
-            <canvas id="chartCanvas" width="600" height="400"></canvas>
+            <canvas id="chartCanvas" width="600" height="500"></canvas>
+            <div id="legend"></div>
         </div>
     </div>
 
@@ -140,40 +156,49 @@
             return sum;
         }
 
-        // Draw simple line chart on canvas
-        function drawChart(values) {
+        /**
+         * Draw chart for multiple series or single series.
+         * @param {Array} seriesList - array of objects {name: string, values: number[], color: string}
+         */
+        function drawChart(seriesList) {
+            // If only one series is passed as an array of numbers, wrap it.
+            if (Array.isArray(seriesList) && typeof seriesList[0] === 'number') {
+                seriesList = [{ name: '', values: seriesList, color: '#4A90E2' }];
+            }
             const canvas = document.getElementById('chartCanvas');
             const ctx = canvas.getContext('2d');
             const w = canvas.width;
             const h = canvas.height;
             ctx.clearRect(0, 0, w, h);
 
-            // Find min and max
-            let minVal = Math.min(...values);
-            let maxVal = Math.max(...values);
-            // Add small margin
-            const margin = 20;
+            // compute global min and max across all series
+            let allVals = [];
+            seriesList.forEach(s => { allVals = allVals.concat(s.values); });
+            let minVal = Math.min(...allVals);
+            let maxVal = Math.max(...allVals);
+            // Add margin if all values equal
+            if (maxVal === minVal) {
+                maxVal += 1;
+            }
+            const margin = 30;
             const chartW = w - 2 * margin;
             const chartH = h - 2 * margin;
 
-            // Draw axes
+            // axes
             ctx.strokeStyle = '#555';
             ctx.lineWidth = 1;
-            // Y-axis
             ctx.beginPath();
             ctx.moveTo(margin, margin);
             ctx.lineTo(margin, h - margin);
             ctx.stroke();
-            // X-axis
             ctx.beginPath();
             ctx.moveTo(margin, h - margin);
             ctx.lineTo(w - margin, h - margin);
             ctx.stroke();
 
-            // Draw ticks and labels
+            // ticks & labels
             ctx.font = '12px Arial';
             ctx.fillStyle = '#333';
-            // Y-axis ticks
             const yTicks = 5;
             for (let i = 0; i <= yTicks; i++) {
                 const y = margin + (chartH * i / yTicks);
@@ -184,10 +209,11 @@
                 ctx.stroke();
                 ctx.fillText(val.toFixed(2), 2, y + 4);
             }
-            // X-axis ticks
-            const xTicks = values.length - 1;
-            for (let i = 0; i <= xTicks; i += Math.max(1, Math.floor(xTicks / 10))) {
-                const x = margin + (chartW * i / xTicks);
+            // X-axis ticks: use longest series length
+            const maxLen = Math.max(...seriesList.map(s => s.values.length));
+            const xTickInterval = Math.max(1, Math.floor(maxLen / 10));
+            for (let i = 0; i < maxLen; i += xTickInterval) {
+                const x = margin + (chartW * i / (maxLen - 1));
                 ctx.beginPath();
                 ctx.moveTo(x, h - margin);
                 ctx.lineTo(x, h - margin + 5);
@@ -195,56 +221,36 @@
                 ctx.fillText(i.toString(), x - 5, h - margin + 15);
             }
 
-            // Draw line
-            ctx.strokeStyle = '#4A90E2';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (let i = 0; i < values.length; i++) {
-                const x = margin + (chartW * i / (values.length - 1));
-                const y = margin + (chartH * (1 - (values[i] - minVal) / (maxVal - minVal)));
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
+            // Draw each series
+            seriesList.forEach(series => {
+                ctx.strokeStyle = series.color;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                const vals = series.values;
+                const len = vals.length;
+                for (let i = 0; i < len; i++) {
+                    const x = margin + (chartW * i / (len - 1));
+                    const y = margin + (chartH * (1 - (vals[i] - minVal) / (maxVal - minVal)));
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+
+            // update legend
+            const legendDiv = document.getElementById('legend');
+            if (seriesList.length > 1) {
+                legendDiv.innerHTML = seriesList.map(series => `<span style="color:${series.color};font-weight:bold;">●</span> ${series.name}`).join('&nbsp;&nbsp;&nbsp;');
+            } else if (seriesList.length === 1) {
+                legendDiv.innerHTML = '';
             }
-            ctx.stroke();
         }
 
-        // Main simulation function
-        function runCSO() {
-            const nParticles = parseInt(document.getElementById('particles').value);
-            const nSocieties = parseInt(document.getElementById('societies').value);
-            const w = parseFloat(document.getElementById('w').value);
-            const c1 = parseFloat(document.getElementById('c1').value);
-            const c2 = parseFloat(document.getElementById('c2').value);
-            const c3 = parseFloat(document.getElementById('c3').value);
-            const iterations = parseInt(document.getElementById('iterations').value);
-            const objective = document.getElementById('objective').value;
-
-            // Select objective function
-            let objectiveFunc;
-            const dim = 2; // 2D for visualization simplicity
-            let bounds;
-            if (objective === 'sphere') {
-                objectiveFunc = sphere;
-                bounds = [-5, 5];
-            } else if (objective === 'rastrigin') {
-                objectiveFunc = rastrigin;
-                bounds = [-5.12, 5.12];
-            } else if (objective === 'rosenbrock') {
-                objectiveFunc = rosenbrock;
-                bounds = [-3, 3];
-            }
-
-            // Initialize particles, velocities
+        // Utility: initialize particle positions and velocities
+        function initializeParticles(nParticles, dim, bounds) {
             const positions = [];
             const velocities = [];
-            const pbest = [];
-            const pbestVal = [];
-            // Assign each particle to a society
-            const societyOf = new Array(nParticles);
-            const societies = [];
-            for (let s = 0; s < nSocieties; s++) societies.push([]);
             for (let i = 0; i < nParticles; i++) {
-                // Initialize random position
                 const pos = [];
                 const vel = [];
                 for (let d = 0; d < dim; d++) {
@@ -253,28 +259,40 @@
                 }
                 positions.push(pos);
                 velocities.push(vel);
-                pbest.push([...pos]);
-                pbestVal.push(objectiveFunc(pos));
-                // assign society in round-robin
-                const sid = i % nSocieties;
-                societyOf[i] = sid;
-                societies[sid].push(i);
             }
-            // Group best and civilization best
-            const gbestValSoc = new Array(nSocieties).fill(Infinity);
-            const gbestPosSoc = new Array(nSocieties);
-            let globalBestVal = Infinity;
-            let globalBestPos = null;
+            return { positions, velocities };
+        }
+
+        /**
+         * Civilized Swarm Optimization (multiple societies) implementation.
+         * Returns {history: best values array, bestVal: final best value}
+         */
+        function civilizedPSO(nParticles, nSocieties, w, c1, c2, c3, iterations, objectiveFunc, dim, bounds) {
+            // initialize positions and velocities
+            const { positions, velocities } = initializeParticles(nParticles, dim, bounds);
+            const pbest = positions.map(pos => [...pos]);
+            const pbestVal = positions.map(pos => objectiveFunc(pos));
+            // assign societies in round-robin
+            const societyOf = new Array(nParticles);
+            for (let i = 0; i < nParticles; i++) {
+                societyOf[i] = i % nSocieties;
+            }
 
             const bestHistory = [];
+            let globalBestVal = Infinity;
+            let globalBestPos = null;
+            let gbestValSoc = new Array(nSocieties);
+            let gbestPosSoc = new Array(nSocieties);
+
             for (let iter = 0; iter < iterations; iter++) {
-                // Update group bests and global best
+                // reset group bests
                 for (let s = 0; s < nSocieties; s++) {
                     gbestValSoc[s] = Infinity;
                     gbestPosSoc[s] = null;
                 }
                 globalBestVal = Infinity;
                 globalBestPos = null;
+                // update group/global bests
                 for (let i = 0; i < nParticles; i++) {
                     const val = pbestVal[i];
                     const sid = societyOf[i];
@@ -287,7 +305,7 @@
                         globalBestPos = [...pbest[i]];
                     }
                 }
-                // Update velocities and positions
+                // update velocities and positions
                 for (let i = 0; i < nParticles; i++) {
                     const sid = societyOf[i];
                     for (let d = 0; d < dim; d++) {
@@ -303,7 +321,6 @@
                         if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
                         if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
                     }
-                    // evaluate
                     const val = objectiveFunc(positions[i]);
                     if (val < pbestVal[i]) {
                         pbestVal[i] = val;
@@ -312,11 +329,232 @@
                 }
                 bestHistory.push(globalBestVal);
             }
-            drawChart(bestHistory);
-            document.getElementById('finalResult').textContent = 'Final best value: ' + globalBestVal.toFixed(5);
+            return { history: bestHistory, bestVal: globalBestVal };
         }
 
-        document.getElementById('runButton').addEventListener('click', runCSO);
+        /**
+         * Standard Particle Swarm Optimization without societies.
+         */
+        function standardPSO(nParticles, w, c1, c2, iterations, objectiveFunc, dim, bounds) {
+            const { positions, velocities } = initializeParticles(nParticles, dim, bounds);
+            const pbest = positions.map(pos => [...pos]);
+            const pbestVal = positions.map(pos => objectiveFunc(pos));
+            let globalBestVal = Infinity;
+            let globalBestPos = null;
+
+            const bestHistory = [];
+            for (let iter = 0; iter < iterations; iter++) {
+                // update global best
+                globalBestVal = Infinity;
+                for (let i = 0; i < nParticles; i++) {
+                    if (pbestVal[i] < globalBestVal) {
+                        globalBestVal = pbestVal[i];
+                        globalBestPos = [...pbest[i]];
+                    }
+                }
+                // update velocities and positions
+                for (let i = 0; i < nParticles; i++) {
+                    for (let d = 0; d < dim; d++) {
+                        const r1 = Math.random();
+                        const r2 = Math.random();
+                        const cognitive = c1 * r1 * (pbest[i][d] - positions[i][d]);
+                        const social = c2 * r2 * (globalBestPos[d] - positions[i][d]);
+                        velocities[i][d] = w * velocities[i][d] + cognitive + social;
+                        positions[i][d] += velocities[i][d];
+                        if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
+                        if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
+                    }
+                    const val = objectiveFunc(positions[i]);
+                    if (val < pbestVal[i]) {
+                        pbestVal[i] = val;
+                        pbest[i] = [...positions[i]];
+                    }
+                }
+                bestHistory.push(globalBestVal);
+            }
+            return { history: bestHistory, bestVal: globalBestVal };
+        }
+
+        /**
+         * Competitive Swarm Optimizer (pairwise competition).
+         */
+        function competitiveSwarm(nParticles, iterations, objectiveFunc, dim, bounds) {
+            // Initialize random positions
+            const positions = [];
+            for (let i = 0; i < nParticles; i++) {
+                const pos = [];
+                for (let d = 0; d < dim; d++) {
+                    pos.push(Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
+                }
+                positions.push(pos);
+            }
+            const bestHistory = [];
+            let globalBestVal = Infinity;
+
+            for (let iter = 0; iter < iterations; iter++) {
+                // Evaluate fitness for all particles
+                const fitness = positions.map(pos => objectiveFunc(pos));
+                // track global best
+                for (let i = 0; i < nParticles; i++) {
+                    if (fitness[i] < globalBestVal) {
+                        globalBestVal = fitness[i];
+                    }
+                }
+                // Randomly shuffle indices
+                const indices = [...Array(nParticles).keys()];
+                for (let i = indices.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [indices[i], indices[j]] = [indices[j], indices[i]];
+                }
+                // Pairwise competition
+                for (let k = 0; k < indices.length; k += 2) {
+                    if (k + 1 >= indices.length) break;
+                    const i = indices[k];
+                    const j = indices[k + 1];
+                    const fi = fitness[i];
+                    const fj = fitness[j];
+                    let winner, loser;
+                    if (fi <= fj) { winner = i; loser = j; }
+                    else { winner = j; loser = i; }
+                    // loser moves towards winner
+                    const r = Math.random();
+                    for (let d = 0; d < dim; d++) {
+                        positions[loser][d] = positions[loser][d] + r * (positions[winner][d] - positions[loser][d]);
+                    }
+                }
+                bestHistory.push(globalBestVal);
+            }
+            return { history: bestHistory, bestVal: globalBestVal };
+        }
+
+        /**
+         * Predator‑Prey PSO: PSO with a repulsion from the global best to maintain diversity.
+         */
+        function predatorPreyPSO(nParticles, w, c1, c2, predatorStrength, iterations, objectiveFunc, dim, bounds) {
+            const { positions, velocities } = initializeParticles(nParticles, dim, bounds);
+            const pbest = positions.map(pos => [...pos]);
+            const pbestVal = positions.map(pos => objectiveFunc(pos));
+            let globalBestVal = Infinity;
+            let globalBestPos = null;
+            const bestHistory = [];
+
+            for (let iter = 0; iter < iterations; iter++) {
+                // update global best
+                globalBestVal = Infinity;
+                for (let i = 0; i < nParticles; i++) {
+                    if (pbestVal[i] < globalBestVal) {
+                        globalBestVal = pbestVal[i];
+                        globalBestPos = [...pbest[i]];
+                    }
+                }
+                // update velocities and positions
+                for (let i = 0; i < nParticles; i++) {
+                    for (let d = 0; d < dim; d++) {
+                        const r1 = Math.random();
+                        const r2 = Math.random();
+                        const cognitive = c1 * r1 * (pbest[i][d] - positions[i][d]);
+                        const social = c2 * r2 * (globalBestPos[d] - positions[i][d]);
+                        const repulsion = predatorStrength * (positions[i][d] - globalBestPos[d]);
+                        velocities[i][d] = w * velocities[i][d] + cognitive + social + repulsion;
+                        positions[i][d] += velocities[i][d];
+                        if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
+                        if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
+                    }
+                    const val = objectiveFunc(positions[i]);
+                    if (val < pbestVal[i]) {
+                        pbestVal[i] = val;
+                        pbest[i] = [...positions[i]];
+                    }
+                }
+                bestHistory.push(globalBestVal);
+            }
+            return { history: bestHistory, bestVal: globalBestVal };
+        }
+
+        // Helper to determine objective function and bounds
+        function getObjectiveSettings() {
+            const objective = document.getElementById('objective').value;
+            let objectiveFunc, bounds;
+            const dim = 2;
+            if (objective === 'sphere') {
+                objectiveFunc = sphere;
+                bounds = [-5, 5];
+            } else if (objective === 'rastrigin') {
+                objectiveFunc = rastrigin;
+                bounds = [-5.12, 5.12];
+            } else if (objective === 'rosenbrock') {
+                objectiveFunc = rosenbrock;
+                bounds = [-3, 3];
+            }
+            return { objectiveFunc, bounds, dim };
+        }
+
+        // Run selected algorithm
+        function runSelected() {
+            const nParticles = parseInt(document.getElementById('particles').value);
+            const nSocieties = parseInt(document.getElementById('societies').value);
+            const w = parseFloat(document.getElementById('w').value);
+            const c1 = parseFloat(document.getElementById('c1').value);
+            const c2 = parseFloat(document.getElementById('c2').value);
+            const c3 = parseFloat(document.getElementById('c3').value);
+            const iterations = parseInt(document.getElementById('iterations').value);
+            const algorithm = document.getElementById('algorithm').value;
+            const { objectiveFunc, bounds, dim } = getObjectiveSettings();
+            let result;
+            if (algorithm === 'civilized') {
+                result = civilizedPSO(nParticles, nSocieties, w, c1, c2, c3, iterations, objectiveFunc, dim, bounds);
+            } else if (algorithm === 'standard') {
+                result = standardPSO(nParticles, w, c1, c2, iterations, objectiveFunc, dim, bounds);
+            } else if (algorithm === 'competitive') {
+                result = competitiveSwarm(nParticles, iterations, objectiveFunc, dim, bounds);
+            } else if (algorithm === 'predator') {
+                // use predator strength relative to inertia weight
+                const predatorStrength = 0.1;
+                result = predatorPreyPSO(nParticles, w, c1, c2, predatorStrength, iterations, objectiveFunc, dim, bounds);
+            }
+            drawChart([{ name: algorithm.charAt(0).toUpperCase() + algorithm.slice(1), values: result.history, color: '#4A90E2' }]);
+            document.getElementById('finalResult').textContent = 'Final best value: ' + result.bestVal.toFixed(5);
+        }
+
+        // Compare all algorithms
+        function compareAll() {
+            const nParticles = parseInt(document.getElementById('particles').value);
+            const nSocieties = parseInt(document.getElementById('societies').value);
+            const w = parseFloat(document.getElementById('w').value);
+            const c1 = parseFloat(document.getElementById('c1').value);
+            const c2 = parseFloat(document.getElementById('c2').value);
+            const c3 = parseFloat(document.getElementById('c3').value);
+            const iterations = parseInt(document.getElementById('iterations').value);
+            const { objectiveFunc, bounds, dim } = getObjectiveSettings();
+            const colors = ['#4A90E2', '#E24A4A', '#50C878', '#8E44AD'];
+            const results = [];
+            // Civilized PSO
+            const resCivil = civilizedPSO(nParticles, nSocieties, w, c1, c2, c3, iterations, objectiveFunc, dim, bounds);
+            results.push({ name: 'Civilized', values: resCivil.history, color: colors[0] });
+            // Standard PSO
+            const resStd = standardPSO(nParticles, w, c1, c2, iterations, objectiveFunc, dim, bounds);
+            results.push({ name: 'Standard', values: resStd.history, color: colors[1] });
+            // Competitive Swarm
+            const resComp = competitiveSwarm(nParticles, iterations, objectiveFunc, dim, bounds);
+            results.push({ name: 'Competitive', values: resComp.history, color: colors[2] });
+            // Predator‑Prey PSO
+            const predatorStrength = 0.1;
+            const resPred = predatorPreyPSO(nParticles, w, c1, c2, predatorStrength, iterations, objectiveFunc, dim, bounds);
+            results.push({ name: 'Predator', values: resPred.history, color: colors[3] });
+            // Determine final results summary
+            let summary = 'Final best values → ';
+            results.forEach((res, idx) => {
+                const bestVal = res.values[res.values.length - 1];
+                summary += `${res.name}: ${bestVal.toFixed(5)}`;
+                if (idx < results.length - 1) summary += ', ';
+            });
+            drawChart(results);
+            document.getElementById('finalResult').textContent = summary;
+        }
+
+        // Attach event listeners
+        document.getElementById('runButton').addEventListener('click', runSelected);
+        document.getElementById('compareButton').addEventListener('click', compareAll);
     </script>
 </body>
 </html>
