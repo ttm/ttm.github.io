@@ -24,6 +24,16 @@
     return darkQuery && darkQuery.matches ? "dark" : "light";
   }
 
+  // With an explicit choice, the browser UI color should match it rather
+  // than the OS preference the theme-color metas are keyed on.
+  function syncThemeColor() {
+    if (!root.getAttribute("data-theme")) return;
+    var bg = getComputedStyle(root).getPropertyValue("--bg").trim();
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+      meta.setAttribute("content", bg);
+    });
+  }
+
   var toggle = document.querySelector(".theme-toggle");
   if (toggle) {
     var syncToggle = function () {
@@ -31,11 +41,13 @@
     };
     toggle.hidden = false;
     syncToggle();
+    syncThemeColor();
     toggle.addEventListener("click", function () {
       var next = effectiveTheme() === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
       storageSet("theme", next);
       syncToggle();
+      syncThemeColor();
       // Disqus picks its colors when it loads; reload it to match.
       if (window.DISQUS && typeof window.DISQUS.reset === "function") {
         window.DISQUS.reset({ reload: true });
@@ -44,10 +56,12 @@
     if (darkQuery && darkQuery.addEventListener) darkQuery.addEventListener("change", syncToggle);
   }
 
-  /* Post content: heading links, code copy buttons, scrollable tables ---- */
+  /* Post content: contents, heading links, code copy buttons, tables ----- */
 
   var content = document.querySelector(".post-content");
   if (content) {
+    buildContents(content);
+
     content.querySelectorAll("h2[id], h3[id], h4[id]").forEach(function (heading) {
       var link = document.createElement("a");
       link.className = "heading-anchor";
@@ -100,6 +114,114 @@
       });
       wrap.appendChild(button);
     });
+  }
+
+  /*
+   * Contents for long posts (4+ sections): a sticky sidebar that tracks the
+   * current section on wide screens, and a collapsible list at the top on
+   * narrower ones unless the post already starts with its own contents list.
+   */
+  function buildContents(content) {
+    var ownTitle = /^(table of contents|contents|índice|indice|sommario)$/i;
+    var headings = Array.prototype.filter.call(content.querySelectorAll("h2[id], h3[id]"), function (h) {
+      return !ownTitle.test(h.textContent.trim());
+    });
+    var sections = headings.filter(function (h) { return h.tagName === "H2"; });
+    if (sections.length < 4) return;
+
+    var ids = {};
+    headings.forEach(function (h) { ids[h.id] = true; });
+    var hasOwnList = Array.prototype.some.call(content.querySelectorAll("ul, ol"), function (list) {
+      var inPage = Array.prototype.filter.call(list.querySelectorAll("a[href^='#']"), function (a) {
+        return ids[decodeURIComponent(a.getAttribute("href").slice(1))];
+      });
+      return inPage.length >= 3;
+    });
+
+    function makeList(withSubsections) {
+      var list = document.createElement("ol");
+      list.className = "toc-list";
+      var current = null;
+      headings.forEach(function (h) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = "#" + encodeURIComponent(h.id);
+        a.textContent = h.textContent.trim();
+        a.setAttribute("data-target", h.id);
+        li.appendChild(a);
+        if (h.tagName === "H2" || !current) {
+          li.className = "toc-h2";
+          list.appendChild(li);
+          current = li;
+        } else if (withSubsections) {
+          var sub = current.querySelector("ol");
+          if (!sub) {
+            sub = document.createElement("ol");
+            sub.className = "toc-sub";
+            current.appendChild(sub);
+          }
+          li.className = "toc-h3";
+          sub.appendChild(li);
+        }
+      });
+      return list;
+    }
+
+    var header = document.querySelector(".post-header");
+    var side = document.createElement("nav");
+    side.className = "toc toc--side";
+    side.setAttribute("aria-label", "Contents");
+    var title = document.createElement("p");
+    title.className = "toc-title";
+    title.textContent = "Contents";
+    side.appendChild(title);
+    side.appendChild(makeList(true));
+    (header || content).insertAdjacentElement("afterend", side);
+
+    if (!hasOwnList) {
+      var inline = document.createElement("details");
+      inline.className = "toc toc--inline";
+      var summary = document.createElement("summary");
+      summary.textContent = "Contents";
+      inline.appendChild(summary);
+      inline.appendChild(makeList(true));
+      content.insertBefore(inline, content.firstChild);
+    }
+
+    // Highlight the section being read.
+    var links = side.querySelectorAll("a[data-target]");
+    var active = null;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var current = null;
+      for (var i = 0; i < headings.length; i++) {
+        if (headings[i].getBoundingClientRect().top > 120) break;
+        current = headings[i];
+      }
+      if (current === active) return;
+      active = current;
+      Array.prototype.forEach.call(links, function (a) {
+        var on = current && a.getAttribute("data-target") === current.id;
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
+      Array.prototype.forEach.call(side.querySelectorAll(".toc-h2"), function (li) {
+        li.classList.toggle("is-open", !!(current && li.querySelector("[aria-current]")));
+      });
+      var on = side.querySelector("[aria-current]");
+      if (on && side.scrollHeight > side.clientHeight) {
+        var box = side.getBoundingClientRect();
+        var r = on.getBoundingClientRect();
+        if (r.top < box.top + 40 || r.bottom > box.bottom - 40) side.scrollTop += r.top - box.top - box.height / 3;
+      }
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    }, { passive: true });
+    update();
   }
 
   function copyText(text) {

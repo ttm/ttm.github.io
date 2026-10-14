@@ -36,7 +36,7 @@ layout: default
   </header>
 
   <div class="post-content e-content">
-    {{ content }}
+    {{ content | replace: '<img ', '<img loading="lazy" decoding="async" ' }}
   </div>
 
   {%- if page.previous or page.next %}

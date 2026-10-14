@@ -586,8 +586,8 @@
   }
 
   // Links in a table of contents are already obviously links.
-  h2 + ol a,
-  h2 + ul a {
+  h2 + ol a[href^="#"],
+  h2 + ul a[href^="#"] {
     text-decoration-color: transparent;
 
     &:hover {
@@ -658,6 +658,117 @@
   mjx-container {
     font-size: 105%;
   }
+}
+
+// Contents for long posts, added by site.js
+.toc {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1.4;
+
+  .toc-list,
+  .toc-sub {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li,
+  li > ol {
+    margin-top: 0;
+  }
+
+  .toc-list a {
+    display: block;
+    padding: 0.2rem 0 0.2rem 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  .toc-sub a {
+    padding-left: 1.5rem;
+  }
+}
+
+.toc--side {
+  display: none;
+}
+
+.toc--inline {
+  margin: 0 0 2rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .toc-list {
+    margin-top: 0.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .toc-list a {
+    padding-left: 0;
+  }
+
+  .toc-sub a {
+    padding-left: 1rem;
+  }
+}
+
+// Wide screens: a sticky sidebar beside the text column
+@media screen and (min-width: 80rem) {
+  .toc--side {
+    display: block;
+    position: fixed;
+    top: 5.5rem;
+    left: calc(50% + 25.5rem);
+    width: 12.5rem;
+    max-height: calc(100vh - 11rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    .toc-list a {
+      border-left: 2px solid var(--border);
+
+      &[aria-current] {
+        color: var(--text);
+        font-weight: 600;
+        border-left-color: var(--accent);
+      }
+    }
+
+    .toc-sub {
+      display: none;
+    }
+
+    .is-open > .toc-sub {
+      display: block;
+    }
+  }
+
+  .toc--inline {
+    display: none;
+  }
+}
+
+.toc-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 // Heading permalinks added by site.js
@@ -933,7 +1044,8 @@
   .back-to-top,
   .copy-button,
   .heading-anchor,
-  .post-filter {
+  .post-filter,
+  .toc {
     display: none !important;
   }
 
