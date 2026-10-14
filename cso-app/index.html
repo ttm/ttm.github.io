@@ -4,557 +4,1404 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cultural Swarm Optimization Explorer</title>
+    <meta name="description" content="Run Civilized PSO and three other swarm algorithms on classic benchmark functions, compare their convergence, and watch the swarm move over the landscape.">
+    <link rel="icon" type="image/png" href="/favicon_light.ico">
+    <script>
+        // Follow the main site's theme choice (same origin), else the OS.
+        (function () {
+            var theme = null;
+            try { theme = localStorage.getItem('theme'); } catch (e) {}
+            if (theme === 'dark' || theme === 'light') document.documentElement.setAttribute('data-theme', theme);
+            if (window.self !== window.top) document.documentElement.classList.add('embedded');
+        })();
+    </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-        header {
-            background-color: #4A90E2;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 1rem;
-        }
-        .controls {
-            flex: 1 1 300px;
-            padding: 1rem;
-            background-color: white;
-            border-radius: 8px;
-            margin-right: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .controls h2 {
-            margin-top: 0;
-        }
-        .controls label {
-            display: block;
-            margin: 0.5rem 0 0.25rem;
-            font-weight: bold;
-        }
-        .controls input, .controls select {
-            width: 100%;
-            padding: 0.4rem;
-            margin-bottom: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .controls button {
-            padding: 0.6rem 1rem;
-            background-color: #4A90E2;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 0.5rem;
-        }
-        .controls button:hover {
-            background-color: #357ABD;
-        }
-        .chart-container {
-            flex: 2 1 600px;
-            background-color: white;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        canvas {
-            width: 100%;
-            height: 500px;
+        :root {
+            color-scheme: light;
+            --page: #fbfaf7;
+            --surface: #ffffff;
+            --text: #1f2428;
+            --text-2: #4b535b;
+            --muted: #6b737b;
+            --border: #e3e1da;
+            --grid: #ebe9e2;
+            --axis: #cdcac1;
+            --accent: #0a6380;
+            --accent-hover: #004663;
+            --on-accent: #ffffff;
+            /* Categorical slots 1-4, validated against this surface; one per algorithm */
+            --series-1: #2a78d6;
+            --series-2: #eb6834;
+            --series-3: #1baf7a;
+            --series-4: #eda100;
+            --deemph: #b8b5ad;
+            --particle: #1f2428;
+            /* Sequential blue ramp, low -> high objective value */
+            --ramp: #cde2fb, #b7d3f6, #9ec5f4, #86b6ef, #6da7ec, #5598e7;
+            --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
-        #legend {
-            margin-top: 1rem;
-            font-size: 0.9rem;
+        :root[data-theme="dark"] {
+            color-scheme: dark;
+            --page: #101417;
+            --surface: #161c20;
+            --text: #e4e1d8;
+            --text-2: #b9b6ad;
+            --muted: #9aa4ab;
+            --border: #263036;
+            --grid: #222a2f;
+            --axis: #3a464d;
+            --accent: #7cc3d6;
+            --accent-hover: #a5d7e4;
+            --on-accent: #0f1417;
+            --series-1: #3987e5;
+            --series-2: #d95926;
+            --series-3: #199e70;
+            --series-4: #c98500;
+            --deemph: #56616a;
+            --particle: #f0efec;
+            /* Dark mode anchors "low" near the surface */
+            --ramp: #0d366b, #104281, #184f95, #1c5cab;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                color-scheme: dark;
+                --page: #101417;
+                --surface: #161c20;
+                --text: #e4e1d8;
+                --text-2: #b9b6ad;
+                --muted: #9aa4ab;
+                --border: #263036;
+                --grid: #222a2f;
+                --axis: #3a464d;
+                --accent: #7cc3d6;
+                --accent-hover: #a5d7e4;
+                --on-accent: #0f1417;
+                --series-1: #3987e5;
+                --series-2: #d95926;
+                --series-3: #199e70;
+                --series-4: #c98500;
+                --deemph: #56616a;
+                --particle: #f0efec;
+                --ramp: #0d366b, #104281, #184f95, #1c5cab;
+            }
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        [hidden] { display: none !important; }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text);
+            background: var(--page);
+        }
+
+        .app-shell {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.25rem 1rem 1.5rem;
+        }
+
+        .embedded .app-shell { padding: 0.25rem 0.125rem 0.5rem; }
+        .embedded .app-header { display: none; }
+
+        .app-header { margin-bottom: 1.25rem; }
+        .app-header h1 { margin: 0.25rem 0 0.25rem; font-size: 1.6rem; line-height: 1.2; letter-spacing: -0.01em; }
+        .app-header p { margin: 0; color: var(--text-2); }
+        .home-link { font-size: 0.9rem; color: var(--muted); text-decoration: none; }
+        .home-link:hover { color: var(--accent); text-decoration: underline; }
+
+        .controls {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.9rem 1rem 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .fields {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            align-items: end;
+            gap: 0.6rem 0.9rem;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .fields legend {
+            padding: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 650;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-2);
+            margin-bottom: 0.2rem;
+        }
+
+        .field input, .field select {
+            width: 100%;
+            font: inherit;
+            padding: 0.35rem 0.5rem;
+            color: var(--text);
+            background: var(--page);
+            border: 1px solid var(--axis);
+            border-radius: 6px;
+        }
+
+        .hint { margin: 0.6rem 0 0.8rem; font-size: 0.82rem; color: var(--muted); }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem 0.8rem;
+        }
+
+        button {
+            font: inherit;
+            font-weight: 600;
+            padding: 0.45rem 1rem;
+            color: var(--on-accent);
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+        button.secondary {
+            color: var(--text);
+            background: transparent;
+            border-color: var(--axis);
+        }
+
+        button.secondary:hover { background: var(--grid); }
+
+        .player button.secondary { padding: 0.3rem 0.7rem; }
+
+        .check { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.9rem; color: var(--text-2); }
+
+        #finalResult { margin: 0.7rem 0 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+        #finalResult:empty { display: none; }
+
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        .panels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .panel {
+            position: relative;
+            min-width: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.8rem 0.9rem 0.9rem;
+        }
+
+        .panel h2 { margin: 0 0 0.15rem; font-size: 1rem; }
+        .panel .sub { margin: 0 0 0.5rem; font-size: 0.82rem; color: var(--muted); }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 300px;
+            touch-action: pan-y;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 1rem;
+            margin: 0.5rem 0 0;
+            padding: 0;
+            list-style: none;
+            font-size: 0.82rem;
+            color: var(--text-2);
+        }
+
+        .legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .legend .value { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+        .key-line { flex: none; width: 16px; height: 2px; border-radius: 1px; }
+        .key-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; }
+        .key-ring { flex: none; width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--particle); }
+        .key-ramp { flex: none; width: 44px; height: 8px; border-radius: 2px; background: linear-gradient(to right, var(--ramp)); }
+
+        .player {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .player input[type="range"] { flex: 1; min-width: 0; accent-color: var(--accent); }
+        .player output { font-size: 0.82rem; color: var(--text-2); font-variant-numeric: tabular-nums; min-width: 7.5em; text-align: right; }
+
+        .tooltip {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            min-width: 9rem;
+            padding: 0.45rem 0.6rem;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--axis);
+            border-radius: 6px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .tooltip .tt-title { color: var(--muted); margin-bottom: 0.15rem; }
+        .tooltip .tt-row { display: flex; align-items: center; gap: 0.4rem; }
+        .tooltip .tt-row strong { font-weight: 650; }
+        .tooltip .tt-row span:last-child { color: var(--text-2); }
+
+        details { margin-top: 0.6rem; font-size: 0.85rem; }
+        summary { cursor: pointer; color: var(--text-2); }
+        .table-scroll { max-height: 240px; overflow: auto; margin-top: 0.4rem; border: 1px solid var(--border); border-radius: 6px; }
+        table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+        th, td { padding: 0.25rem 0.6rem; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+        th { position: sticky; top: 0; background: var(--surface); color: var(--text-2); font-weight: 600; }
+        th:first-child, td:first-child { text-align: left; }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
         }
     </style>
 </head>
 <body>
-    <header>
+<div class="app-shell">
+    <header class="app-header">
+        <a class="home-link" href="/">← Renato Fabbri</a>
         <h1>Cultural Swarm Optimization Explorer</h1>
         <p>Play with parameters, run simulations, and visualize optimization trajectories</p>
     </header>
-    <div class="container">
-        <div class="controls">
-            <h2>Simulation Settings</h2>
-            <label for="particles">Number of Particles</label>
-            <input type="number" id="particles" min="10" max="200" value="50">
 
-            <label for="societies">Number of Societies</label>
-            <input type="number" id="societies" min="1" max="10" value="5">
-
-            <label for="w">Inertia Weight (w)</label>
-            <input type="number" id="w" step="0.1" value="0.7">
-
-            <label for="c1">Cognitive Coefficient (c1)</label>
-            <input type="number" id="c1" step="0.1" value="1.5">
-
-            <label for="c2">Social Coefficient (c2)</label>
-            <input type="number" id="c2" step="0.1" value="1.0">
-
-            <label for="c3">Civilization Coefficient (c3)</label>
-            <input type="number" id="c3" step="0.1" value="1.0">
-
-            <label for="iterations">Iterations</label>
-            <input type="number" id="iterations" min="10" max="500" value="100">
-
-            <label for="objective">Objective Function</label>
-            <select id="objective">
-                <option value="sphere">Sphere</option>
-                <option value="rastrigin">Rastrigin</option>
-                <option value="rosenbrock">Rosenbrock</option>
-            </select>
-
-            <label for="algorithm">Algorithm</label>
-            <select id="algorithm">
-                <option value="civilized">Civilized PSO</option>
-                <option value="standard">Standard PSO</option>
-                <option value="competitive">Competitive Swarm</option>
-                <option value="predator">Predator‑Prey PSO</option>
-            </select>
-
-            <button id="runButton">Run Algorithm</button>
-            <button id="compareButton">Compare All</button>
-            <p id="finalResult" style="margin-top:1rem;font-weight:bold;"></p>
+    <form class="controls" id="controls" novalidate>
+        <fieldset class="fields">
+            <legend>Simulation settings</legend>
+            <div class="field">
+                <label for="algorithm">Algorithm</label>
+                <select id="algorithm">
+                    <option value="civilized">Civilized PSO</option>
+                    <option value="standard">Standard PSO</option>
+                    <option value="competitive">Competitive Swarm</option>
+                    <option value="predator">Predator‑Prey PSO</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="objective">Objective Function</label>
+                <select id="objective">
+                    <option value="sphere">Sphere</option>
+                    <option value="rastrigin">Rastrigin</option>
+                    <option value="rosenbrock">Rosenbrock</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="particles">Number of Particles</label>
+                <input type="number" id="particles" min="10" max="200" step="1" value="50">
+            </div>
+            <div class="field">
+                <label for="iterations">Iterations</label>
+                <input type="number" id="iterations" min="10" max="500" step="1" value="100">
+            </div>
+            <div class="field">
+                <label for="societies">Number of Societies</label>
+                <input type="number" id="societies" min="1" max="10" step="1" value="5">
+            </div>
+            <div class="field">
+                <label for="w">Inertia Weight (w)</label>
+                <input type="number" id="w" min="0" max="1.5" step="0.1" value="0.7">
+            </div>
+            <div class="field">
+                <label for="c1">Cognitive Coefficient (c1)</label>
+                <input type="number" id="c1" min="0" max="4" step="0.1" value="1.5">
+            </div>
+            <div class="field">
+                <label for="c2">Social Coefficient (c2)</label>
+                <input type="number" id="c2" min="0" max="4" step="0.1" value="1.0">
+            </div>
+            <div class="field">
+                <label for="c3">Civilization Coefficient (c3)</label>
+                <input type="number" id="c3" min="0" max="4" step="0.1" value="1.0">
+            </div>
+        </fieldset>
+        <p class="hint" id="paramHint"></p>
+        <div class="actions">
+            <button type="submit" id="runButton">Run Algorithm</button>
+            <button type="button" class="secondary" id="compareButton">Compare All</button>
+            <label class="check"><input type="checkbox" id="logScale" checked> Log scale</label>
         </div>
-        <div class="chart-container">
-            <h2>Best Value Over Iterations</h2>
-            <canvas id="chartCanvas" width="600" height="500"></canvas>
-            <div id="legend"></div>
-        </div>
+        <p id="finalResult" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="panels">
+        <section class="panel" aria-labelledby="chart-title">
+            <h2 id="chart-title">Best value over iterations</h2>
+            <p class="sub">Lower is better. Hover or focus the chart and use the arrow keys to read values.</p>
+            <canvas id="chartCanvas" tabindex="0" role="img" aria-label="Best value over iterations"></canvas>
+            <ul class="legend" id="chartLegend" hidden></ul>
+            <details>
+                <summary>Data table</summary>
+                <div class="table-scroll">
+                    <table>
+                        <thead><tr id="dataHead"></tr></thead>
+                        <tbody id="dataBody"></tbody>
+                    </table>
+                </div>
+            </details>
+            <div class="tooltip" id="chartTip" hidden></div>
+        </section>
+
+        <section class="panel" aria-labelledby="swarm-title">
+            <h2 id="swarm-title">Swarm on the landscape</h2>
+            <p class="sub">Shading shows the objective value (log scale); the swarm drifts toward the minimum.</p>
+            <canvas id="swarmCanvas" role="img" aria-label="Particle positions over the objective landscape"></canvas>
+            <ul class="legend">
+                <li><span class="key-ramp"></span>Objective: low → high</li>
+                <li><span class="key-dot" style="background: var(--particle)"></span>Particle</li>
+                <li><span class="key-ring"></span>Best so far (and its path)</li>
+            </ul>
+            <div class="player">
+                <button type="button" class="secondary" id="playButton">Pause</button>
+                <label class="visually-hidden" for="frameSlider">Iteration shown</label>
+                <input type="range" id="frameSlider" min="0" max="100" value="0">
+                <output id="frameLabel" for="frameSlider"></output>
+            </div>
+            <div class="tooltip" id="swarmTip" hidden></div>
+        </section>
     </div>
+</div>
 
-    <script>
-        // Objective functions
-        function sphere(pos) {
-            let sum = 0;
-            for (let i = 0; i < pos.length; i++) {
-                sum += pos[i] * pos[i];
+<script>
+    // Objective functions
+    function sphere(pos) {
+        let sum = 0;
+        for (let i = 0; i < pos.length; i++) {
+            sum += pos[i] * pos[i];
+        }
+        return sum;
+    }
+
+    function rastrigin(pos) {
+        let sum = 10 * pos.length;
+        for (let i = 0; i < pos.length; i++) {
+            sum += pos[i] * pos[i] - 10 * Math.cos(2 * Math.PI * pos[i]);
+        }
+        return sum;
+    }
+
+    function rosenbrock(pos) {
+        let sum = 0;
+        for (let i = 0; i < pos.length - 1; i++) {
+            sum += 100 * Math.pow(pos[i + 1] - pos[i] * pos[i], 2) + Math.pow(pos[i] - 1, 2);
+        }
+        return sum;
+    }
+
+    const OBJECTIVES = {
+        sphere: { fn: sphere, bounds: [-5, 5] },
+        rastrigin: { fn: rastrigin, bounds: [-5.12, 5.12] },
+        rosenbrock: { fn: rosenbrock, bounds: [-3, 3] },
+    };
+
+    const DIM = 2; // 2D so the swarm can be drawn on the landscape
+    const PREDATOR_STRENGTH = 0.1;
+
+    // ------------------------------------------------------------ algorithms
+    //
+    // Each algorithm returns the best value found so far after every
+    // iteration (index 0 = the initial swarm), the position of that best,
+    // and a snapshot of all particle positions per iteration.
+
+    // Utility: initialize particle positions and velocities
+    function initializeParticles(nParticles, dim, bounds) {
+        const positions = [];
+        const velocities = [];
+        for (let i = 0; i < nParticles; i++) {
+            const pos = [];
+            const vel = [];
+            for (let d = 0; d < dim; d++) {
+                pos.push(Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
+                vel.push(0);
             }
-            return sum;
+            positions.push(pos);
+            velocities.push(vel);
+        }
+        return { positions, velocities };
+    }
+
+    function recorder(positions) {
+        const bestHistory = [];
+        const bestPath = [];
+        const frames = [];
+        return {
+            record(bestVal, bestPos) {
+                bestHistory.push(bestVal);
+                bestPath.push([...bestPos]);
+                const frame = new Float64Array(positions.length * 2);
+                for (let i = 0; i < positions.length; i++) {
+                    frame[2 * i] = positions[i][0];
+                    frame[2 * i + 1] = positions[i][1];
+                }
+                frames.push(frame);
+            },
+            // PSO variants: the best so far is the best personal best.
+            recordPbest(pbest, pbestVal) {
+                let bi = 0;
+                for (let i = 1; i < pbestVal.length; i++) if (pbestVal[i] < pbestVal[bi]) bi = i;
+                this.record(pbestVal[bi], pbest[bi]);
+            },
+            result() { return { bestHistory, bestPath, frames }; },
+        };
+    }
+
+    /**
+     * Civilized Swarm Optimization (multiple societies): particles follow
+     * their own best (c1), their society's best (c2) and the best of the
+     * whole civilization (c3).
+     */
+    function civilizedPSO(p, objectiveFunc, bounds) {
+        const nParticles = p.nParticles;
+        const nSocieties = Math.min(p.nSocieties, nParticles);
+        const { positions, velocities } = initializeParticles(nParticles, DIM, bounds);
+        const pbest = positions.map(pos => [...pos]);
+        const pbestVal = positions.map(pos => objectiveFunc(pos));
+        // assign societies in round-robin
+        const societyOf = new Array(nParticles);
+        for (let i = 0; i < nParticles; i++) {
+            societyOf[i] = i % nSocieties;
+        }
+        const rec = recorder(positions);
+        rec.recordPbest(pbest, pbestVal);
+
+        const gbestValSoc = new Array(nSocieties);
+        const gbestPosSoc = new Array(nSocieties);
+        for (let iter = 0; iter < p.iterations; iter++) {
+            // reset group bests
+            gbestValSoc.fill(Infinity);
+            gbestPosSoc.fill(null);
+            let globalBestVal = Infinity;
+            let globalBestPos = null;
+            // update group/global bests
+            for (let i = 0; i < nParticles; i++) {
+                const val = pbestVal[i];
+                const sid = societyOf[i];
+                if (val < gbestValSoc[sid]) {
+                    gbestValSoc[sid] = val;
+                    gbestPosSoc[sid] = [...pbest[i]];
+                }
+                if (val < globalBestVal) {
+                    globalBestVal = val;
+                    globalBestPos = [...pbest[i]];
+                }
+            }
+            // update velocities and positions
+            for (let i = 0; i < nParticles; i++) {
+                const sid = societyOf[i];
+                for (let d = 0; d < DIM; d++) {
+                    const r1 = Math.random();
+                    const r2 = Math.random();
+                    const r3 = Math.random();
+                    const cognitive = p.c1 * r1 * (pbest[i][d] - positions[i][d]);
+                    const social = p.c2 * r2 * (gbestPosSoc[sid][d] - positions[i][d]);
+                    const civil = p.c3 * r3 * (globalBestPos[d] - positions[i][d]);
+                    velocities[i][d] = p.w * velocities[i][d] + cognitive + social + civil;
+                    positions[i][d] += velocities[i][d];
+                    // enforce bounds
+                    if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
+                    if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
+                }
+                const val = objectiveFunc(positions[i]);
+                if (val < pbestVal[i]) {
+                    pbestVal[i] = val;
+                    pbest[i] = [...positions[i]];
+                }
+            }
+            rec.recordPbest(pbest, pbestVal);
+        }
+        return { ...rec.result(), societyOf };
+    }
+
+    /**
+     * Standard Particle Swarm Optimization without societies.
+     */
+    function standardPSO(p, objectiveFunc, bounds) {
+        const nParticles = p.nParticles;
+        const { positions, velocities } = initializeParticles(nParticles, DIM, bounds);
+        const pbest = positions.map(pos => [...pos]);
+        const pbestVal = positions.map(pos => objectiveFunc(pos));
+        const rec = recorder(positions);
+        rec.recordPbest(pbest, pbestVal);
+
+        for (let iter = 0; iter < p.iterations; iter++) {
+            // update global best
+            let globalBestVal = Infinity;
+            let globalBestPos = null;
+            for (let i = 0; i < nParticles; i++) {
+                if (pbestVal[i] < globalBestVal) {
+                    globalBestVal = pbestVal[i];
+                    globalBestPos = [...pbest[i]];
+                }
+            }
+            // update velocities and positions
+            for (let i = 0; i < nParticles; i++) {
+                for (let d = 0; d < DIM; d++) {
+                    const r1 = Math.random();
+                    const r2 = Math.random();
+                    const cognitive = p.c1 * r1 * (pbest[i][d] - positions[i][d]);
+                    const social = p.c2 * r2 * (globalBestPos[d] - positions[i][d]);
+                    velocities[i][d] = p.w * velocities[i][d] + cognitive + social;
+                    positions[i][d] += velocities[i][d];
+                    if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
+                    if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
+                }
+                const val = objectiveFunc(positions[i]);
+                if (val < pbestVal[i]) {
+                    pbestVal[i] = val;
+                    pbest[i] = [...positions[i]];
+                }
+            }
+            rec.recordPbest(pbest, pbestVal);
+        }
+        return rec.result();
+    }
+
+    /**
+     * Competitive Swarm Optimizer (pairwise competition): in random pairs,
+     * the loser moves toward the winner.
+     */
+    function competitiveSwarm(p, objectiveFunc, bounds) {
+        const nParticles = p.nParticles;
+        const { positions } = initializeParticles(nParticles, DIM, bounds);
+        let fitness = positions.map(pos => objectiveFunc(pos));
+        let globalBestVal = Infinity;
+        let globalBestPos = null;
+        const track = () => {
+            for (let i = 0; i < nParticles; i++) {
+                if (fitness[i] < globalBestVal) {
+                    globalBestVal = fitness[i];
+                    globalBestPos = [...positions[i]];
+                }
+            }
+        };
+        const rec = recorder(positions);
+        track();
+        rec.record(globalBestVal, globalBestPos);
+
+        for (let iter = 0; iter < p.iterations; iter++) {
+            // Randomly shuffle indices
+            const indices = [...Array(nParticles).keys()];
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+            // Pairwise competition on the current fitness
+            for (let k = 0; k + 1 < indices.length; k += 2) {
+                const i = indices[k];
+                const j = indices[k + 1];
+                const winner = fitness[i] <= fitness[j] ? i : j;
+                const loser = winner === i ? j : i;
+                // loser moves towards winner
+                const r = Math.random();
+                for (let d = 0; d < DIM; d++) {
+                    positions[loser][d] = positions[loser][d] + r * (positions[winner][d] - positions[loser][d]);
+                }
+            }
+            // Evaluate the new positions (they are the next round's fitness)
+            fitness = positions.map(pos => objectiveFunc(pos));
+            track();
+            rec.record(globalBestVal, globalBestPos);
+        }
+        return rec.result();
+    }
+
+    /**
+     * Predator-Prey PSO: PSO with a repulsion from the global best to
+     * maintain diversity.
+     */
+    function predatorPreyPSO(p, objectiveFunc, bounds) {
+        const nParticles = p.nParticles;
+        const predatorStrength = PREDATOR_STRENGTH;
+        const { positions, velocities } = initializeParticles(nParticles, DIM, bounds);
+        const pbest = positions.map(pos => [...pos]);
+        const pbestVal = positions.map(pos => objectiveFunc(pos));
+        const rec = recorder(positions);
+        rec.recordPbest(pbest, pbestVal);
+
+        for (let iter = 0; iter < p.iterations; iter++) {
+            // update global best
+            let globalBestVal = Infinity;
+            let globalBestPos = null;
+            for (let i = 0; i < nParticles; i++) {
+                if (pbestVal[i] < globalBestVal) {
+                    globalBestVal = pbestVal[i];
+                    globalBestPos = [...pbest[i]];
+                }
+            }
+            // update velocities and positions
+            for (let i = 0; i < nParticles; i++) {
+                for (let d = 0; d < DIM; d++) {
+                    const r1 = Math.random();
+                    const r2 = Math.random();
+                    const cognitive = p.c1 * r1 * (pbest[i][d] - positions[i][d]);
+                    const social = p.c2 * r2 * (globalBestPos[d] - positions[i][d]);
+                    const repulsion = predatorStrength * (positions[i][d] - globalBestPos[d]);
+                    velocities[i][d] = p.w * velocities[i][d] + cognitive + social + repulsion;
+                    positions[i][d] += velocities[i][d];
+                    if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
+                    if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
+                }
+                const val = objectiveFunc(positions[i]);
+                if (val < pbestVal[i]) {
+                    pbestVal[i] = val;
+                    pbest[i] = [...positions[i]];
+                }
+            }
+            rec.recordPbest(pbest, pbestVal);
+        }
+        return rec.result();
+    }
+
+    // Colors follow the algorithm (slot n), whether it runs alone or in a comparison.
+    const ALGORITHMS = {
+        civilized: { label: 'Civilized PSO', short: 'Civilized', color: '--series-1', run: civilizedPSO,
+            hint: 'Civilized PSO uses every parameter.' },
+        standard: { label: 'Standard PSO', short: 'Standard', color: '--series-2', run: standardPSO,
+            hint: 'Standard PSO ignores the societies and c3.' },
+        competitive: { label: 'Competitive Swarm', short: 'Competitive', color: '--series-3', run: competitiveSwarm,
+            hint: 'Competitive Swarm uses only the particles and iterations: in random pairs, the loser moves toward the winner.' },
+        predator: { label: 'Predator‑Prey PSO', short: 'Predator', color: '--series-4', run: predatorPreyPSO,
+            hint: 'Predator‑Prey PSO ignores the societies and c3, and adds a repulsion from the global best (strength 0.1).' },
+    };
+    const ORDER = ['civilized', 'standard', 'competitive', 'predator'];
+
+    // ---------------------------------------------------------------- inputs
+
+    // Read a numeric input, clamp it to the input's own min/max, and show the
+    // value actually used (so typing 0 societies cannot break the run).
+    function readNumber(id, integer, fallback) {
+        const el = document.getElementById(id);
+        let v = integer ? parseInt(el.value, 10) : parseFloat(el.value);
+        if (!Number.isFinite(v)) v = fallback;
+        if (el.min !== '') v = Math.max(Number(el.min), v);
+        if (el.max !== '') v = Math.min(Number(el.max), v);
+        el.value = String(v);
+        return v;
+    }
+
+    function readParams() {
+        return {
+            nParticles: readNumber('particles', true, 50),
+            nSocieties: readNumber('societies', true, 5),
+            w: readNumber('w', false, 0.7),
+            c1: readNumber('c1', false, 1.5),
+            c2: readNumber('c2', false, 1.0),
+            c3: readNumber('c3', false, 1.0),
+            iterations: readNumber('iterations', true, 100),
+            objective: document.getElementById('objective').value,
+        };
+    }
+
+    // ---------------------------------------------------------------- helpers
+
+    function formatValue(v) {
+        if (v === 0) return '0';
+        const a = Math.abs(v);
+        if (a < 1e-3 || a >= 1e5) return v.toExponential(2).replace('e+', 'e');
+        return String(Number(v.toPrecision(4)));
+    }
+
+    const SUPERSCRIPT = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+    function formatPower(e) {
+        return '10' + String(e).split('').map((c) => SUPERSCRIPT[c]).join('');
+    }
+
+    function niceStep(range, target) {
+        const raw = range / Math.max(1, target);
+        const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+        const norm = raw / mag;
+        return (norm >= 5 ? 10 : norm >= 2 ? 5 : norm >= 1 ? 2 : 1) * mag;
+    }
+
+    function cssVar(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function hexToRgb(hex) {
+        const h = hex.replace('#', '');
+        return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+    }
+
+    function readTheme() {
+        return {
+            surface: cssVar('--surface'),
+            text: cssVar('--text'),
+            text2: cssVar('--text-2'),
+            muted: cssVar('--muted'),
+            grid: cssVar('--grid'),
+            axis: cssVar('--axis'),
+            deemph: cssVar('--deemph'),
+            particle: cssVar('--particle'),
+            ramp: cssVar('--ramp').split(',').map((s) => hexToRgb(s.trim())),
+            font: '12px ' + cssVar('--font'),
+        };
+    }
+
+    // Size the canvas backing store for the device pixel ratio.
+    function prepare(canvas) {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        const w = Math.max(1, Math.round(rect.width));
+        const h = Math.max(1, Math.round(rect.height));
+        if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+        }
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        return { ctx, w, h };
+    }
+
+    function dot(ctx, x, y, r, fill, ring) {
+        ctx.beginPath();
+        ctx.arc(x, y, r + 2, 0, Math.PI * 2);
+        ctx.fillStyle = ring;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = fill;
+        ctx.fill();
+    }
+
+    function ring(ctx, x, y, r, stroke, halo) {
+        ctx.lineWidth = 5.5;
+        ctx.strokeStyle = halo;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = stroke;
+        ctx.stroke();
+    }
+
+    function haloText(ctx, text, x, y, color, halo) {
+        ctx.lineWidth = 4;
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = halo;
+        ctx.strokeText(text, x, y);
+        ctx.fillStyle = color;
+        ctx.fillText(text, x, y);
+    }
+
+    function placeTip(tip, panel, x, y) {
+        tip.hidden = false;
+        const pw = panel.clientWidth;
+        const tw = tip.offsetWidth;
+        const left = Math.min(Math.max(8, x + 14), pw - tw - 8);
+        tip.style.left = left + 'px';
+        tip.style.top = Math.max(8, y - tip.offsetHeight - 10) + 'px';
+    }
+
+    function tipRow(tip, color, value, label) {
+        const row = document.createElement('div');
+        row.className = 'tt-row';
+        if (color) {
+            const key = document.createElement('span');
+            key.className = 'key-line';
+            key.style.background = color;
+            row.appendChild(key);
+        }
+        const strong = document.createElement('strong');
+        strong.textContent = value;
+        row.appendChild(strong);
+        const span = document.createElement('span');
+        span.textContent = label;
+        row.appendChild(span);
+        tip.appendChild(row);
+    }
+
+    // ------------------------------------------------------------------ state
+
+    // view: what the panels show.
+    //   mode 'single': one algorithm (plus the previous run of the same
+    //                  algorithm on the same function, if any)
+    //   mode 'compare': all four algorithms with the same settings
+    let view = null;
+    let lastSingle = null;
+    let hoverIndex = null;
+    let frameIndex = 0;
+    let playing = false;
+    let timer = null;
+    let landscape = null; // cached heatmap: { key, canvas }
+
+    const chartCanvas = document.getElementById('chartCanvas');
+    const swarmCanvas = document.getElementById('swarmCanvas');
+    const chartTip = document.getElementById('chartTip');
+    const swarmTip = document.getElementById('swarmTip');
+    const slider = document.getElementById('frameSlider');
+    const frameLabel = document.getElementById('frameLabel');
+    const playButton = document.getElementById('playButton');
+    const logScale = document.getElementById('logScale');
+    const algorithmSelect = document.getElementById('algorithm');
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // The lines on the chart: [{ key, name, colorVar, values, deemph? }]
+    function chartSeries() {
+        if (!view) return [];
+        if (view.mode === 'compare') {
+            return ORDER.map((key) => ({
+                key, name: ALGORITHMS[key].short, colorVar: ALGORITHMS[key].color, values: view.runs[key].bestHistory,
+            }));
+        }
+        const list = [];
+        if (view.previous) list.push({ key: 'previous', name: 'Previous run', colorVar: '--deemph', values: view.previous.bestHistory, deemph: true });
+        list.push({ key: view.algorithm, name: ALGORITHMS[view.algorithm].label, colorVar: ALGORITHMS[view.algorithm].color, values: view.runs[view.algorithm].bestHistory });
+        return list;
+    }
+
+    // The run whose swarm is animated: the selected algorithm when it was part of the view.
+    function swarmRun() {
+        if (!view) return null;
+        const key = view.runs[algorithmSelect.value] ? algorithmSelect.value : view.algorithm;
+        return { key, run: view.runs[key] };
+    }
+
+    // ------------------------------------------------------- convergence chart
+
+    function chartGeometry(w, h, labelled) {
+        return { left: 58, right: w - (labelled ? 104 : 14), top: 12, bottom: h - 30 };
+    }
+
+    function useEndLabels(w) {
+        return view && view.mode === 'compare' && w >= 470;
+    }
+
+    function drawChart() {
+        if (!view) return;
+        const t = readTheme();
+        const { ctx, w, h } = prepare(chartCanvas);
+        const labelled = useEndLabels(w);
+        const g = chartGeometry(w, h, labelled);
+        const series = chartSeries();
+        series.forEach((s) => { s.color = cssVar(s.colorVar); });
+        const n = Math.max(...series.map((s) => s.values.length)) - 1;
+        const useLog = logScale.checked;
+
+        let lo = Infinity, hi = -Infinity, minPositive = Infinity;
+        for (const s of series) for (const v of s.values) {
+            lo = Math.min(lo, v); hi = Math.max(hi, v);
+            if (v > 0) minPositive = Math.min(minPositive, v);
+        }
+        let toY, ticks;
+        if (useLog) {
+            const floor = Number.isFinite(minPositive) ? minPositive / 10 : 1e-12;
+            const lg = (v) => Math.log10(Math.max(v, floor));
+            let eLo = Math.floor(lg(lo)), eHi = Math.ceil(lg(hi));
+            if (eHi === eLo) eHi = eLo + 1;
+            const stride = Math.max(1, Math.ceil((eHi - eLo) / 6));
+            eLo = Math.floor(eLo / stride) * stride;
+            eHi = Math.ceil(eHi / stride) * stride;
+            toY = (v) => g.bottom - (lg(v) - eLo) / (eHi - eLo) * (g.bottom - g.top);
+            ticks = [];
+            for (let e = eLo; e <= eHi; e += stride) ticks.push({ v: Math.pow(10, e), label: formatPower(e) });
+        } else {
+            let yLo = Math.min(0, lo), yHi = hi;
+            if (yHi === yLo) yHi = yLo + 1;
+            const step = niceStep(yHi - yLo, 5);
+            yLo = Math.floor(yLo / step) * step;
+            yHi = Math.ceil(yHi / step) * step;
+            toY = (v) => g.bottom - (v - yLo) / (yHi - yLo) * (g.bottom - g.top);
+            ticks = [];
+            for (let v = yLo; v <= yHi + step / 2; v += step) ticks.push({ v, label: formatValue(Number(v.toPrecision(6))) });
+        }
+        const toX = (i) => g.left + (n === 0 ? 0 : i / n) * (g.right - g.left);
+
+        // Grid and axes: solid hairlines
+        ctx.font = t.font;
+        ctx.lineWidth = 1;
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'right';
+        for (const tick of ticks) {
+            const y = Math.round(toY(tick.v)) + 0.5;
+            ctx.strokeStyle = t.grid;
+            ctx.beginPath(); ctx.moveTo(g.left, y); ctx.lineTo(g.right, y); ctx.stroke();
+            ctx.fillStyle = t.muted;
+            ctx.fillText(tick.label, g.left - 8, y);
+        }
+        ctx.strokeStyle = t.axis;
+        ctx.beginPath(); ctx.moveTo(g.left, Math.round(g.bottom) + 0.5); ctx.lineTo(g.right, Math.round(g.bottom) + 0.5); ctx.stroke();
+
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = t.muted;
+        const xStep = niceStep(n || 1, Math.max(2, Math.floor((g.right - g.left) / 70)));
+        for (let i = 0; i <= n; i += xStep) ctx.fillText(String(i), toX(i), g.bottom + 8);
+
+        // Lines: 2px, de-emphasized previous run underneath
+        for (const s of series) {
+            ctx.strokeStyle = s.color;
+            ctx.lineWidth = 2;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            s.values.forEach((v, i) => (i ? ctx.lineTo(toX(i), toY(v)) : ctx.moveTo(toX(i), toY(v))));
+            ctx.stroke();
         }
 
-        function rastrigin(pos) {
-            let sum = 10 * pos.length;
-            for (let i = 0; i < pos.length; i++) {
-                sum += pos[i] * pos[i] - 10 * Math.cos(2 * Math.PI * pos[i]);
+        // End markers
+        const ends = series.filter((s) => !s.deemph).map((s) => {
+            const last = s.values.length - 1;
+            return { s, x: toX(last), y: toY(s.values[last]), value: s.values[last] };
+        });
+        for (const e of ends) dot(ctx, e.x, e.y, 4, e.s.color, t.surface);
+
+        ctx.font = '600 ' + t.font;
+        if (labelled) {
+            // Direct labels in a right gutter, joined to their line ends by
+            // leader lines so they can be spread apart without detaching.
+            const items = ends.map((e) => ({ ...e, ly: e.y })).sort((a, b) => a.ly - b.ly);
+            const gap = 15;
+            for (let k = 1; k < items.length; k++) items[k].ly = Math.max(items[k].ly, items[k - 1].ly + gap);
+            const overflow = items.length ? items[items.length - 1].ly - g.bottom : 0;
+            if (overflow > 0) items.forEach((it) => { it.ly -= overflow; });
+            for (let k = items.length - 2; k >= 0; k--) items[k].ly = Math.min(items[k].ly, items[k + 1].ly - gap);
+            const lx = g.right + 16;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            for (const it of items) {
+                ctx.strokeStyle = t.axis;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(it.x + 7, it.y);
+                ctx.lineTo(lx - 10, it.ly);
+                ctx.stroke();
+                ctx.fillStyle = it.s.color;
+                ctx.fillRect(lx - 7, it.ly - 1, 6, 2);
+                ctx.fillStyle = t.text;
+                ctx.fillText(it.s.name, lx + 2, it.ly);
             }
-            return sum;
+        } else if (view.mode === 'single') {
+            // Single run: label the final value next to its end dot.
+            const e = ends[0];
+            ctx.textAlign = 'right';
+            ctx.textBaseline = e.y - 20 > g.top ? 'bottom' : 'top';
+            haloText(ctx, formatValue(e.value), e.x - 6, e.y + (ctx.textBaseline === 'bottom' ? -8 : 8), t.text, t.surface);
         }
 
-        function rosenbrock(pos) {
-            let sum = 0;
-            for (let i = 0; i < pos.length - 1; i++) {
-                sum += 100 * Math.pow(pos[i+1] - pos[i] * pos[i], 2) + Math.pow(pos[i] - 1, 2);
-            }
-            return sum;
-        }
-
-        /**
-         * Draw chart for multiple series or single series.
-         * @param {Array} seriesList - array of objects {name: string, values: number[], color: string}
-         */
-        function drawChart(seriesList) {
-            // If only one series is passed as an array of numbers, wrap it.
-            if (Array.isArray(seriesList) && typeof seriesList[0] === 'number') {
-                seriesList = [{ name: '', values: seriesList, color: '#4A90E2' }];
-            }
-            const canvas = document.getElementById('chartCanvas');
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width;
-            const h = canvas.height;
-            ctx.clearRect(0, 0, w, h);
-
-            // compute global min and max across all series
-            let allVals = [];
-            seriesList.forEach(s => { allVals = allVals.concat(s.values); });
-            let minVal = Math.min(...allVals);
-            let maxVal = Math.max(...allVals);
-            // Add margin if all values equal
-            if (maxVal === minVal) {
-                maxVal += 1;
-            }
-            const margin = 30;
-            const chartW = w - 2 * margin;
-            const chartH = h - 2 * margin;
-
-            // axes
-            ctx.strokeStyle = '#555';
+        // Crosshair
+        if (hoverIndex !== null && hoverIndex <= n) {
+            const x = Math.round(toX(hoverIndex)) + 0.5;
+            ctx.strokeStyle = t.axis;
             ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(margin, margin);
-            ctx.lineTo(margin, h - margin);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(margin, h - margin);
-            ctx.lineTo(w - margin, h - margin);
-            ctx.stroke();
-
-            // ticks & labels
-            ctx.font = '12px Arial';
-            ctx.fillStyle = '#333';
-            const yTicks = 5;
-            for (let i = 0; i <= yTicks; i++) {
-                const y = margin + (chartH * i / yTicks);
-                const val = (maxVal - minVal) * (1 - i / yTicks) + minVal;
-                ctx.beginPath();
-                ctx.moveTo(margin - 5, y);
-                ctx.lineTo(margin, y);
-                ctx.stroke();
-                ctx.fillText(val.toFixed(2), 2, y + 4);
-            }
-            // X-axis ticks: use longest series length
-            const maxLen = Math.max(...seriesList.map(s => s.values.length));
-            const xTickInterval = Math.max(1, Math.floor(maxLen / 10));
-            for (let i = 0; i < maxLen; i += xTickInterval) {
-                const x = margin + (chartW * i / (maxLen - 1));
-                ctx.beginPath();
-                ctx.moveTo(x, h - margin);
-                ctx.lineTo(x, h - margin + 5);
-                ctx.stroke();
-                ctx.fillText(i.toString(), x - 5, h - margin + 15);
-            }
-
-            // Draw each series
-            seriesList.forEach(series => {
-                ctx.strokeStyle = series.color;
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                const vals = series.values;
-                const len = vals.length;
-                for (let i = 0; i < len; i++) {
-                    const x = margin + (chartW * i / (len - 1));
-                    const y = margin + (chartH * (1 - (vals[i] - minVal) / (maxVal - minVal)));
-                    if (i === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
-                ctx.stroke();
-            });
-
-            // update legend
-            const legendDiv = document.getElementById('legend');
-            if (seriesList.length > 1) {
-                legendDiv.innerHTML = seriesList.map(series => `<span style="color:${series.color};font-weight:bold;">●</span> ${series.name}`).join('&nbsp;&nbsp;&nbsp;');
-            } else if (seriesList.length === 1) {
-                legendDiv.innerHTML = '';
+            ctx.beginPath(); ctx.moveTo(x, g.top); ctx.lineTo(x, g.bottom); ctx.stroke();
+            for (const s of series) {
+                if (hoverIndex < s.values.length) dot(ctx, x, toY(s.values[hoverIndex]), 4, s.color, t.surface);
             }
         }
 
-        // Utility: initialize particle positions and velocities
-        function initializeParticles(nParticles, dim, bounds) {
-            const positions = [];
-            const velocities = [];
-            for (let i = 0; i < nParticles; i++) {
-                const pos = [];
-                const vel = [];
-                for (let d = 0; d < dim; d++) {
-                    pos.push(Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
-                    vel.push(0);
-                }
-                positions.push(pos);
-                velocities.push(vel);
-            }
-            return { positions, velocities };
+        chartCanvas._toX = toX;
+        chartCanvas._n = n;
+        chartCanvas._g = g;
+    }
+
+    function showChartTip() {
+        if (!view || hoverIndex === null) { chartTip.hidden = true; return; }
+        chartTip.textContent = '';
+        const title = document.createElement('div');
+        title.className = 'tt-title';
+        title.textContent = 'Iteration ' + hoverIndex;
+        chartTip.appendChild(title);
+        // Comparison: fixed algorithm order. Single run: this run, then the previous one.
+        const listed = view.mode === 'single' ? chartSeries().reverse() : chartSeries();
+        for (const s of listed) {
+            if (hoverIndex < s.values.length) tipRow(chartTip, cssVar(s.colorVar), formatValue(s.values[hoverIndex]), s.name);
         }
+        const x = chartCanvas.offsetLeft + chartCanvas._toX(hoverIndex);
+        placeTip(chartTip, chartCanvas.parentElement, x, chartCanvas.offsetTop + 40);
+    }
 
-        /**
-         * Civilized Swarm Optimization (multiple societies) implementation.
-         * Returns {history: best values array, bestVal: final best value}
-         */
-        function civilizedPSO(nParticles, nSocieties, w, c1, c2, c3, iterations, objectiveFunc, dim, bounds) {
-            // initialize positions and velocities
-            const { positions, velocities } = initializeParticles(nParticles, dim, bounds);
-            const pbest = positions.map(pos => [...pos]);
-            const pbestVal = positions.map(pos => objectiveFunc(pos));
-            // assign societies in round-robin
-            const societyOf = new Array(nParticles);
-            for (let i = 0; i < nParticles; i++) {
-                societyOf[i] = i % nSocieties;
+    function lastIndex() {
+        return Math.max(...chartSeries().map((s) => s.values.length)) - 1;
+    }
+
+    chartCanvas.addEventListener('pointermove', (event) => {
+        if (!view || !chartCanvas._g) return;
+        const rect = chartCanvas.getBoundingClientRect();
+        const g = chartCanvas._g;
+        const frac = (event.clientX - rect.left - g.left) / (g.right - g.left);
+        hoverIndex = Math.max(0, Math.min(lastIndex(), Math.round(frac * chartCanvas._n)));
+        drawChart();
+        showChartTip();
+    });
+    chartCanvas.addEventListener('pointerleave', () => {
+        hoverIndex = null;
+        chartTip.hidden = true;
+        drawChart();
+    });
+    chartCanvas.addEventListener('focus', () => {
+        if (!view) return;
+        if (hoverIndex === null) hoverIndex = lastIndex();
+        drawChart();
+        showChartTip();
+    });
+    chartCanvas.addEventListener('blur', () => {
+        hoverIndex = null;
+        chartTip.hidden = true;
+        drawChart();
+    });
+    chartCanvas.addEventListener('keydown', (event) => {
+        if (!view) return;
+        const last = lastIndex();
+        const big = Math.max(1, Math.round(last / 10));
+        const moves = { ArrowLeft: -1, ArrowRight: 1, PageDown: -big, PageUp: big };
+        if (event.key in moves) hoverIndex = Math.max(0, Math.min(last, (hoverIndex ?? last) + moves[event.key]));
+        else if (event.key === 'Home') hoverIndex = 0;
+        else if (event.key === 'End') hoverIndex = last;
+        else return;
+        event.preventDefault();
+        drawChart();
+        showChartTip();
+    });
+    logScale.addEventListener('change', drawChart);
+
+    function fillLegend() {
+        const legend = document.getElementById('chartLegend');
+        const series = chartSeries();
+        legend.textContent = '';
+        legend.hidden = series.length < 2;
+        for (const s of series) {
+            const li = document.createElement('li');
+            const key = document.createElement('span');
+            key.className = 'key-line';
+            key.style.background = 'var(' + s.colorVar + ')';
+            li.appendChild(key);
+            li.appendChild(document.createTextNode(s.name));
+            if (view.mode === 'compare') {
+                // Final values double as labels on narrow screens.
+                li.appendChild(document.createTextNode(' '));
+                const value = document.createElement('span');
+                value.className = 'value';
+                value.textContent = formatValue(s.values[s.values.length - 1]);
+                li.appendChild(value);
             }
-
-            const bestHistory = [];
-            let globalBestVal = Infinity;
-            let globalBestPos = null;
-            let gbestValSoc = new Array(nSocieties);
-            let gbestPosSoc = new Array(nSocieties);
-
-            for (let iter = 0; iter < iterations; iter++) {
-                // reset group bests
-                for (let s = 0; s < nSocieties; s++) {
-                    gbestValSoc[s] = Infinity;
-                    gbestPosSoc[s] = null;
-                }
-                globalBestVal = Infinity;
-                globalBestPos = null;
-                // update group/global bests
-                for (let i = 0; i < nParticles; i++) {
-                    const val = pbestVal[i];
-                    const sid = societyOf[i];
-                    if (val < gbestValSoc[sid]) {
-                        gbestValSoc[sid] = val;
-                        gbestPosSoc[sid] = [...pbest[i]];
-                    }
-                    if (val < globalBestVal) {
-                        globalBestVal = val;
-                        globalBestPos = [...pbest[i]];
-                    }
-                }
-                // update velocities and positions
-                for (let i = 0; i < nParticles; i++) {
-                    const sid = societyOf[i];
-                    for (let d = 0; d < dim; d++) {
-                        const r1 = Math.random();
-                        const r2 = Math.random();
-                        const r3 = Math.random();
-                        const cognitive = c1 * r1 * (pbest[i][d] - positions[i][d]);
-                        const social = c2 * r2 * (gbestPosSoc[sid][d] - positions[i][d]);
-                        const civil = c3 * r3 * (globalBestPos[d] - positions[i][d]);
-                        velocities[i][d] = w * velocities[i][d] + cognitive + social + civil;
-                        positions[i][d] += velocities[i][d];
-                        // enforce bounds
-                        if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
-                        if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
-                    }
-                    const val = objectiveFunc(positions[i]);
-                    if (val < pbestVal[i]) {
-                        pbestVal[i] = val;
-                        pbest[i] = [...positions[i]];
-                    }
-                }
-                bestHistory.push(globalBestVal);
-            }
-            return { history: bestHistory, bestVal: globalBestVal };
+            legend.appendChild(li);
         }
+    }
 
-        /**
-         * Standard Particle Swarm Optimization without societies.
-         */
-        function standardPSO(nParticles, w, c1, c2, iterations, objectiveFunc, dim, bounds) {
-            const { positions, velocities } = initializeParticles(nParticles, dim, bounds);
-            const pbest = positions.map(pos => [...pos]);
-            const pbestVal = positions.map(pos => objectiveFunc(pos));
-            let globalBestVal = Infinity;
-            let globalBestPos = null;
-
-            const bestHistory = [];
-            for (let iter = 0; iter < iterations; iter++) {
-                // update global best
-                globalBestVal = Infinity;
-                for (let i = 0; i < nParticles; i++) {
-                    if (pbestVal[i] < globalBestVal) {
-                        globalBestVal = pbestVal[i];
-                        globalBestPos = [...pbest[i]];
-                    }
-                }
-                // update velocities and positions
-                for (let i = 0; i < nParticles; i++) {
-                    for (let d = 0; d < dim; d++) {
-                        const r1 = Math.random();
-                        const r2 = Math.random();
-                        const cognitive = c1 * r1 * (pbest[i][d] - positions[i][d]);
-                        const social = c2 * r2 * (globalBestPos[d] - positions[i][d]);
-                        velocities[i][d] = w * velocities[i][d] + cognitive + social;
-                        positions[i][d] += velocities[i][d];
-                        if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
-                        if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
-                    }
-                    const val = objectiveFunc(positions[i]);
-                    if (val < pbestVal[i]) {
-                        pbestVal[i] = val;
-                        pbest[i] = [...positions[i]];
-                    }
-                }
-                bestHistory.push(globalBestVal);
-            }
-            return { history: bestHistory, bestVal: globalBestVal };
+    function fillTable() {
+        const series = chartSeries();
+        const head = document.getElementById('dataHead');
+        const body = document.getElementById('dataBody');
+        head.textContent = '';
+        body.textContent = '';
+        const columns = ['Iteration', ...series.map((s) => (view.mode === 'single' && !s.deemph ? 'Best value' : s.name))];
+        for (const c of columns) {
+            const th = document.createElement('th');
+            th.scope = 'col';
+            th.textContent = c;
+            head.appendChild(th);
         }
-
-        /**
-         * Competitive Swarm Optimizer (pairwise competition).
-         */
-        function competitiveSwarm(nParticles, iterations, objectiveFunc, dim, bounds) {
-            // Initialize random positions
-            const positions = [];
-            for (let i = 0; i < nParticles; i++) {
-                const pos = [];
-                for (let d = 0; d < dim; d++) {
-                    pos.push(Math.random() * (bounds[1] - bounds[0]) + bounds[0]);
-                }
-                positions.push(pos);
+        const rows = lastIndex() + 1;
+        for (let i = 0; i < rows; i++) {
+            const tr = document.createElement('tr');
+            const cells = [String(i), ...series.map((s) => (i < s.values.length ? formatValue(s.values[i]) : ''))];
+            for (const c of cells) {
+                const td = document.createElement('td');
+                td.textContent = c;
+                tr.appendChild(td);
             }
-            const bestHistory = [];
-            let globalBestVal = Infinity;
+            body.appendChild(tr);
+        }
+    }
 
-            for (let iter = 0; iter < iterations; iter++) {
-                // Evaluate fitness for all particles
-                const fitness = positions.map(pos => objectiveFunc(pos));
-                // track global best
-                for (let i = 0; i < nParticles; i++) {
-                    if (fitness[i] < globalBestVal) {
-                        globalBestVal = fitness[i];
-                    }
-                }
-                // Randomly shuffle indices
-                const indices = [...Array(nParticles).keys()];
-                for (let i = indices.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [indices[i], indices[j]] = [indices[j], indices[i]];
-                }
-                // Pairwise competition
-                for (let k = 0; k < indices.length; k += 2) {
-                    if (k + 1 >= indices.length) break;
-                    const i = indices[k];
-                    const j = indices[k + 1];
-                    const fi = fitness[i];
-                    const fj = fitness[j];
-                    let winner, loser;
-                    if (fi <= fj) { winner = i; loser = j; }
-                    else { winner = j; loser = i; }
-                    // loser moves towards winner
-                    const r = Math.random();
-                    for (let d = 0; d < dim; d++) {
-                        positions[loser][d] = positions[loser][d] + r * (positions[winner][d] - positions[loser][d]);
-                    }
-                }
-                bestHistory.push(globalBestVal);
+    // ------------------------------------------------------------ swarm view
+
+    function swarmGeometry(w, h) {
+        const pad = { left: 34, right: 8, top: 6, bottom: 24 };
+        const size = Math.max(10, Math.min(w - pad.left - pad.right, h - pad.top - pad.bottom));
+        const left = pad.left + (w - pad.left - pad.right - size) / 2;
+        return { left, top: pad.top, size };
+    }
+
+    function landscapeImage(t) {
+        const key = view.objective + '|' + t.ramp.join(';');
+        if (landscape && landscape.key === key) return landscape.canvas;
+        const N = 140;
+        const [b0, b1] = view.bounds;
+        const fn = OBJECTIVES[view.objective].fn;
+        const values = new Float64Array(N * N);
+        let lo = Infinity, hi = -Infinity;
+        for (let j = 0; j < N; j++) {
+            for (let i = 0; i < N; i++) {
+                const x = b0 + (i + 0.5) / N * (b1 - b0);
+                const y = b1 - (j + 0.5) / N * (b1 - b0);
+                const v = Math.log10(1 + fn([x, y]));
+                values[j * N + i] = v;
+                lo = Math.min(lo, v); hi = Math.max(hi, v);
             }
-            return { history: bestHistory, bestVal: globalBestVal };
         }
-
-        /**
-         * Predator‑Prey PSO: PSO with a repulsion from the global best to maintain diversity.
-         */
-        function predatorPreyPSO(nParticles, w, c1, c2, predatorStrength, iterations, objectiveFunc, dim, bounds) {
-            const { positions, velocities } = initializeParticles(nParticles, dim, bounds);
-            const pbest = positions.map(pos => [...pos]);
-            const pbestVal = positions.map(pos => objectiveFunc(pos));
-            let globalBestVal = Infinity;
-            let globalBestPos = null;
-            const bestHistory = [];
-
-            for (let iter = 0; iter < iterations; iter++) {
-                // update global best
-                globalBestVal = Infinity;
-                for (let i = 0; i < nParticles; i++) {
-                    if (pbestVal[i] < globalBestVal) {
-                        globalBestVal = pbestVal[i];
-                        globalBestPos = [...pbest[i]];
-                    }
-                }
-                // update velocities and positions
-                for (let i = 0; i < nParticles; i++) {
-                    for (let d = 0; d < dim; d++) {
-                        const r1 = Math.random();
-                        const r2 = Math.random();
-                        const cognitive = c1 * r1 * (pbest[i][d] - positions[i][d]);
-                        const social = c2 * r2 * (globalBestPos[d] - positions[i][d]);
-                        const repulsion = predatorStrength * (positions[i][d] - globalBestPos[d]);
-                        velocities[i][d] = w * velocities[i][d] + cognitive + social + repulsion;
-                        positions[i][d] += velocities[i][d];
-                        if (positions[i][d] < bounds[0]) positions[i][d] = bounds[0];
-                        if (positions[i][d] > bounds[1]) positions[i][d] = bounds[1];
-                    }
-                    const val = objectiveFunc(positions[i]);
-                    if (val < pbestVal[i]) {
-                        pbestVal[i] = val;
-                        pbest[i] = [...positions[i]];
-                    }
-                }
-                bestHistory.push(globalBestVal);
-            }
-            return { history: bestHistory, bestVal: globalBestVal };
+        const off = document.createElement('canvas');
+        off.width = N; off.height = N;
+        const octx = off.getContext('2d');
+        const img = octx.createImageData(N, N);
+        const stops = t.ramp;
+        for (let k = 0; k < N * N; k++) {
+            const u = (values[k] - lo) / (hi - lo || 1) * (stops.length - 1);
+            const s = Math.min(stops.length - 2, Math.floor(u));
+            const f = u - s;
+            for (let c = 0; c < 3; c++) img.data[4 * k + c] = Math.round(stops[s][c] + (stops[s + 1][c] - stops[s][c]) * f);
+            img.data[4 * k + 3] = 255;
         }
+        octx.putImageData(img, 0, 0);
+        landscape = { key, canvas: off };
+        return off;
+    }
 
-        // Helper to determine objective function and bounds
-        function getObjectiveSettings() {
-            const objective = document.getElementById('objective').value;
-            let objectiveFunc, bounds;
-            const dim = 2;
-            if (objective === 'sphere') {
-                objectiveFunc = sphere;
-                bounds = [-5, 5];
-            } else if (objective === 'rastrigin') {
-                objectiveFunc = rastrigin;
-                bounds = [-5.12, 5.12];
-            } else if (objective === 'rosenbrock') {
-                objectiveFunc = rosenbrock;
-                bounds = [-3, 3];
-            }
-            return { objectiveFunc, bounds, dim };
+    function drawSwarm() {
+        const current = swarmRun();
+        if (!current) return;
+        const run = current.run;
+        const t = readTheme();
+        const { ctx, w, h } = prepare(swarmCanvas);
+        const g = swarmGeometry(w, h);
+        const [b0, b1] = view.bounds;
+        const toPx = (x, y) => [g.left + (x - b0) / (b1 - b0) * g.size, g.top + (b1 - y) / (b1 - b0) * g.size];
+        const k = Math.min(frameIndex, run.frames.length - 1);
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(landscapeImage(t), g.left, g.top, g.size, g.size);
+
+        // Axis labels at the bounds and the origin
+        ctx.font = t.font;
+        ctx.fillStyle = t.muted;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        for (const v of [b0, 0, b1]) ctx.fillText(formatValue(v), toPx(v, 0)[0], g.top + g.size + 6);
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        for (const v of [b0, 0, b1]) ctx.fillText(formatValue(v), g.left - 6, toPx(0, v)[1]);
+
+        // Path of the best-so-far position up to this frame
+        ctx.strokeStyle = t.particle;
+        ctx.globalAlpha = 0.75;
+        ctx.lineWidth = 1.5;
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        for (let i = 0; i <= k; i++) {
+            const [x, y] = toPx(run.bestPath[i][0], run.bestPath[i][1]);
+            if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
         }
+        ctx.stroke();
+        ctx.globalAlpha = 1;
 
-        // Run selected algorithm
-        function runSelected() {
-            const nParticles = parseInt(document.getElementById('particles').value);
-            const nSocieties = parseInt(document.getElementById('societies').value);
-            const w = parseFloat(document.getElementById('w').value);
-            const c1 = parseFloat(document.getElementById('c1').value);
-            const c2 = parseFloat(document.getElementById('c2').value);
-            const c3 = parseFloat(document.getElementById('c3').value);
-            const iterations = parseInt(document.getElementById('iterations').value);
-            const algorithm = document.getElementById('algorithm').value;
-            const { objectiveFunc, bounds, dim } = getObjectiveSettings();
-            let result;
-            if (algorithm === 'civilized') {
-                result = civilizedPSO(nParticles, nSocieties, w, c1, c2, c3, iterations, objectiveFunc, dim, bounds);
-            } else if (algorithm === 'standard') {
-                result = standardPSO(nParticles, w, c1, c2, iterations, objectiveFunc, dim, bounds);
-            } else if (algorithm === 'competitive') {
-                result = competitiveSwarm(nParticles, iterations, objectiveFunc, dim, bounds);
-            } else if (algorithm === 'predator') {
-                // use predator strength relative to inertia weight
-                const predatorStrength = 0.1;
-                result = predatorPreyPSO(nParticles, w, c1, c2, predatorStrength, iterations, objectiveFunc, dim, bounds);
-            }
-            drawChart([{ name: algorithm.charAt(0).toUpperCase() + algorithm.slice(1), values: result.history, color: '#4A90E2' }]);
-            document.getElementById('finalResult').textContent = 'Final best value: ' + result.bestVal.toFixed(5);
+        // Particles, each with a surface ring; the best so far as a ring
+        const frame = run.frames[k];
+        for (let i = 0; i < frame.length / 2; i++) {
+            const [x, y] = toPx(frame[2 * i], frame[2 * i + 1]);
+            dot(ctx, x, y, 3.5, t.particle, t.surface);
         }
+        const [bx, by] = toPx(run.bestPath[k][0], run.bestPath[k][1]);
+        ring(ctx, bx, by, 7, t.particle, t.surface);
 
-        // Compare all algorithms
-        function compareAll() {
-            const nParticles = parseInt(document.getElementById('particles').value);
-            const nSocieties = parseInt(document.getElementById('societies').value);
-            const w = parseFloat(document.getElementById('w').value);
-            const c1 = parseFloat(document.getElementById('c1').value);
-            const c2 = parseFloat(document.getElementById('c2').value);
-            const c3 = parseFloat(document.getElementById('c3').value);
-            const iterations = parseInt(document.getElementById('iterations').value);
-            const { objectiveFunc, bounds, dim } = getObjectiveSettings();
-            const colors = ['#4A90E2', '#E24A4A', '#50C878', '#8E44AD'];
-            const results = [];
-            // Civilized PSO
-            const resCivil = civilizedPSO(nParticles, nSocieties, w, c1, c2, c3, iterations, objectiveFunc, dim, bounds);
-            results.push({ name: 'Civilized', values: resCivil.history, color: colors[0] });
-            // Standard PSO
-            const resStd = standardPSO(nParticles, w, c1, c2, iterations, objectiveFunc, dim, bounds);
-            results.push({ name: 'Standard', values: resStd.history, color: colors[1] });
-            // Competitive Swarm
-            const resComp = competitiveSwarm(nParticles, iterations, objectiveFunc, dim, bounds);
-            results.push({ name: 'Competitive', values: resComp.history, color: colors[2] });
-            // Predator‑Prey PSO
-            const predatorStrength = 0.1;
-            const resPred = predatorPreyPSO(nParticles, w, c1, c2, predatorStrength, iterations, objectiveFunc, dim, bounds);
-            results.push({ name: 'Predator', values: resPred.history, color: colors[3] });
-            // Determine final results summary
-            let summary = 'Final best values → ';
-            results.forEach((res, idx) => {
-                const bestVal = res.values[res.values.length - 1];
-                summary += `${res.name}: ${bestVal.toFixed(5)}`;
-                if (idx < results.length - 1) summary += ', ';
-            });
-            drawChart(results);
-            document.getElementById('finalResult').textContent = summary;
+        document.getElementById('swarm-title').textContent = 'Swarm on the landscape · ' + ALGORITHMS[current.key].label;
+        swarmCanvas.setAttribute('aria-label',
+            ALGORITHMS[current.key].label + ': ' + view.params.nParticles + ' particles on the ' + view.objective +
+            ' landscape at iteration ' + k + ' of ' + (run.frames.length - 1) +
+            '; best value so far ' + formatValue(run.bestHistory[k]) + '.');
+        swarmCanvas._toPx = toPx;
+        swarmCanvas._g = g;
+    }
+
+    function framesCount() {
+        const current = swarmRun();
+        return current ? current.run.frames.length : 1;
+    }
+
+    function setFrame(k) {
+        frameIndex = Math.max(0, Math.min(framesCount() - 1, k));
+        slider.max = String(framesCount() - 1);
+        slider.value = String(frameIndex);
+        frameLabel.textContent = 'Iteration ' + frameIndex + ' / ' + (framesCount() - 1);
+        drawSwarm();
+    }
+
+    function stop() {
+        playing = false;
+        clearInterval(timer);
+        timer = null;
+        playButton.textContent = 'Play';
+    }
+
+    function play() {
+        if (!view) return;
+        if (frameIndex >= framesCount() - 1) setFrame(0);
+        playing = true;
+        playButton.textContent = 'Pause';
+        const stride = Math.max(1, Math.round((framesCount() - 1) / 150));
+        clearInterval(timer);
+        timer = setInterval(() => {
+            if (frameIndex >= framesCount() - 1) { stop(); return; }
+            setFrame(frameIndex + stride);
+        }, 40);
+    }
+
+    function startAnimation() {
+        stop();
+        if (reducedMotion) setFrame(framesCount() - 1);
+        else { setFrame(0); play(); }
+    }
+
+    playButton.addEventListener('click', () => (playing ? stop() : play()));
+    slider.addEventListener('input', () => { stop(); setFrame(Number(slider.value)); });
+
+    swarmCanvas.addEventListener('pointermove', (event) => {
+        const current = swarmRun();
+        if (!current || !swarmCanvas._g) return;
+        const rect = swarmCanvas.getBoundingClientRect();
+        const px = event.clientX - rect.left, py = event.clientY - rect.top;
+        const g = swarmCanvas._g;
+        const [b0, b1] = view.bounds;
+        if (px < g.left || px > g.left + g.size || py < g.top || py > g.top + g.size) { swarmTip.hidden = true; return; }
+        const fn = OBJECTIVES[view.objective].fn;
+        const x = b0 + (px - g.left) / g.size * (b1 - b0);
+        const y = b1 - (py - g.top) / g.size * (b1 - b0);
+        swarmTip.textContent = '';
+        const title = document.createElement('div');
+        title.className = 'tt-title';
+        title.textContent = 'x ' + formatValue(x) + ', y ' + formatValue(y);
+        swarmTip.appendChild(title);
+        tipRow(swarmTip, null, formatValue(fn([x, y])), 'objective here');
+        // Nearest particle within a generous hit radius
+        const frame = current.run.frames[Math.min(frameIndex, current.run.frames.length - 1)];
+        let best = -1, bestD = 14 * 14;
+        for (let i = 0; i < frame.length / 2; i++) {
+            const [qx, qy] = swarmCanvas._toPx(frame[2 * i], frame[2 * i + 1]);
+            const d = (qx - px) * (qx - px) + (qy - py) * (qy - py);
+            if (d < bestD) { bestD = d; best = i; }
         }
+        if (best >= 0) {
+            const label = 'particle ' + (best + 1) + (current.run.societyOf ? ', society ' + (current.run.societyOf[best] + 1) : '');
+            tipRow(swarmTip, null, formatValue(fn([frame[2 * best], frame[2 * best + 1]])), label);
+        }
+        placeTip(swarmTip, swarmCanvas.parentElement, swarmCanvas.offsetLeft + px, swarmCanvas.offsetTop + py);
+    });
+    swarmCanvas.addEventListener('pointerleave', () => { swarmTip.hidden = true; });
 
-        // Attach event listeners
-        document.getElementById('runButton').addEventListener('click', runSelected);
-        document.getElementById('compareButton').addEventListener('click', compareAll);
-    </script>
+    // -------------------------------------------------------------- running
+
+    function finish() {
+        hoverIndex = null;
+        chartTip.hidden = true;
+        const result = document.getElementById('finalResult');
+        if (view.mode === 'compare') {
+            result.textContent = 'Final best values → ' + ORDER.map((key) => {
+                const h = view.runs[key].bestHistory;
+                return ALGORITHMS[key].short + ': ' + formatValue(h[h.length - 1]);
+            }).join(', ');
+            chartCanvas.setAttribute('aria-label', 'Line chart comparing four algorithms over ' + view.params.iterations +
+                ' iterations. ' + result.textContent.replace('→', ':') + '.');
+        } else {
+            const run = view.runs[view.algorithm];
+            const last = run.bestHistory.length - 1;
+            const pos = run.bestPath[last];
+            result.textContent = 'Final best value: ' + formatValue(run.bestHistory[last]) +
+                ' at (' + formatValue(pos[0]) + ', ' + formatValue(pos[1]) + ')';
+            chartCanvas.setAttribute('aria-label', 'Line chart: with ' + ALGORITHMS[view.algorithm].label + ', the best value fell from ' +
+                formatValue(run.bestHistory[0]) + ' to ' + formatValue(run.bestHistory[last]) + ' over ' + last + ' iterations.');
+        }
+        fillLegend();
+        fillTable();
+        drawChart();
+        startAnimation();
+    }
+
+    // Run selected algorithm
+    function runSelected() {
+        const params = readParams();
+        const algorithm = algorithmSelect.value;
+        const { fn, bounds } = OBJECTIVES[params.objective];
+        const run = ALGORITHMS[algorithm].run(params, fn, bounds);
+        const previous = lastSingle && lastSingle.algorithm === algorithm && lastSingle.objective === params.objective ? lastSingle.run : null;
+        view = { mode: 'single', algorithm, objective: params.objective, bounds, params, runs: { [algorithm]: run }, previous };
+        lastSingle = { algorithm, objective: params.objective, run };
+        finish();
+    }
+
+    // Compare all algorithms with the same settings
+    function compareAll() {
+        const params = readParams();
+        const { fn, bounds } = OBJECTIVES[params.objective];
+        const runs = {};
+        for (const key of ORDER) runs[key] = ALGORITHMS[key].run(params, fn, bounds);
+        view = { mode: 'compare', algorithm: algorithmSelect.value, objective: params.objective, bounds, params, runs, previous: null };
+        finish();
+    }
+
+    function updateHint() {
+        document.getElementById('paramHint').textContent = ALGORITHMS[algorithmSelect.value].hint;
+    }
+
+    document.getElementById('controls').addEventListener('submit', (event) => {
+        event.preventDefault();
+        runSelected();
+    });
+    document.getElementById('compareButton').addEventListener('click', compareAll);
+    algorithmSelect.addEventListener('change', () => {
+        updateHint();
+        // After a comparison every algorithm has a swarm to show.
+        if (view && view.mode === 'compare') startAnimation();
+    });
+
+    function redraw() {
+        drawChart();
+        drawSwarm();
+        if (hoverIndex !== null) showChartTip();
+    }
+
+    // Repaint on resize and on theme changes (OS setting, or the site's toggle
+    // in the parent page, which reaches us as a storage event).
+    if ('ResizeObserver' in window) new ResizeObserver(() => redraw()).observe(chartCanvas);
+    else window.addEventListener('resize', redraw);
+    if (window.matchMedia) {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mq.addEventListener) mq.addEventListener('change', redraw);
+    }
+    window.addEventListener('storage', (event) => {
+        if (event.key !== 'theme') return;
+        if (event.newValue === 'dark' || event.newValue === 'light') document.documentElement.setAttribute('data-theme', event.newValue);
+        else document.documentElement.removeAttribute('data-theme');
+        redraw();
+    });
+
+    // When embedded in a post (same origin), size the iframe to the content.
+    if (window.frameElement) {
+        const shell = document.querySelector('.app-shell');
+        const fit = () => { window.frameElement.style.height = Math.ceil(shell.getBoundingClientRect().height) + 'px'; };
+        if ('ResizeObserver' in window) new ResizeObserver(fit).observe(shell);
+        window.addEventListener('load', fit);
+        fit();
+    }
+
+    updateHint();
+    runSelected();
+</script>
 </body>
 </html>

@@ -632,14 +632,19 @@
     font-size: 1em;
   }
 
-  // Embedded interactive apps (the app resizes its own frame when it can)
+  // Embedded interactive apps. The app sizes its own frame once loaded;
+  // these starting heights are close to that, to avoid a jump.
   .app-frame {
     display: block;
     width: 100%;
-    height: 760px;
+    height: 920px;
     margin-bottom: 1rem;
     border: 0;
     background: var(--bg);
+
+    @include media-query($on-palm) {
+      height: 1580px;
+    }
   }
 
   .footnotes {
