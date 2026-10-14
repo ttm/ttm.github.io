@@ -1,11 +1,111 @@
 /**
- * Reset some basic elements
+ * Design tokens
+ *
+ * Light values live on :root. Dark values apply when the reader picked dark
+ * with the toggle (data-theme="dark"), or when the OS prefers dark and the
+ * reader has not explicitly picked light. Print always uses the light set.
  */
+@mixin light-tokens {
+  --bg: #fbfaf7;
+  --bg-elevated: #ffffff;
+  --surface: #f3f2ed;
+  --surface-hover: #ebe9e2;
+  --text: #1f2428;
+  --muted: #5d6670;
+  --border: #e3e1da;
+  --border-strong: #cdcac1;
+  --accent: #0a6380;
+  --accent-hover: #004663;
+  --accent-soft: #e2eef1;
+  --accent-underline: rgba(10, 99, 128, 0.35);
+  --brand: #004663;
+  --mark: #fff1b8;
+  --shadow: 0 1px 2px rgba(20, 30, 40, 0.05), 0 6px 18px rgba(20, 30, 40, 0.06);
+  --img-bg: transparent;
+
+  --hl-comment: #5e6770;
+  --hl-keyword: #c4232d;
+  --hl-string: #0a3069;
+  --hl-number: #0550ae;
+  --hl-name: #7438d0;
+  --hl-builtin: #8a3300;
+  --hl-tag: #116329;
+  --hl-deleted: #ffe5e3;
+  --hl-inserted: #dcf7e2;
+
+  color-scheme: light;
+}
+
+:root {
+  @include light-tokens;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --measure: 46rem;
+  --gutter: 1.5rem;
+  --radius: 8px;
+}
+
+@mixin dark-tokens {
+  --bg: #101417;
+  --bg-elevated: #161c20;
+  --surface: #161d22;
+  --surface-hover: #1e272d;
+  --text: #e4e1d8;
+  --muted: #9aa4ab;
+  --border: #263036;
+  --border-strong: #3a464d;
+  --accent: #7cc3d6;
+  --accent-hover: #e0dac2;
+  --accent-soft: #15303a;
+  --accent-underline: rgba(124, 195, 214, 0.4);
+  --brand: #e0dac2;
+  --mark: #4a4120;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 18px rgba(0, 0, 0, 0.25);
+  // Transparent diagrams are usually drawn for white paper.
+  --img-bg: #ffffff;
+
+  --hl-comment: #8f9aa3;
+  --hl-keyword: #ff7b72;
+  --hl-string: #a5d6ff;
+  --hl-number: #79c0ff;
+  --hl-name: #d2a8ff;
+  --hl-builtin: #ffa657;
+  --hl-tag: #7ee787;
+  --hl-deleted: rgba(248, 81, 73, 0.18);
+  --hl-inserted: rgba(46, 160, 67, 0.18);
+
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] {
+  @include dark-tokens;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-tokens;
+  }
+}
+
+
+
+/**
+ * Reset
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -13,74 +113,86 @@ dl, dd, ol, ul, figure {
 /**
  * Basic styling
  */
-body {
-    font-family: $base-font-family;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    font-weight: 300;
-    color: $text-color;
-    background-color: $background-color;
-    -webkit-text-size-adjust: 100%;
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
 
+body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+}
 
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
+::selection {
+  background: var(--accent-soft);
+}
+
 h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+  margin-bottom: 1rem;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
 
-
-/**
- * Images
- */
 img {
-    max-width: 100%;
-    vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
-
-
-/**
- * Figures
- */
 figure > img {
-    display: block;
+  display: block;
 }
 
 figcaption {
-    font-size: $small-font-size;
+  font-size: 0.875rem;
+  color: var(--muted);
 }
 
-
-
-/**
- * Lists
- */
 ul, ol {
-    margin-left: $spacing-unit;
+  margin-left: 1.5rem;
 }
 
-li {
-    > ul,
-    > ol {
-         margin-bottom: 0;
-    }
+li > ul,
+li > ol {
+  margin-bottom: 0;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
 
+abbr[title] {
+  text-decoration: none;
+}
 
-/**
- * Headings
- */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+mark {
+  background: var(--mark);
+  color: inherit;
+  padding: 0 0.15em;
+  border-radius: 2px;
 }
 
 
@@ -89,17 +201,20 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color;
-    text-decoration: none;
+  color: var(--accent);
+  text-decoration: none;
 
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
+  &:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+}
 
-    &:hover {
-        color: $text-color;
-        text-decoration: underline;
-    }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 
@@ -108,44 +223,94 @@ a {
  * Blockquotes
  */
 blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
+  color: var(--muted);
+  border-left: 3px solid var(--border-strong);
+  padding: 0.1rem 0 0.1rem 1.1rem;
 
-    > :last-child {
-        margin-bottom: 0;
-    }
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 
 
 /**
- * Code formatting
+ * Code
  */
+code,
+kbd,
 pre,
-code {
-    font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
 }
 
 code {
-    padding: 1px 5px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
 }
 
 pre {
-    padding: 8px 12px;
-    overflow-x: scroll;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  line-height: 1.5;
+  tab-size: 4;
 
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
+  > code {
+    display: block;
+    background: none;
+    border: 0;
+    padding: 0;
+    font-size: 1em;
+    white-space: pre;
+  }
+}
+
+
+
+/**
+ * Tables
+ */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95em;
+  line-height: 1.45;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th,
+th {
+  background: var(--surface);
+  font-weight: 650;
+}
+
+tbody tr:nth-child(even) td {
+  background: rgba(127, 127, 127, 0.045);
+}
+
+
+
+/**
+ * Math: let wide display equations scroll instead of widening the page.
+ */
+mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 0.25rem 0;
 }
 
 
@@ -154,51 +319,42 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
-    max-width:         calc(800px - (#{$spacing-unit} * 2));
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
-    @extend %clearfix;
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--gutter);
+  padding-left: var(--gutter);
 
-    @include media-query($on-laptop) {
-        max-width: -webkit-calc(800px - (#{$spacing-unit}));
-        max-width:         calc(800px - (#{$spacing-unit}));
-        padding-right: $spacing-unit / 2;
-        padding-left: $spacing-unit / 2;
-    }
+  @include media-query($on-palm) {
+    --gutter: 1rem;
+  }
 }
 
 
 
 /**
- * Clearfix
+ * Utilities
  */
 %clearfix {
-
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
-
-/**
- * Icons
- */
-.icon {
-
-    > svg {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
-
-        path {
-            fill: $grey-color;
-        }
-    }
+[hidden] {
+  display: none !important;
 }

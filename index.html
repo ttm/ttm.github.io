@@ -1,20 +1,69 @@
 ---
 layout: default
 ---
-<div class="home">
+<section class="intro" aria-labelledby="intro-title">
+  <img class="intro-photo" src="{{ "/assets/avatar.jpg" | prepend: site.baseurl }}" alt="Portrait of {{ site.short_title }}" width="96" height="96" />
+  <div class="intro-body">
+    <h1 id="intro-title" class="intro-title">{{ site.short_title }}</h1>
+    <p class="intro-aliases">aka {{ site.aliases | join: " · " }}</p>
+    <p class="intro-tagline">{{ site.tagline }}</p>
+    <ul class="topic-list" aria-label="Research areas">
+      {%- for topic in site.topics %}
+      <li>{{ topic }}</li>
+      {%- endfor %}
+    </ul>
+    {% include social-links.html %}
+  </div>
+</section>
 
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
+{%- if site.data.projects.size > 0 %}
+<section class="home-section" aria-labelledby="apps-title">
+  <h2 id="apps-title" class="section-title">Interactive</h2>
+  <ul class="card-grid">
+    {%- for project in site.data.projects %}
+    <li>
+      <a class="card" href="{{ project.url | prepend: site.baseurl }}">
+        <span class="card-title">{{ project.title }}</span>
+        <span class="card-desc">{{ project.description }}</span>
+      </a>
+    </li>
+    {%- endfor %}
   </ul>
+</section>
+{%- endif %}
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-</div>
+<section class="home-section" aria-labelledby="posts-title">
+  <div class="section-head">
+    <h2 id="posts-title" class="section-title">Posts <span class="section-count">{{ site.posts.size }}</span></h2>
+    <label class="post-filter" hidden>
+      <span class="visually-hidden">Filter posts</span>
+      <input type="search" placeholder="Filter posts…" autocomplete="off" spellcheck="false" />
+    </label>
+  </div>
+
+  {%- assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  {%- for year in years %}
+  <section class="year-group" aria-labelledby="year-{{ year.name }}">
+    <h3 id="year-{{ year.name }}" class="year-heading">{{ year.name }}</h3>
+    <ul class="post-list">
+      {%- for post in year.items %}
+      {%- assign words = post.content | strip_html | number_of_words %}
+      <li class="post-item" data-search="{{ post.title | downcase | escape }} {{ post.tags | join: ' ' | downcase | escape }} {{ post.categories | join: ' ' | escape }}">
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}"{% if post.lang and post.lang != site.lang %} hreflang="{{ post.lang }}"{% endif %}>{{ post.title }}</a>
+        {%- if post.lang and post.lang != site.lang %}
+        <abbr class="lang-badge" title="{% include lang-name.html lang=post.lang %}">{{ post.lang | upcase }}</abbr>
+        {%- endif %}
+        <span class="post-item-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
+          <span aria-hidden="true">·</span>
+          {{ words | divided_by: 230 | at_least: 1 }} min
+        </span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endfor %}
+  <p class="filter-empty" hidden>No posts match that filter.</p>
+
+  <p class="rss-subscribe">Subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>.</p>
+</section>
