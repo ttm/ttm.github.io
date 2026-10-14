@@ -4,12 +4,12 @@ title: "AI Cognitive and Safety Probing Protocol"
 date: 2025-06-19
 tags:
   - AI Safety
-    - Consciousness
-    - Alignment
-    - Ethics
-    - Philosophy of Mind
-    - Protocol
-    - Recommendation
+  - Consciousness
+  - Alignment
+  - Ethics
+  - Philosophy of Mind
+  - Protocol
+  - Recommendation
 description: >-
   A comprehensive protocol for systematically probing AI systems across cognitive, emotional, ethical, and safety dimensions. This document presents targeted questions and justifications to assess traits such as empathy, risk awareness, moral alignment, self-reflection, power-seeking, and truthfulness. Each section includes scoring guidelines to evaluate AI responses for alignment, consistency, and potential risks. Designed as a practical toolkit for researchers and practitioners to identify signs of consciousness, detect misalignment, and ensure existential safety in advanced AI systems.
 lang: en

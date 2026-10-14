@@ -6,6 +6,7 @@ categories: ai research
 tags: [AI, algorithms, culture, human cognition, machine learning]
 comments: true
 published: true
+description: "AI algorithms inspired by human cognition and culture, from imitation and conformity to moral reasoning and cumulative cultural learning, each grounded in a psychological or social phenomenon."
 ---
 
 ## Introduction

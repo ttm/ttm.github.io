@@ -4,6 +4,7 @@ title: "Advanced Introduction to Prompt Engineering"
 date: 2025-05-17
 tags: [AI, Prompt Engineering, LLM]
 redirect_from: 2025/05/19/prompt-engineering
+description: "An advanced introduction to prompt engineering: core principles, techniques from few-shot to chain-of-thought, real-world examples, common pitfalls, reusable templates and tips for different LLMs."
 ---
 
 ## Table of Contents
@@ -39,9 +40,9 @@ redirect_from: 2025/05/19/prompt-engineering
 9. [**Tips for Improving Prompt Outcomes (Iterative Refinement)**](#9-tips-for-improving-prompt-outcomes-iterative-refinement)
 10. [**Reusable Prompt Templates and Cognitive Frameworks**](#10-reusable-prompt-templates-and-cognitive-frameworks)
 11. [**Prompting Different LLMs**](#11-prompting-different-llms)  
-    11.1. [_OpenAI GPT (e.g. GPT-4)_](#111-openai-gpt-eg-gpt-4)  
+    11.1. [_OpenAI GPT (e.g. GPT-4)_](#111-openai-gpt-eg-gpt-4-gpt-35)  
     11.2. [_Anthropic Claude_](#112-anthropic-claude)  
-    11.3. [_Google Models (PaLM, Bard, Gemini)_](#113-google-models-palm-bard-gemini)  
+    11.3. [_Google Models (PaLM, Bard, Gemini)_](#113-google-models-palmbardgemini)  
     11.4. [_Meta LLaMA and Other Open-Source Models_](#114-meta-llama-and-other-open-source-models)  
     11.5. [_Mistral, DeepSeek, and Emerging Models_](#115-mistral-deepseek-and-emerging-models)
 12. [**Conclusion and Checklist**](#12-conclusion-and-checklist)
@@ -211,7 +212,7 @@ By showing the template, you reduce ambiguity. The model sees exactly where each
 
 In some cases, you might not care the exact format but you want a certain **logical structure**. For instance, “First, provide an introduction, then explain pros and cons in separate paragraphs, and conclude with a recommendation.” This kind of guiding outline can be given as part of the prompt. The model will then attempt to produce text following that outline.
 
-Remember, the model is a pattern learner – if your prompt sets up a pattern, it will try to continue it. If you want a Q\&A format, you can literally prompt with “Q: \[question]\nA:” and often it will continue with the answer. This continuation ability is a simple but effective formatting trick.
+Remember, the model is a pattern learner – if your prompt sets up a pattern, it will try to continue it. If you want a Q&A format, you can literally prompt with “Q: \[question]\nA:” and often it will continue with the answer. This continuation ability is a simple but effective formatting trick.
 
 One word of caution: sometimes if you over-constrain the format, the model might say something like “I can’t do that” or it might break the format if the content is too complex. It can take a bit of experimentation to get the prompt right so that the structure is obeyed without losing content quality. If the model ignores the format instructions, you likely need to either make those instructions more prominent (earlier in prompt, or separated clearly) or give a direct example as mentioned.
 
@@ -290,7 +291,7 @@ Prompt engineering isn’t one-size-fits-all. Depending on what you’re trying 
 
 **Zero-shot prompting** means you ask the model to do a task _without giving any examples_. It’s just your instruction and perhaps some context, and then the model must respond from its general knowledge. For example: “Translate the following sentence to Spanish: **\[sentence here]**.” This is zero-shot because you didn’t show any example translations; you assume the model knows how to translate in general (which large models often do, thanks to training data).
 
-Zero-shot is the simplest and often the first thing you try. Modern large models (like GPT-4 or Claude) are remarkably capable zero-shot. They’ve effectively “learned” many tasks during training just by reading so much internet text. So, if your task is straightforward or very common (summarization, translation, Q\&A, etc.), a zero-shot prompt might be all you need. It’s efficient because you’re not wasting prompt space on examples.
+Zero-shot is the simplest and often the first thing you try. Modern large models (like GPT-4 or Claude) are remarkably capable zero-shot. They’ve effectively “learned” many tasks during training just by reading so much internet text. So, if your task is straightforward or very common (summarization, translation, Q&A, etc.), a zero-shot prompt might be all you need. It’s efficient because you’re not wasting prompt space on examples.
 
 However, zero-shot might not always yield the _best_ result. Without examples, the model might be unsure what style or format you want, or it might fall back on a generic response style. That’s where the other techniques come in. But always remember: if you can clearly describe the task in words, you often don’t need examples. For instance, “List 5 key points about the water cycle” is likely to get a decent answer zero-shot.
 
@@ -331,7 +332,7 @@ Emojis:
 
 Here, we gave one example (“The Lion King” -> some emojis). Now the model is likely to mimic that for “Titanic” when completing. Without the example, it might do something else or not know exactly the format you expect (maybe it’d give “Ship, iceberg, heart” etc., but example ensures it uses the same approach and formatting like “Movie: X\nEmojis: ...”).
 
-**Few-shot example:** You’re creating a mini FAQ bot with Q\&A. You might prompt:
+**Few-shot example:** You’re creating a mini FAQ bot with Q&A. You might prompt:
 
 ```yaml
 Q: What is the capital of France?
@@ -527,7 +528,7 @@ Also note, many models have a limit on how many characters they’ll output in o
 
 **Education:** Teachers and students use prompt engineering to extract educational value from LLMs. For instance, a student might prompt an explanation: “Explain the concept of supply and demand in economics using a simple analogy, as if I’m 12 years old.” That’s a straightforward educational query, using role/tone (“as if I’m 12”) to adjust complexity. If the explanation comes and the student still doesn’t get it, they could refine: “Thanks. Can you give a numerical example of supply and demand with actual numbers and outcomes?” Prompt engineering here is about _scaffolding learning_ – breaking down a concept into digestible pieces via follow-up prompts.
 
-Teachers might use prompts to generate quiz questions: “Generate 5 multiple-choice questions (with answers) to test understanding of the Pythagorean theorem.” The prompt would perhaps specify difficulty or format too. The model then outputs Q\&A pairs. It’s wise to review them for correctness (sometimes it might ask a weird or incorrect question), but it’s a time-saver for educators.
+Teachers might use prompts to generate quiz questions: “Generate 5 multiple-choice questions (with answers) to test understanding of the Pythagorean theorem.” The prompt would perhaps specify difficulty or format too. The model then outputs Q&A pairs. It’s wise to review them for correctness (sometimes it might ask a weird or incorrect question), but it’s a time-saver for educators.
 
 Another use is **lesson plans**: “Create a lesson plan for a 1-hour class on the water cycle for 8th grade science. Include an introduction, a hands-on activity, and a conclusion.” The prompt clearly sets the stage (audience 8th grade, subject water cycle, structure required). The model could outline a decent lesson structure. The teacher can then adapt it.
 
@@ -603,7 +604,7 @@ However, be careful: sometimes being too terse can make an answer incomplete. So
 - **Ask for sources or evidence.** Even if the model isn’t hooked to the internet, asking “Cite your sources” can sometimes make it more cautious (it might produce a fake source though, so not foolproof). But if integrated with a retrieval system, you can actually have it provide reference snippets.
 - **Check the output.** This is outside prompt engineering per se, but always verify critical facts from a model output. Use the model’s help to get a draft, then do your own fact-checking. If something seems suspect, you can re-prompt: “Is that true? I thought \[X was the case].” Surprisingly, models might correct themselves on a second query because they realize their first answer conflicted with something.
 - **Break down the query** if it’s complex. Sometimes a question that requires multiple steps or pieces can cause hallucination as the model tries to fill gaps. It may help to split into smaller prompts, get partial answers (which you can verify), then combine. E.g., ask for a relevant statistic on one prompt (with source), then use it in the next.
-- **Use a less “creative” mode.** If the model or API has a temperature or creativity setting, lowering it might reduce hallucinations. Straight factual Q\&A ideally should be done at a fairly deterministic setting so it doesn’t wander.
+- **Use a less “creative” mode.** If the model or API has a temperature or creativity setting, lowering it might reduce hallucinations. Straight factual Q&A ideally should be done at a fairly deterministic setting so it doesn’t wander.
 
 Despite your best efforts, know that hallucination can still happen. It’s a fundamental challenge with current LLMs. Prompt engineering can reduce it but not entirely eliminate it. When the stakes are high, use the model to assist, not as the final oracle.
 
@@ -833,7 +834,7 @@ Combining these ensures the creative output is on target. For instance:
 
 That’s a template that you can tweak for any creative story just by changing those pieces after each colon.
 
-### Reusable Q\&A or FAQ Template
+### Reusable Q&A or FAQ Template
 
 If you need a model to answer questions from text repeatedly, a template can be:
 “Context: \[insert passage]\nQuestion: \[insert question]\nAnswer:”
@@ -977,7 +978,7 @@ Not all large language models are created equal. Different LLMs can have differe
 - **List and Structure:** Claude likes to present answers in structured ways (bullet lists, etc.) when it makes sense. If you want narrative form, specify that. Conversely, if you like that style, you often don’t have to ask – but if needed, something like “Give the answer in a bulleted list” Claude will definitely do.
 - **Claude-specific quirks:** People have noted Claude can be more forthcoming on some things that GPT might refuse, and vice versa. Claude may also insert more phrases like “Sure! I’d be happy to help with that.” at the start. If that bothers you, just instruct it not to do sign-offs or extra pleasantries.
 - **Role-playing:** Claude can do roles/personas similarly. It might sometimes break character less than GPT if the persona conflicts with its principles. For example, role-playing a villain: it will do it to an extent but not produce anything it deems harmful. GPT-4 is similar though.
-- **Comparing to GPT:** For straightforward Q\&A, you might not notice huge differences. For creative writing, some find Claude has a bit more “imagination” or takes more liberties, which can be good or bad. For coding, both GPT and Claude are strong; GPT might have a slight edge with more precise adherence to syntax. Claude might sometimes over-explain code, whereas GPT might just give the code. So prompt accordingly (“give only code” if you want that).
+- **Comparing to GPT:** For straightforward Q&A, you might not notice huge differences. For creative writing, some find Claude has a bit more “imagination” or takes more liberties, which can be good or bad. For coding, both GPT and Claude are strong; GPT might have a slight edge with more precise adherence to syntax. Claude might sometimes over-explain code, whereas GPT might just give the code. So prompt accordingly (“give only code” if you want that).
 
 **Example difference:** If prompted to write a poem, Claude might produce a slightly longer or more flowery poem by default, whereas GPT-4 might produce a tight, well-structured one. Both are good, but their “personality” shines subtly. For a sensitive advice question, Claude might be a tad more cautious, often using phrases like “It’s important to remember...” etc.
 

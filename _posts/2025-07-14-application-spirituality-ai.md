@@ -4,7 +4,8 @@ title: "On the Application of Spirituality to AI"
 date: 2025-06-21
 tags: [spirituality, religion, magick, ai, tech, dev, software]
 author: Renato Fabbri
-lang: it
+lang: en
+description: "Articles by ChatGPT (o3-pro) and Claude (Opus 4) on applying spirituality, religion and magick to AI development, with the prompts and the models' full responses."
 ---
 
 ## Table of Contents

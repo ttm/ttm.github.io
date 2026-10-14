@@ -228,7 +228,7 @@ to VIM's interface. Useful for presentations.
     (at least for English and Portuguese).
     * Dealing with swp and swo files.
     Use the content in
-    [this post](http://ttm.github.io/research/2017/11/02/vim-swp-swo.html)
+    [this post](/research/2017/11/02/vim-swp-swo.html)
     by myself.
     * Slides presentation in Vim:
       - Macros or mappings for changing slides

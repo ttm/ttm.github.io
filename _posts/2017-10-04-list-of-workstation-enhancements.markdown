@@ -145,4 +145,4 @@ Other:
 Such as the post on the [articles], I will keep updating this list.
 The date means only the day when I started it.
 
-[articles]: http://ttm.github.io/research/2017/09/11/list-of-articles.html
+[articles]: /research/2017/09/11/list-of-articles.html
