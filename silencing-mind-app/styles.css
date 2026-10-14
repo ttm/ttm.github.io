@@ -21,6 +21,7 @@
   --color-button: #3f62e8;
   --color-button-hover: #2f50d0;
   --color-on-button: #ffffff;
+  --color-link: #3f62e8;
   --animation-speed: 30s;
 }
 
@@ -35,6 +36,7 @@
   --color-button: #7c90f9;
   --color-button-hover: #9fb0fb;
   --color-on-button: #0f131a;
+  --color-link: #9fb0fb;
 }
 
 html, body {
@@ -320,7 +322,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 #reference a {
-  color: var(--color-accent);
+  color: var(--color-link);
   text-decoration: underline;
 }
 

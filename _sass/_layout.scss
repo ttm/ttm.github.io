@@ -449,6 +449,11 @@
   margin-top: 1.5rem;
   font-size: 0.9rem;
   color: var(--muted);
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
 }
 
 
@@ -645,6 +650,15 @@
     @include media-query($on-palm) {
       height: 1580px;
     }
+  }
+
+  .task-list-item {
+    list-style: none;
+  }
+
+  .task-list-item-checkbox {
+    margin: 0 0.45em 0.2em -1.35em;
+    vertical-align: middle;
   }
 
   .footnotes {

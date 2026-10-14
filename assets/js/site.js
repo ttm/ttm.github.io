@@ -72,6 +72,14 @@
     });
 
     content.querySelectorAll("table").forEach(function (table) {
+      // Some old Markdown tables use fully empty columns as spacers.
+      var rows = Array.prototype.slice.call(table.rows);
+      var columns = rows.length ? rows[0].cells.length : 0;
+      for (var c = 0; c < columns; c++) {
+        var empty = rows.every(function (row) { return !row.cells[c] || !row.cells[c].textContent.trim(); });
+        if (empty) rows.forEach(function (row) { if (row.cells[c]) row.cells[c].hidden = true; });
+      }
+
       var wrap = document.createElement("div");
       wrap.className = "table-wrap";
       table.parentNode.insertBefore(wrap, table);
@@ -84,7 +92,15 @@
       }
     });
 
+    // Markdown task lists render bare checkboxes; name them after their item.
+    content.querySelectorAll(".task-list-item-checkbox").forEach(function (box) {
+      var item = box.closest("li");
+      if (item && !box.hasAttribute("aria-label")) box.setAttribute("aria-label", item.textContent.trim());
+    });
+
     content.querySelectorAll("pre").forEach(function (pre) {
+      // Code that scrolls sideways must be scrollable from the keyboard too.
+      if (pre.scrollWidth > pre.clientWidth) pre.tabIndex = 0;
       var block = pre.closest(".highlighter-rouge") || pre;
       if (block.parentNode.classList.contains("code-block")) return;
       var wrap = document.createElement("div");
