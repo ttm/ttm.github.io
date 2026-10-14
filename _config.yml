@@ -60,9 +60,9 @@ defaults:
 
 # Build settings
 markdown: kramdown
-# Not a valid IANA zone, so builds use UTC. Switching to America/Sao_Paulo
-# would move posts dated near midnight UTC (and their URLs) to another day.
-timezone: America/Rio_de_Janeiro
+# Post dates (and the dates in post URLs) are computed in this zone.
+# Changing it can move a post written near midnight to another day.
+timezone: Europe/Rome
 sass:
   style: compressed
 

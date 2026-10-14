@@ -2,6 +2,8 @@
 layout: article
 title: "Was Super-AGI Here Before ChatGPT? A Forensic Analysis of the Pre-Public SAGI Hypothesis"
 date: 2026-10-08 01:30:00 +0200
+# Published at this URL while the site built in UTC; keep it stable.
+permalink: /2026/10/07/pre-public-sagi-hypothesis.html
 author: Renato Fabbri
 tags:
   - artificial-intelligence
