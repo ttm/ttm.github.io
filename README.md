@@ -19,7 +19,7 @@ bundle exec jekyll serve   # http://localhost:4000 (also: ./runme.sh)
 | `_layouts/impress*.html` | The impress.js slide decks (doctoral defense, Lappis). |
 | `_includes/` | Head (SEO tags, theme, MathJax), header, footer, social links, logo. |
 | `_sass/`, `css/main.scss` | Styles. Colors are CSS custom properties in `_sass/_base.scss`, with a light and a dark set. |
-| `assets/js/site.js` | Theme toggle, homepage post filter, heading links, copy buttons, back-to-top, lazy Disqus. |
+| `assets/js/site.js` | Theme toggle, homepage post filter, contents for long posts, heading links, copy buttons, back-to-top, lazy Disqus. |
 | `_data/navigation.yml` | Header links. |
 | `_data/projects.yml` | The "Interactive" cards on the homepage. |
 | `cso-app/`, `silencing-mind-app/` | Standalone interactive pages. |
@@ -46,4 +46,7 @@ Without a `description`, search engines and link previews show the post's first 
 
 - Keep post dates and categories stable: they are part of each post's URL, and old links and Disqus
   threads depend on them. `redirect_from` (jekyll-redirect-from) can forward an old URL if one must change.
-- `timezone` in `_config.yml` is not a valid zone name, so builds use UTC; see the comment there before changing it.
+- Post dates and URL dates are computed in the `timezone` set in `_config.yml` (Europe/Rome). A post
+  dated near midnight in another offset can land on a different day; pin its URL with `permalink` if needed.
+- Running the site locally uses the gems in `Gemfile.lock`; GitHub Pages ignores that file and builds
+  with its own versions.
