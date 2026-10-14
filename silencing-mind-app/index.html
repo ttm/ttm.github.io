@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Silencing the Mind Playground</title>
+    <meta
+      name="description"
+      content="A guided breathing exercise and timed mindfulness tasks, companion to the Silencing the Mind post by Renato Fabbri."
+    />
+    <link rel="icon" type="image/png" href="/favicon_light.ico" />
+    <script>
+      // Pick the theme before first paint: this app's own choice, then the
+      // main site's choice, then the OS preference.
+      (function () {
+        var theme = null;
+        try {
+          theme = localStorage.getItem("mindTheme") || localStorage.getItem("theme");
+        } catch (e) {}
+        if (theme !== "dark" && theme !== "light") {
+          theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
+      <a class="home-link" href="/">← Renato Fabbri</a>
       <h1>Silencing the Mind</h1>
       <p class="tagline">
         Explore, tweak and refine your path to inner calm
@@ -29,11 +49,11 @@
       <h2>Breathing Exercise</h2>
       <div id="breathing-circle-container">
         <div id="breathing-circle"></div>
-        <div id="breathing-instructions">Press Start</div>
+        <div id="breathing-instructions" role="status" aria-live="polite">Press Start</div>
       </div>
       <div class="breathing-controls">
-        <button id="breathingStart">Start</button>
-        <button id="breathingStop" disabled>Stop</button>
+        <button id="breathingStart" type="button">Start</button>
+        <button id="breathingStop" type="button" disabled>Stop</button>
       </div>
     </section>
 
@@ -49,21 +69,29 @@
           Explore quick practices, extended disciplines, scientific and spiritual
           perspectives and tech innovations for inner calm.
           <a
-            href="/2025/08/08/silencing-the-mind.html"
+            href="/mindfulness/2025/08/08/silencing-the-mind.html"
             target="_blank"
+            rel="noopener"
             >Read the full article</a
           >.
         </p>
       </div>
     </section>
 
-    <div id="modal" class="hidden">
+    <div
+      id="modal"
+      class="hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-desc"
+    >
       <div class="modal-content">
         <h3 id="modal-title"></h3>
         <p id="modal-desc"></p>
-        <div id="modal-timer" class="hidden"></div>
-        <button id="modal-action">Start</button>
-        <button id="modal-close">Close</button>
+        <div id="modal-timer" class="hidden" role="timer" aria-live="off"></div>
+        <button id="modal-action" type="button">Start</button>
+        <button id="modal-close" type="button">Close</button>
       </div>
     </div>
 
