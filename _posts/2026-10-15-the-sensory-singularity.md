@@ -46,7 +46,7 @@ Suppose an AI system observes a complex environment using thousands of sensors a
 
 We can express the interface schematically as
 
-\[
+$$
 X(t)
 \;\xrightarrow{\;E\;}\;
 S(t)
@@ -54,13 +54,13 @@ S(t)
 P(t)
 \;\xrightarrow{\;C\;}\;
 A(t),
-\]
+$$
 
-where \(X(t)\) is information available to the machine, \(E\) is an encoding process, \(S(t)\) is a physical or neural stimulus, \(N\) represents nervous-system processing, \(P(t)\) is the resulting perceptual or cognitive state, \(C\) includes interpretation and decision processes, and \(A(t)\) is action.
+where $$X(t)$$ is information available to the machine, $$E$$ is an encoding process, $$S(t)$$ is a physical or neural stimulus, $$N$$ represents nervous-system processing, $$P(t)$$ is the resulting perceptual or cognitive state, $$C$$ includes interpretation and decision processes, and $$A(t)$$ is action.
 
-Most current interface research changes \(E\): we find better ways to represent machine information as images, language, sound, or vibration.
+Most current interface research changes $$E$$: we find better ways to represent machine information as images, language, sound, or vibration.
 
-A deeper sensory transition changes \(S\) and perhaps parts of \(N\).
+A deeper sensory transition changes $$S$$ and perhaps parts of $$N$$.
 
 Instead of representing a variable on a dashboard, we might map it continuously onto the body. Instead of showing direction visually, a belt might make direction continuously tactile. Instead of representing robotic touch as an icon, sensors might drive somatosensory cortex. Instead of displaying a virtual flower, an interface might deliver a timed molecular mixture to the nose. Eventually, an artificial signal might be encoded through a peripheral nerve or cortical stimulation pattern that has no natural external analogue.
 
@@ -121,7 +121,7 @@ Several technology lines that are often discussed separately can be interpreted 
 
 The first is **increasingly rich external stimulation**. Modern displays can address millions of visual elements with precise timing. Headphones can reproduce complex spatial audio. Wearable and skin-integrated haptic systems can generate localized vibration, pressure, deformation, and other tactile cues. These are not direct neural interfaces, but they already allow computers to synthesize highly structured sensory environments. The second is **sensory substitution and augmentation**, where the computer does more than simulate a natural environment. It transforms information from one domain into a learnable sensory code. A camera can become sound. Compass direction can become vibration. Distance behind the user can become auditory structure. These approaches exploit natural transducers but alter what those transducers mean. The third is **peripheral neuroprosthesis**. A cochlear implant does not reproduce acoustic pressure at the eardrum; it transforms sound into electrical stimulation of the auditory nerve. A vestibular implant can use motion sensors to modulate electrical stimulation of vestibular-nerve branches, effectively creating a technologically mediated path from inertial measurement to neural activity. In the vestibular trial reported in *The New England Journal of Medicine*, eight people with severe bilateral vestibular hypofunction received unilateral implants; measures of posture and gait generally moved in the direction of improvement, although the procedure also produced hearing loss in the implanted ear in most participants. This combination of benefit and harm illustrates why technical feasibility and acceptable clinical trade-offs must never be conflated. The fourth is **direct central sensory writing**. In a bidirectional intracortical BCI reported in *Science* in 2021, sensors on a robotic hand were transformed into stimulation of arrays implanted in somatosensory cortex. The artificial tactile feedback improved robotic-arm performance. Subsequent studies have worked toward more stable, spatially precise, and information-rich cortical tactile percepts, including stimulation patterns conveying object properties and motion. This architecture is conceptually profound:
 
-\[
+$$
 \text{machine sensor}
 \rightarrow
 \text{encoder}
@@ -131,7 +131,7 @@ The first is **increasingly rich external stimulation**. Modern displays can add
 \text{percept}
 \rightarrow
 \text{action}.
-\]
+$$
 
 The "sense organ" in such a loop need not be biological. A robotic hand, infrared camera, magnetometer, radiation detector, chemical sensor, remote telescope, or distributed network of sensors could provide the input. The human nervous system receives an encoded representation downstream.
 
@@ -159,7 +159,7 @@ And AI itself could become a major part of that encoder. Rather than transmittin
 
 That creates a closed loop:
 
-\[
+$$
 \text{environment}
 \rightarrow
 \text{AI interpretation}
@@ -171,7 +171,7 @@ That creates a closed loop:
 \text{measured response}
 \rightarrow
 \text{AI adaptation}.
-\]
+$$
 
 In such a system, artificial intelligence would not merely *tell* us things.
 
@@ -330,7 +330,7 @@ SSTIM Workbench is open reference software for inspecting, authoring, querying, 
 
 The SSTIM documentation explicitly describes BioSynCare as a separate application participating in and contributing to the ecosystem rather than as a reference implementation or W3C-endorsed product. This separation gives the ecosystem an interesting future architecture:
 
-\[
+$$
 \text{scientific knowledge}
 \leftrightarrow
 \text{formal semantics}
@@ -340,7 +340,7 @@ The SSTIM documentation explicitly describes BioSynCare as a separate applicatio
 \text{applications}
 \leftrightarrow
 \text{human experience}.
-\]
+$$
 
 If sensory technology expands from audio and visual stimulation into richer haptics, olfaction, gustation, vestibular stimulation, peripheral neurostimulation, or cortical interfaces, a framework like SSTIM could eventually be extended to describe those modalities with comparable rigor.
 

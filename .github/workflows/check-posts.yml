@@ -1,0 +1,22 @@
+# Flags posts whose math uses \( \) or \[ \], which Markdown on GitHub Pages
+# turns into plain text. It does not block publishing; it marks the commit
+# with a failed check so the post can be fixed with
+#   python3 scripts/math_delimiters.py --fix _posts/<post>.md
+name: Check posts
+
+on:
+  push:
+    branches: [master]
+    paths: ["_posts/**", "scripts/math_delimiters.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  math-delimiters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Math uses $$...$$
+        run: python3 scripts/math_delimiters.py

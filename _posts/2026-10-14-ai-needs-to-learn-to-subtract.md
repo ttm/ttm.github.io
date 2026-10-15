@@ -96,7 +96,7 @@ $$
 M^* = \arg\min_M \left[L(M) + L(D \mid M)\right].
 $$
 
-Here, \(L(M)\) represents the complexity of describing the model, and \(L(D \mid M)\) represents the residual information needed to describe the data given that model.
+Here, $$L(M)$$ represents the complexity of describing the model, and $$L(D \mid M)$$ represents the residual information needed to describe the data given that model.
 
 A model that memorizes everything can fit perfectly and still be needlessly complex. A model that says almost nothing can be very short and fail to explain the evidence. MDL formalizes why neither extreme is satisfactory.
 
@@ -110,11 +110,11 @@ $$
 
 In this formulation:
 
-- \(x\) is an existing artifact or process;
-- \(x'\) is a candidate replacement;
-- \(C\) is a domain-appropriate measure of complexity;
-- \(P_j\) tests whether a required property survives;
-- \(\tau_j\) is the acceptable threshold for that property.
+- $$x$$ is an existing artifact or process;
+- $$x'$$ is a candidate replacement;
+- $$C$$ is a domain-appropriate measure of complexity;
+- $$P_j$$ tests whether a required property survives;
+- $$\tau_j$$ is the acceptable threshold for that property.
 
 For code, the protected properties might include functional behavior, API compatibility, security, performance, and maintainability. For scientific writing, they might include all substantive claims, quantitative results, uncertainty, limitations, evidence traceability, and methods needed for reproduction. For organizational workflows, they might include legal compliance, service quality, and safety.
 

@@ -43,6 +43,11 @@ math: true              # optional: MathJax also loads automatically when the po
 Without a `description`, search engines and link previews show the post's first paragraph, which is
 "Table of Contents" for posts that start with one.
 
+Write math as `$$...$$`: inside a sentence it renders inline, and on a paragraph of its own as a
+display equation. `\(...\)` and `\[...\]` do not work here (Markdown drops the backslashes).
+`python3 scripts/math_delimiters.py` reports posts that use them, and `--fix` converts them.
+Agent instructions for publishing are in `AGENTS.md`.
+
 ## Notes
 
 - Keep post dates and categories stable: they are part of each post's URL, and old links and Disqus

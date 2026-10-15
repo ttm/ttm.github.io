@@ -26,7 +26,7 @@ But there is an increasingly uncomfortable possibility: **some of the processes 
 
 The strongest case concerns recursive self-improvement, or RSI. In September 2026, OpenAI explicitly wrote that as AI systems take on more work developing successive generations of AI, they can "increasingly drive a process of recursive self-improvement" even while humans remain involved. OpenAI simultaneously states that *fully autonomous* RSI is not happening today. Anthropic reports a similar intermediate state: as of August 2026, Claude "leads" 26% of its measured AI R&D work and at least collaborates on more than 90%, while no measured subset is yet fully autonomous. Anthropic also reports more than 80% of code merged into its codebase was authored by Claude as of May 2026. ([4](https://openai.com/index/building-standards-next-phase-ai/), [2](https://www.anthropic.com/institute/measuring-pace-of-ai-development), [1](https://www.anthropic.com/institute/recursive-self-improvement))
 
-This distinction is crucial. **Recursive improvement and autonomous recursive improvement are not the same proposition.** If system \(A_t\) materially helps create a better \(A_{t+1}\), and the increased capability of \(A_{t+1}\) allows it to contribute more strongly to \(A_{t+2}\), a recursive causal feedback loop exists even if humans remain inside that loop. Human participation affects the loop's autonomy, strength, bottlenecks, and governance. It does not logically erase the recursion.
+This distinction is crucial. **Recursive improvement and autonomous recursive improvement are not the same proposition.** If system $$A_t$$ materially helps create a better $$A_{t+1}$$, and the increased capability of $$A_{t+1}$$ allows it to contribute more strongly to $$A_{t+2}$$, a recursive causal feedback loop exists even if humans remain inside that loop. Human participation affects the loop's autonomy, strength, bottlenecks, and governance. It does not logically erase the recursion.
 
 There is also concrete evidence of narrower machine-to-machine improvement. Google DeepMind's AlphaEvolve has been used to improve the computing infrastructure and training processes used for AI itself. Among other examples, it discovered an optimization that accelerated a matrix-multiplication kernel in Gemini's architecture by 23%, producing a reported 1% reduction in Gemini training time. DeepMind explicitly notes that AlphaEvolve has improved the training of the large language models underlying AlphaEvolve itself. ([8](https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/))
 
@@ -152,7 +152,7 @@ Those claims cease to conflict once RSI is treated as a process with degrees of 
 
 A minimal causal model is:
 
-\[
+$$
 C_{t+1}
 =
 F\left(
@@ -162,27 +162,27 @@ R_{\mathrm{AI}}(C_t),
 K_t,
 V_t
 \right)
-\]
+$$
 
 where:
 
-- \(C_t\) is AI capability at generation or time \(t\);
-- \(H_t\) is human research contribution;
-- \(R_{\mathrm{AI}}(C_t)\) is AI-generated research and engineering, itself dependent on current AI capability;
-- \(K_t\) represents compute, data, capital, infrastructure, and other external resources;
-- \(V_t\) represents verification, evaluation, safety review, and integration capacity.
+- $$C_t$$ is AI capability at generation or time $$t$$;
+- $$H_t$$ is human research contribution;
+- $$R_{\mathrm{AI}}(C_t)$$ is AI-generated research and engineering, itself dependent on current AI capability;
+- $$K_t$$ represents compute, data, capital, infrastructure, and other external resources;
+- $$V_t$$ represents verification, evaluation, safety review, and integration capacity.
 
-The recursive term is not simply \(C_t\). It is the pathway
+The recursive term is not simply $$C_t$$. It is the pathway
 
-\[
+$$
 C_t
 \rightarrow
 R_{\mathrm{AI}}(C_t)
 \rightarrow
 C_{t+1}.
-\]
+$$
 
-If increasing \(C_t\) makes AI research more effective, and more effective AI research causally improves \(C_{t+1}\), then there is a positive feedback loop.
+If increasing $$C_t$$ makes AI research more effective, and more effective AI research causally improves $$C_{t+1}$$, then there is a positive feedback loop.
 
 \`\`\`mermaid
 flowchart LR
@@ -209,21 +209,21 @@ This is bounded and heavily engineered. It does not constitute autonomous intell
 
 A useful measure of **feedback strength** is the product of two elasticities:
 
-\[
+$$
 \Phi_t
 =
 \frac{\partial \ln R_{\mathrm{AI}}}{\partial \ln C_t}
 \cdot
 \frac{\partial \ln C_{t+1}}{\partial \ln R_{\mathrm{AI}}}.
-\]
+$$
 
 The first term asks how strongly better AI increases AI-generated R&D. The second asks how strongly additional AI-generated R&D improves successor capability.
 
-If \(\Phi_t > 0\), a recursive feedback channel exists.
+If $$\Phi_t > 0$$, a recursive feedback channel exists.
 
-If \(\Phi_t\) increases across generations, the recursive channel is strengthening.
+If $$\Phi_t$$ increases across generations, the recursive channel is strengthening.
 
-If the process can sustain \(\Phi_t>0\) while strategic human contribution approaches zero, we are approaching the stronger notion of autonomous RSI.
+If the process can sustain $$\Phi_t>0$$ while strategic human contribution approaches zero, we are approaching the stronger notion of autonomous RSI.
 
 This formulation also exposes the role of bottlenecks. Faster code generation does not produce proportional system-level acceleration if human review, compute, experiments, data collection, chip fabrication, organizational decision-making, or physical-world validation becomes rate-limiting. Anthropic itself reports that increased code generation has shifted pressure toward human review and other organizational bottlenecks. ([1](https://www.anthropic.com/institute/recursive-self-improvement))
 
@@ -284,8 +284,8 @@ For recursive improvement, the most informative quantities are not chatbot bench
 | **Human intervention rate** | Number and strategic importance of human interventions per project | Measures effective autonomy |
 | **Human strategic dependence** | Sensitivity of research success to human problem selection, judgment, and stopping decisions | Captures the current research-taste bottleneck |
 | **Causal R&D uplift** | Change in research output attributable to AI access under controlled conditions | Distinguishes correlation from acceleration |
-| **Successor attribution** | Fraction of measured \(C_{t+1}-C_t\) causally attributable to AI-generated research | Direct measure of recursion |
-| **Feedback elasticity \(\Phi\)** | Sensitivity of successor capability to capability-mediated AI R&D | Measures whether recursion is strengthening |
+| **Successor attribution** | Fraction of measured $$C_{t+1}-C_t$$ causally attributable to AI-generated research | Direct measure of recursion |
+| **Feedback elasticity $$\Phi$$** | Sensitivity of successor capability to capability-mediated AI R&D | Measures whether recursion is strengthening |
 | **Verification dependence** | Fraction of AI-generated work requiring human validation before safe integration | Detects hidden human bottlenecks |
 | **Iteration time** | Time between research hypothesis, validated improvement, and deployment into the next research-capable system | Relevant to acceleration |
 
@@ -295,7 +295,7 @@ For SAGI, an equally important shift is needed. Reporting only average benchmark
 
 A useful capability profile should include at least:
 
-\[
+$$
 \mathbf{G}
 =
 (g_{\mathrm{perception}},
@@ -308,22 +308,22 @@ g_{\mathrm{metacognition}},
 g_{\mathrm{executive}},
 g_{\mathrm{problem}},
 g_{\mathrm{social}})
-\]
+$$
 
 following the broad cognitive decomposition proposed by DeepMind. Each component should be expressed relative to a human distribution rather than an arbitrary benchmark score. ([6](https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/))
 
 We should then separately report:
 
-\[
+$$
 P_{\mathrm{mean}},\quad
 P_{\mathrm{10th}},\quad
 P_{\min},\quad
 R,\quad
 T,\quad
 A
-\]
+$$
 
-where \(P_{\mathrm{mean}}\) is average human-relative performance, \(P_{\mathrm{10th}}\) is lower-tail performance across domains, \(P_{\min}\) captures the weakest measured faculty, \(R\) is repeated-trial reliability, \(T\) is transfer to genuinely novel tasks, and \(A\) is autonomy.
+where $$P_{\mathrm{mean}}$$ is average human-relative performance, $$P_{\mathrm{10th}}$$ is lower-tail performance across domains, $$P_{\min}$$ captures the weakest measured faculty, $$R$$ is repeated-trial reliability, $$T$$ is transfer to genuinely novel tasks, and $$A$$ is autonomy.
 
 This matters because a system that is at the 99.9th human percentile in mathematics but the 20th percentile on a basic perceptual task should not receive the same classification as a system whose performance is consistently above expert-human level across the entire profile.
 
@@ -337,11 +337,11 @@ That limitation suggests a natural next benchmark: **multidomain task horizons**
 
 Four experiments could make the argument in this article directly falsifiable.
 
-**Causal AI-R&D acceleration trial.** Form matched research teams working on standardized model-development problems. Randomly assign frontier-agent access while holding human expertise, compute budgets, data, and objectives constant. Measure validated capability improvement per human-hour, wall-clock day, and dollar. Repeat with successive AI generations. The key statistic is not just whether AI helps, but whether the uplift produced by generation \(t+1\) is systematically larger than the uplift produced by generation \(t\).
+**Causal AI-R&D acceleration trial.** Form matched research teams working on standardized model-development problems. Randomly assign frontier-agent access while holding human expertise, compute budgets, data, and objectives constant. Measure validated capability improvement per human-hour, wall-clock day, and dollar. Repeat with successive AI generations. The key statistic is not just whether AI helps, but whether the uplift produced by generation $$t+1$$ is systematically larger than the uplift produced by generation $$t$$.
 
 A difference-in-differences quantity could be written:
 
-\[
+$$
 \Delta_{\mathrm{recursive}}
 =
 \left(
@@ -351,7 +351,7 @@ Y^{AI}_{t+1} - Y^{control}_{t+1}
 \left(
 Y^{AI}_{t} - Y^{control}_{t}
 \right).
-\]
+$$
 
 Consistently positive values would be evidence that improving AI capability is increasing AI's contribution to further AI improvement.
 
@@ -380,29 +380,29 @@ A fifth experiment would test the sociological part of the thesis.
 
 Create a public **Recognition Lag Observatory** with timestamped records of:
 
-\[
+$$
 t_{\mathrm{capability}},\quad
 t_{\mathrm{replication}},\quad
 t_{\mathrm{benchmark}},\quad
 t_{\mathrm{consensus}},\quad
 t_{\mathrm{institutional}}.
-\]
+$$
 
 Then define:
 
-\[
+$$
 \Delta_{\mathrm{scientific}}
 =
 t_{\mathrm{consensus}} - t_{\mathrm{capability}}
-\]
+$$
 
 and
 
-\[
+$$
 \Delta_{\mathrm{institutional}}
 =
 t_{\mathrm{institutional}} - t_{\mathrm{consensus}}.
-\]
+$$
 
 This would turn vague claims such as "society is slow to recognize what has happened" into measurable propositions.
 
@@ -422,7 +422,7 @@ This changes how we should think about timing.
 
 The traditional story is approximately:
 
-\[
+$$
 \text{ordinary AI}
 \rightarrow
 \text{AGI}
@@ -430,11 +430,11 @@ The traditional story is approximately:
 \text{RSI}
 \rightarrow
 \text{superintelligence}.
-\]
+$$
 
 Reality may look more like:
 
-\[
+$$
 \text{specialized superhuman abilities}
 \rightarrow
 \text{AI-assisted AI research}
@@ -445,7 +445,7 @@ Reality may look more like:
 \rightarrow
 \text{broader superhuman profiles}
 \rightarrow \cdots
-\]
+$$
 
 with several processes overlapping rather than occurring sequentially.
 
@@ -529,13 +529,13 @@ That may be the question appropriate to the world we are actually entering.
 
 **Formalizing partial RSI.** Let total capability improvement over one development interval be
 
-\[
+$$
 \Delta C_t=C_{t+1}-C_t.
-\]
+$$
 
 Conceptually decompose it as
 
-\[
+$$
 \Delta C_t
 =
 \Delta C_t^{H}
@@ -545,13 +545,13 @@ Conceptually decompose it as
 \Delta C_t^{K}
 +
 \Delta C_t^{I},
-\]
+$$
 
-where the terms represent human research, AI-mediated research, exogenous resources and infrastructure, and interaction effects. This decomposition is not directly identifiable from observational data because the components interact. Estimating \(\Delta C_t^{AI}\) therefore requires interventions or credible counterfactual designs.
+where the terms represent human research, AI-mediated research, exogenous resources and infrastructure, and interaction effects. This decomposition is not directly identifiable from observational data because the components interact. Estimating $$\Delta C_t^{AI}$$ therefore requires interventions or credible counterfactual designs.
 
 Define an AI contribution ratio
 
-\[
+$$
 \rho_t
 =
 \frac{
@@ -559,21 +559,21 @@ Define an AI contribution ratio
 }{
 \Delta C_t
 }.
-\]
+$$
 
-A high \(\rho_t\) means AI contributes substantially to successor development. It does not imply autonomy.
+A high $$\rho_t$$ means AI contributes substantially to successor development. It does not imply autonomy.
 
-Define loop autonomy \(A_t \in [0,1]\) as the weighted fraction of strategically relevant R&D stages that AI can complete without required human intervention. Then a useful conceptual distinction is:
+Define loop autonomy $$A_t \in [0,1]$$ as the weighted fraction of strategically relevant R&D stages that AI can complete without required human intervention. Then a useful conceptual distinction is:
 
-\[
+$$
 \text{partial recursive development}: \Phi_t>0,\quad A_t<1
-\]
+$$
 
 versus
 
-\[
+$$
 \text{closed autonomous RSI}: \Phi_t>0,\quad A_t\rightarrow1,
-\]
+$$
 
 subject to the additional requirement that the loop remain stable across multiple generations rather than succeeding once.
 
@@ -581,42 +581,42 @@ The distinction between **onset** and **closure** is central. Onset requires evi
 
 An "intelligence explosion" would require something stronger still: not merely positive feedback, but feedback sufficiently strong relative to bottlenecks that the characteristic time for capability improvement contracts substantially across iterations. Positive recursion alone does not guarantee explosive growth.
 
-**Amdahl-like bottleneck constraint.** Suppose fraction \(p\) of AI R&D can be accelerated by a factor \(s\), while fraction \(1-p\) remains unchanged. A simple upper bound on total workflow acceleration is:
+**Amdahl-like bottleneck constraint.** Suppose fraction $$p$$ of AI R&D can be accelerated by a factor $$s$$, while fraction $$1-p$$ remains unchanged. A simple upper bound on total workflow acceleration is:
 
-\[
+$$
 S_{\mathrm{total}}
 =
 \frac{1}{
 (1-p)+\frac{p}{s}
 }.
-\]
+$$
 
-As \(s\rightarrow\infty\),
+As $$s\rightarrow\infty$$,
 
-\[
+$$
 S_{\mathrm{total}}\rightarrow\frac{1}{1-p}.
-\]
+$$
 
 Thus even effectively free code generation yields limited total acceleration if research direction, verification, compute provisioning, data acquisition, physical experiments, or governance remain slow. This is why measuring code output alone is insufficient evidence of runaway RSI.
 
-**A preregistered SAGI score.** Let \(z_i\) denote standardized human-relative performance on cognitive domain \(i\), with reliability \(r_i\) and transfer coefficient \(q_i\). A breadth-weighted score might be:
+**A preregistered SAGI score.** Let $$z_i$$ denote standardized human-relative performance on cognitive domain $$i$$, with reliability $$r_i$$ and transfer coefficient $$q_i$$. A breadth-weighted score might be:
 
-\[
+$$
 S
 =
 \sum_i w_i z_i r_i q_i,
 \qquad
 \sum_i w_i=1.
-\]
+$$
 
 But a high mean permits catastrophic weak domains. A stronger criterion therefore includes a floor:
 
-\[
+$$
 z_i \ge z_{\min}
 \quad \forall i \in D_{\mathrm{critical}}.
-\]
+$$
 
-No particular values of \(S\) or \(z_{\min}\) should be declared canonical. The methodological requirement is more important: define them **before** evaluating the target system.
+No particular values of $$S$$ or $$z_{\min}$$ should be declared canonical. The methodological requirement is more important: define them **before** evaluating the target system.
 
 **Primary and high-priority sources**
 

@@ -81,3 +81,7 @@ exclude:
   - vendor
   - runme.sh
   - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - GEMINI.md
+  - scripts
