@@ -16,6 +16,9 @@ comments: true
 published: true
 description: "A rigorous analysis of the hypothesis that superhuman general AI may have existed inside classified state or intelligence structures before the public LLM era, and may have anticipated or guided the transition now unfolding."
 excerpt: "Could superhuman general AI have existed inside classified government or intelligence programs before ChatGPT? An evidence-weighted analysis of secret AI programs, compute, strategic diffusion, and competing hypotheses."
+permalink: /2026/10/08/pre-public-sagi-hypothesis.html
+redirect_from:
+  - /2026/10/07/pre-public-sagi-hypothesis.html
 ---
 
 *An evidence-weighted investigation of the possibility that superhuman general intelligence existed inside state, military, intelligence, or defense-contractor structures before the mass-public LLM era—and may have anticipated, advised, or guided the transition now unfolding.*
