@@ -240,6 +240,42 @@
     update();
   }
 
+  /* Math: an inline formula wider than its paragraph moves to a line of
+     its own that scrolls sideways (with any punctuation right after it),
+     instead of widening the page. */
+  function fitInlineMath() {
+    document.querySelectorAll(".mjx-wide").forEach(function (wrap) {
+      // Undo, then measure again at the current width.
+      while (wrap.firstChild) wrap.parentNode.insertBefore(wrap.firstChild, wrap);
+      wrap.parentNode.removeChild(wrap);
+    });
+    document.querySelectorAll("mjx-container:not([display='true'])").forEach(function (math) {
+      var parent = math.parentElement;
+      if (!parent || math.getBoundingClientRect().width <= parent.clientWidth + 1) return;
+      var wrap = document.createElement("span");
+      wrap.className = "mjx-wide";
+      parent.insertBefore(wrap, math);
+      wrap.appendChild(math);
+      var next = wrap.nextSibling;
+      if (next && next.nodeType === 3) {
+        var m = next.textContent.match(/^[.,;:!?)]+/);
+        if (m) {
+          next.textContent = next.textContent.slice(m[0].length);
+          wrap.appendChild(document.createTextNode(m[0]));
+        }
+      }
+    });
+    // Rejoin text nodes split above so the next pass sees whole words.
+    document.querySelectorAll(".post-content p").forEach(function (p) { p.normalize(); });
+  }
+  if (window.mathjaxReady) fitInlineMath();
+  else document.addEventListener("mathjax-ready", fitInlineMath);
+  var mathResize = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(mathResize);
+    mathResize = setTimeout(fitInlineMath, 150);
+  });
+
   function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) {
       return navigator.clipboard.writeText(text);

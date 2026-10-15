@@ -315,6 +315,17 @@ mjx-container[display="true"] {
   padding: 0.25rem 0;
 }
 
+// Inline formulas too wide for the column (wrapped by site.js)
+.mjx-wide {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0.35em 0;
+  padding: 0.15em 0;
+  white-space: nowrap;
+}
+
 
 
 /**
