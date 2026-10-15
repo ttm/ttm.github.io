@@ -3,6 +3,7 @@ layout: article
 title: "Shadow Work Guide for Solo Practitioners"
 date: 2025-05-19
 tags: ["Shadow Work", "Jungian Psychology", "Mysticism", "Inner Work"]
+description: "A guide to shadow work for solo practitioners: its Jungian and spiritual roots, signs that it is needed, exercises such as journaling and active imagination, and indicators of progress."
 ---
 
 ## Table of Contents

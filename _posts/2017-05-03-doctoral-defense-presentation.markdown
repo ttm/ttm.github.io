@@ -19,6 +19,3 @@ The presentation is finished and at
 [this other post!]({{ site.baseurl }}{% link _posts/2017-05-03-presentation2.markdown %})
 
 And I used it in the doctoral defense.
-
-{% include presentation.html %}
-

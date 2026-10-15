@@ -25,5 +25,5 @@ Thursday  || 10        ||| review with collabs; evaluate the pertinence of furth
 
 So far, the first task has been accomplished.
 
-[sched]: http://ttm.github.io/doctorate,/plan/2015/12/01/resume-doctorate.html
+[sched]: /doc/plan/2015/12/01/resume-doctorate.html
 [gh]:      https://github.com/OpenLinkedSocialData

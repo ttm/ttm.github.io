@@ -1,0 +1,7 @@
+# Interactive pages featured on the homepage.
+- title: Cultural Swarm Optimization Explorer
+  url: /projects/2025/08/08/cso-explorer.html
+  description: Tune a culture-inspired particle swarm and watch how it converges on classic benchmark functions.
+- title: Silencing the Mind playground
+  url: /silencing-mind-app/
+  description: A guided breathing exercise and timed mindfulness tasks, companion to the Silencing the Mind post.

@@ -1,66 +1,36 @@
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-  <title>
-    {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}
-  </title>
-  <meta name="description" content="{{ site.description }}" />
-
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link
-    rel="canonical"
-    href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"
-  />
-  {% if page.jsarr %}
-  <script src="https://raw.githubusercontent.com/impress/impress.js/master/js/impress.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#101417" media="(prefers-color-scheme: dark)" />
   <script>
-    impress().init();
+    // Apply a saved theme before first paint; with no saved choice the
+    // stylesheet follows prefers-color-scheme on its own.
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
   </script>
-  {% endif %} {% seo %}
-  <link id="favicon" rel="icon" type="image/png" href="/favicon_light.ico" />
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}?v={{ site.time | date: '%s' }}" />
+  {% seo %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.short_title | default: site.title | escape }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <link id="favicon" rel="icon" type="image/png" href="{{ "/favicon_light.ico" | prepend: site.baseurl }}" />
+  <link rel="apple-touch-icon" href="{{ "/assets/apple-touch-icon.png" | prepend: site.baseurl }}" />
   <script>
-    // Function to update favicon based on theme
-    function updateFavicon() {
-      const favicon = document.getElementById("favicon");
-      const html = document.documentElement;
-      const attrTheme = html.getAttribute("data-theme");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const isDarkMode = attrTheme ? attrTheme === "dark" : prefersDark;
-      favicon.href = isDarkMode ? "/favicon_dark.ico" : "/favicon_light.ico";
-    }
-
-    // Toggle between light and dark themes
-    function toggleTheme() {
-      const html = document.documentElement;
-      const newTheme = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      updateFavicon();
-    }
-
-    // Initial favicon update and theme load
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      document.documentElement.setAttribute("data-theme", savedTheme);
-    } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
-    }
-    updateFavicon();
-
-    // Listen for changes in the color scheme
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", updateFavicon);
-
-    // Hook up toggle button
-    document.addEventListener("DOMContentLoaded", function () {
-      const btn = document.getElementById("theme-toggle");
-      if (btn) {
-        btn.addEventListener("click", toggleTheme);
+    // The tab strip follows the OS theme, not the page theme, so pick the
+    // favicon that contrasts with it.
+    (function () {
+      var mq = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+      if (!mq) return;
+      function update() {
+        document.getElementById("favicon").href = "{{ site.baseurl }}" + (mq.matches ? "/favicon_dark.ico" : "/favicon_light.ico");
       }
-    });
+      update();
+      if (mq.addEventListener) mq.addEventListener("change", update);
+    })();
   </script>
+  {% if page.math or content contains '\(' or content contains '\[' %}{% include mathjax.html %}{% endif %}
 </head>

@@ -17,6 +17,11 @@
   --color-muted: #666666;
   --color-accent: #5b7fff;
   --color-accent-muted: #859eff;
+  /* Solid button colors chosen for readable (4.5:1+) labels */
+  --color-button: #3f62e8;
+  --color-button-hover: #2f50d0;
+  --color-on-button: #ffffff;
+  --color-link: #3f62e8;
   --animation-speed: 30s;
 }
 
@@ -28,6 +33,10 @@
   --color-muted: #8a92a5;
   --color-accent: #7c90f9;
   --color-accent-muted: #5a6bd3;
+  --color-button: #7c90f9;
+  --color-button-hover: #9fb0fb;
+  --color-on-button: #0f131a;
+  --color-link: #9fb0fb;
 }
 
 html, body {
@@ -243,8 +252,8 @@ input[type="range"]::-moz-range-thumb {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background: var(--color-accent);
-  color: var(--color-surface);
+  background: var(--color-button);
+  color: var(--color-on-button);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: background 0.3s, box-shadow 0.3s;
 }
@@ -256,7 +265,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .breathing-controls button:not(:disabled):hover {
-  background: var(--color-accent-muted);
+  background: var(--color-button-hover);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -269,6 +278,12 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .task-card {
+  display: block;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  border: 0;
   background: var(--color-surface);
   padding: 1rem;
   border-radius: 8px;
@@ -282,13 +297,16 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.task-card h3 {
+.task-card .task-title {
+  display: block;
   margin: 0 0 0.5rem;
   font-size: 1.1rem;
+  font-weight: 600;
   color: var(--color-text);
 }
 
-.task-card p {
+.task-card .task-desc {
+  display: block;
   margin: 0;
   font-size: 0.9rem;
   color: var(--color-muted);
@@ -304,7 +322,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 #reference a {
-  color: var(--color-accent);
+  color: var(--color-link);
   text-decoration: underline;
 }
 
@@ -362,14 +380,63 @@ input[type="range"]::-moz-range-thumb {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background: var(--color-accent);
-  color: var(--color-surface);
+  background: var(--color-button);
+  color: var(--color-on-button);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: background 0.3s, box-shadow 0.3s;
 }
 
-.modal-content button:hover {
-  background: var(--color-accent-muted);
+.modal-content button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.modal-content button + button {
+  margin-left: 0.5rem;
+}
+
+.modal-content button:not(:disabled):hover {
+  background: var(--color-button-hover);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
-  
+
+/* On the light circle of the dark theme, plain dark ink reads best. */
+[data-theme="dark"] #breathing-instructions {
+  color: #0f131a;
+  text-shadow: none;
+}
+
+/* Link back to the main site */
+.home-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.home-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* Visible keyboard focus everywhere (the switch removed the default outline) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+
+  .task-card,
+  .task-card:hover {
+    transition: none;
+    transform: none;
+  }
+}

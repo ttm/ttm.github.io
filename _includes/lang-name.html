@@ -1,0 +1,7 @@
+{%- case include.lang -%}
+{%- when 'it' -%}Italiano
+{%- when 'pt' -%}Português
+{%- when 'en' -%}English
+{%- when 'es' -%}Español
+{%- else -%}{{ include.lang | upcase }}
+{%- endcase -%}

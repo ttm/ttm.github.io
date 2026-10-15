@@ -12,6 +12,7 @@ tags:
     technology,
   ]
 published: true
+description: "An introduction to sensory stimulation and audiovisual entrainment (AVE): how rhythmic light and sound can synchronize brainwaves and guide the brain into specific states."
 ---
 
 **Table of Contents**

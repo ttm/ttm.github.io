@@ -1,0 +1,11 @@
+{%- if page.comments != false and site.disqus_shortname -%}
+<section class="comments" aria-label="Comments">
+  {%- comment -%}
+    Disqus is loaded by site.js only when the reader scrolls near this
+    element. Its config is left at the defaults (URL-based thread lookup)
+    so existing comment threads keep matching their pages.
+  {%- endcomment %}
+  <div id="disqus_thread" data-shortname="{{ site.disqus_shortname }}"></div>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+{%- endif -%}

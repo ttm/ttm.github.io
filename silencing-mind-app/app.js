@@ -28,21 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * THEME TOGGLE
-   * Persists user preference in localStorage. If the saved theme
-   * is dark, we set the data-theme attribute on the root element
-   * and check the toggle. Otherwise we default to light.
+   * The inline script in index.html sets the initial theme (saved
+   * choice, else the main site's choice, else the OS preference).
+   * Here we sync the toggle with it and persist explicit changes.
    */
   const themeToggle = document.getElementById('themeToggle');
   const applyTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('mindTheme', theme);
+    try {
+      localStorage.setItem('mindTheme', theme);
+    } catch (e) {
+      // Storage can be unavailable (private mode); the theme still applies.
+    }
   };
-  // initial theme from localStorage
-  const savedTheme = localStorage.getItem('mindTheme') || 'light';
-  if (savedTheme === 'dark') {
-    themeToggle.checked = true;
-  }
-  applyTheme(savedTheme);
+  themeToggle.checked = document.documentElement.getAttribute('data-theme') === 'dark';
   themeToggle.addEventListener('change', () => {
     applyTheme(themeToggle.checked ? 'dark' : 'light');
   });
@@ -138,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.getElementById('modal-close');
   let taskInterval = null;
   let currentDuration = 0;
+  let lastFocused = null;
   // Format seconds into mm:ss
   const formatTime = (sec) => {
     const m = Math.floor(sec / 60);
@@ -154,15 +154,49 @@ document.addEventListener('DOMContentLoaded', () => {
     modalAction.disabled = false;
     modalAction.textContent = 'Start';
     modalTimer.classList.add('hidden');
+    if (lastFocused) {
+      lastFocused.focus();
+      lastFocused = null;
+    }
   };
   modalClose.addEventListener('click', closeModal);
-  // Create each task card
+  // Clicking the dimmed backdrop (outside the dialog box) closes it.
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  // Escape closes the dialog; Tab stays inside it while it is open.
+  document.addEventListener('keydown', (event) => {
+    if (modal.classList.contains('hidden')) return;
+    if (event.key === 'Escape') {
+      closeModal();
+      return;
+    }
+    if (event.key === 'Tab') {
+      const focusable = [modalAction, modalClose].filter((b) => !b.disabled);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (!modal.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  // Create each task card (a button, so it works with keyboard and screen readers)
   tasks.forEach((task) => {
-    const card = document.createElement('div');
+    const card = document.createElement('button');
+    card.type = 'button';
     card.className = 'task-card';
-    const h = document.createElement('h3');
+    const h = document.createElement('span');
+    h.className = 'task-title';
     h.textContent = task.title;
-    const p = document.createElement('p');
+    const p = document.createElement('span');
+    p.className = 'task-desc';
     p.textContent = task.desc;
     card.appendChild(h);
     card.appendChild(p);
@@ -171,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // Open a task in the modal
   const openTask = (task) => {
+    lastFocused = document.activeElement;
     modal.classList.remove('hidden');
     modalTitle.textContent = task.title;
     modalDesc.textContent = task.desc;
@@ -180,10 +215,14 @@ document.addEventListener('DOMContentLoaded', () => {
     modalAction.textContent = 'Start';
     modalAction.disabled = false;
     modalAction.onclick = () => startTask(task);
+    modalAction.focus();
   };
   // Start the task timer
   const startTask = (task) => {
     modalAction.disabled = true;
+    // The focused button was just disabled; keep keyboard focus in the dialog.
+    modalClose.focus();
+    modalTimer.setAttribute('aria-live', 'off');
     modalTimer.classList.remove('hidden');
     currentDuration = task.duration;
     modalTimer.textContent = formatTime(currentDuration);
@@ -194,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentDuration <= 0) {
         clearInterval(taskInterval);
         taskInterval = null;
+        modalTimer.setAttribute('aria-live', 'polite');
         modalTimer.textContent = 'Done! Great job.';
         modalAction.disabled = false;
         modalAction.textContent = 'Close';

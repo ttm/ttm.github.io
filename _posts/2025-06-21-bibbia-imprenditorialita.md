@@ -17,6 +17,7 @@ tags:
   ]
 author: Renato Fabbri
 lang: it
+description: "Come applicare i principi biblici all’intero ciclo imprenditoriale: dalla visione iniziale alla leadership quotidiana, dalla metodologia lean alla cura dei clienti, intrecciando fede e strategia aziendale."
 ---
 
 ## Indice
@@ -44,6 +45,7 @@ lang: it
 - [Fonti e Bibliografia](#fonti-e-bibliografia)
 
 **Introduzione:** Nel mondo imprenditoriale competitivo di oggi, può sembrare insolito rivolgersi a un antico testo religioso in cerca di linee guida aziendali. Eppure la Bibbia offre una saggezza sorprendentemente pratica per chi vuole creare e gestire un’azienda di successo con integrità, resilienza ed etica. Dal concepimento di una startup al raggiungimento del break-even e oltre, principi senza tempo – onestà, servizio, umiltà, prudenza – possono rivoluzionare il modo di fare impresa. Molti autori contemporanei di management, da John Maxwell a Dave Ramsey, attingono intenzionalmente alla Bibbia come fonte primaria di ispirazione. In questo articolo esploriamo come applicare tali principi biblici lungo l’intero ciclo imprenditoriale: dalla visione iniziale alla leadership quotidiana, dalla metodologia _lean_ alla cura dei clienti, intrecciando fede e strategia aziendale.
+{: #introduzione}
 
 ## 1. Fondare l’Azienda su Valori Solidi
 
@@ -150,6 +152,7 @@ In un’epoca in cui troppe aziende crollano sotto il peso di scandali etici o d
 In conclusione, i principi e metodi ispirati alla Bibbia si rivelano una guida preziosa per l’imprenditore che aspira al successo integrale: **un successo fatto non solo di utili, ma di significato, di relazioni positive e di contributo al bene comune**. Tale successo, costruito giorno per giorno con fede e lavoro, è destinato a durare. Del resto, come recita un proverbio antico: _“Confida nel Signore e fa’ il bene; abiterai la terra e vi pascolerai sicuro”_ (Salmo 37:3). Applicato all’azienda, significa che affidandosi a questi valori e operando con rettitudine, l’impresa potrà crescere stabile e sicura, generazione dopo generazione, portando frutto per molti e soddisfazione a chi l’ha creata.
 
 **Fonti e Bibliografia:**
+{: #fonti-e-bibliografia}
 
 - Sacra Bibbia, varie citazioni (CEI; Nuova Riveduta 2006; Nuova Diodati) – es. Matteo 6:33; Marco 10:43-45; Giovanni 13:14-15; Luca 14:28; Proverbi 11:1, 11:14, 27:17; ecc.
 - Botturi, Andrea. _“Servant leadership: lezioni dalla Bibbia.”_ LinkedIn, 15 mar 2023 – Analisi del modello di leadership di servizio in Gesù e Paolo.

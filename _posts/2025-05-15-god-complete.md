@@ -4,6 +4,7 @@ title: "The Probability of God's Existence: A Mathematical and Scientific Inquir
 date: 2025-05-15
 tags: [probability, theology, cosmology, philosophy-of-religion]
 published: true
+description: "Can the probability of God's existence be estimated? A survey of mathematical and scientific approaches, from Pascal's wager to the Bayesian analyses of Swinburne, Unwin and Draper."
 ---
 
 ## Table of Contents
