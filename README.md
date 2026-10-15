@@ -21,7 +21,8 @@ bundle exec jekyll serve   # http://localhost:4000 (also: ./runme.sh)
 | `_sass/`, `css/main.scss` | Styles. Colors are CSS custom properties in `_sass/_base.scss`, with a light and a dark set. |
 | `assets/js/site.js` | Theme toggle, homepage post filter, contents for long posts, heading links, copy buttons, back-to-top, lazy Disqus. |
 | `_data/navigation.yml` | Header links. |
-| `_data/projects.yml` | The "Interactive" cards on the homepage. |
+| `_data/projects.yml` | The Projects cards on the homepage (title, kind, icon, description, links). |
+| `_data/topics.yml` | The homepage topics. Each topic filters the post list; posts are matched by their tags, categories or title words, so new posts usually need no changes here. |
 | `cso-app/`, `silencing-mind-app/` | Standalone interactive pages. |
 
 ## Post front matter

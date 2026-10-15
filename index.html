@@ -7,32 +7,55 @@ layout: default
     <h1 id="intro-title" class="intro-title">{{ site.short_title }}</h1>
     <p class="intro-aliases">aka {{ site.aliases | join: " · " }}</p>
     <p class="intro-tagline">{{ site.tagline }}</p>
-    <ul class="topic-list" aria-label="Research areas">
-      {%- for topic in site.topics %}
-      <li>{{ topic }}</li>
-      {%- endfor %}
-    </ul>
+    <div class="intro-text">{{ site.intro | markdownify }}</div>
+
+    <nav class="topics" aria-labelledby="topics-label">
+      <p id="topics-label" class="topics-label">Browse posts by topic</p>
+      <ul class="topic-list">
+        {%- for topic in site.data.topics %}
+        {%- assign topic_count = 0 %}
+        {%- assign needle = ' ' | append: topic.id | append: ' ' %}
+        {%- for post in site.posts %}
+          {%- include post-topics.html post=post %}
+          {%- if post_topics contains needle %}{% assign topic_count = topic_count | plus: 1 %}{% endif %}
+        {%- endfor %}
+        {%- if topic_count > 0 %}
+        <li><a class="topic" href="{{ '/' | relative_url }}?topic={{ topic.id }}#posts" data-topic="{{ topic.id }}"><span class="topic-name">{{ topic.name }}</span><span class="topic-count">{{ topic_count }}<span class="visually-hidden"> posts</span></span></a></li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+    </nav>
+
     {% include social-links.html %}
   </div>
 </section>
 
 {%- if site.data.projects.size > 0 %}
-<section class="home-section" aria-labelledby="apps-title">
-  <h2 id="apps-title" class="section-title">Interactive</h2>
-  <ul class="card-grid">
+<section class="home-section" aria-labelledby="projects-title">
+  <h2 id="projects-title" class="section-title">Projects</h2>
+  <ul class="project-grid">
     {%- for project in site.data.projects %}
-    <li>
-      <a class="card" href="{{ project.url | prepend: site.baseurl }}">
-        <span class="card-title">{{ project.title }}</span>
-        <span class="card-desc">{{ project.description }}</span>
-      </a>
+    <li class="project">
+      <span class="project-icon" aria-hidden="true">{% include project-icon.html name=project.icon %}</span>
+      <div class="project-body">
+        <h3 class="project-title"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+        <p class="project-kind">{{ project.kind }}</p>
+        <p class="project-desc">{{ project.description }}</p>
+        {%- if project.links.size > 0 %}
+        <ul class="project-links" aria-label="{{ project.title }} links">
+          {%- for link in project.links %}
+          <li><a href="{{ link.url | relative_url }}">{{ link.label }}</a></li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </div>
     </li>
     {%- endfor %}
   </ul>
 </section>
 {%- endif %}
 
-<section class="home-section" aria-labelledby="posts-title">
+<section class="home-section" id="posts" aria-labelledby="posts-title">
   <div class="section-head">
     <h2 id="posts-title" class="section-title">Posts <span class="section-count">{{ site.posts.size }}</span></h2>
     <label class="post-filter" hidden>
@@ -40,6 +63,7 @@ layout: default
       <input type="search" placeholder="Filter posts…" autocomplete="off" spellcheck="false" />
     </label>
   </div>
+  <p class="filter-status" role="status" hidden></p>
 
   {%- assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
   {%- for year in years %}
@@ -48,7 +72,8 @@ layout: default
     <ul class="post-list">
       {%- for post in year.items %}
       {%- assign words = post.content | strip_html | number_of_words %}
-      <li class="post-item" data-search="{{ post.title | downcase | escape }} {{ post.tags | join: ' ' | downcase | escape }} {{ post.categories | join: ' ' | escape }}">
+      {%- include post-topics.html post=post %}
+      <li class="post-item" data-topics="{{ post_topics | strip }}" data-search="{{ post.title | downcase | escape }} {{ post.tags | join: ' ' | downcase | escape }} {{ post.categories | join: ' ' | escape }}">
         <a class="post-link" href="{{ post.url | prepend: site.baseurl }}"{% if post.lang and post.lang != site.lang %} hreflang="{{ post.lang }}"{% endif %}>{{ post.title }}</a>
         {%- if post.lang and post.lang != site.lang %}
         <abbr class="lang-badge" title="{% include lang-name.html lang=post.lang %}">{{ post.lang | upcase }}</abbr>

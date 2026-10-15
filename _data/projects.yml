@@ -1,7 +1,89 @@
-# Interactive pages featured on the homepage.
+# Projects featured on the homepage, in display order.
+# icon: one of biosyncare, sstim, music, networks, swarm, breath (_includes/project-icon.html)
+- title: BioSynCare
+  kind: App for iOS, Android and the web
+  icon: biosyncare
+  url: https://biosyncare.com
+  description: >-
+    Evidence-informed audiovisual sessions for everyday wellness: binaural and
+    monaural beats, isochronic tones, guided breathing and Martigli waves.
+  links:
+    - label: biosyncare.com
+      url: https://biosyncare.com
+    - label: App Store
+      url: https://apps.apple.com/app/id6754856451
+    - label: Google Play
+      url: https://play.google.com/store/apps/details?id=com.biosyncare.app
+
+- title: SSTIM
+  kind: Open standard · W3C Community Group
+  icon: sstim
+  url: https://w3c-cg.github.io/sstim/
+  description: >-
+    An open, citable reference for sensory stimulation: techniques, stimulus
+    parameters, evidence and protocols as OWL, SKOS and SHACL, with the SSTIM
+    Workbench.
+  links:
+    - label: Website
+      url: https://w3c-cg.github.io/sstim/
+    - label: W3C group
+      url: https://www.w3.org/community/sstim/
+    - label: GitHub
+      url: https://github.com/w3c-cg/sstim
+    - label: DOI
+      url: https://doi.org/10.5281/zenodo.21286974
+
+- title: music
+  kind: Python package
+  icon: music
+  url: https://ttm.github.io/music/
+  description: >-
+    High-fidelity synthesis of musical notes, vibratos, glissandi and sensory
+    stimuli such as binaural beats and isochronic tones, built on the MASS
+    framework.
+  links:
+    - label: Documentation
+      url: https://ttm.github.io/music/
+    - label: GitHub
+      url: https://github.com/ttm/music
+    - label: MASS
+      url: https://github.com/ttm/mass
+
+- title: Social data & networks
+  kind: Research software · doctoral work
+  icon: networks
+  url: https://github.com/ttm/percolation
+  description: >-
+    Python packages for open linked social data and human interaction
+    networks, and Versinus, a visualization method for time-evolving networks.
+  links:
+    - label: percolation
+      url: https://github.com/ttm/percolation
+    - label: social
+      url: https://github.com/ttm/social
+    - label: Versinus
+      url: https://github.com/ttm/versinus
+    - label: Defense slides
+      url: /semantic/social/data/presentation/complex/networks/text/mining/2017/05/03/presentation2.html
+
 - title: Cultural Swarm Optimization Explorer
+  kind: Interactive · in the browser
+  icon: swarm
   url: /projects/2025/08/08/cso-explorer.html
-  description: Tune a culture-inspired particle swarm and watch how it converges on classic benchmark functions.
+  description: >-
+    Compare Civilized PSO with three other swarm algorithms on benchmark
+    functions and watch the swarm move over the landscape.
+  links:
+    - label: Open the explorer
+      url: /cso-app/
+
 - title: Silencing the Mind playground
+  kind: Interactive · in the browser
+  icon: breath
   url: /silencing-mind-app/
-  description: A guided breathing exercise and timed mindfulness tasks, companion to the Silencing the Mind post.
+  description: >-
+    A guided breathing exercise and timed mindfulness tasks, companion to the
+    Silencing the Mind article.
+  links:
+    - label: Read the article
+      url: /mindfulness/2025/08/08/silencing-the-mind.html

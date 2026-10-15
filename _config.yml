@@ -4,21 +4,21 @@ title: Renato Fabbri (ttm rgk hybrid o0o0o rfabbri) - homepage
 short_title: Renato Fabbri
 aliases: [ttm, rgk, hybrid, o0o0o, rfabbri]
 tagline: >-
-  Italo-Brazilian physicist, researcher, software dev/eng/architect
-  and artist/musician (PhD).
+  Italo-Brazilian physicist (PhD), researcher, software architect, artist and musician.
+# Homepage introduction (Markdown)
+intro: >-
+  I build technology for sensory stimulation: [BioSynCare](https://biosyncare.com),
+  an app for audiovisual stimulation and brainwave entrainment, and
+  [SSTIM](https://w3c-cg.github.io/sstim/), an open reference for the field
+  developed in a W3C Community Group. I also write here about AI, science and
+  spirituality.
 email: renato.fabbri@gmail.com
-description: > # folded: the indented lines below become a single line
-  Complex and social networks, Linked data/semantic web,
-  Natural language processing/text mining/computational linguistics,
-  Data audiovisualization, Computer music, Sensory stimulation and brainwave entrainment.
-# Research areas listed on the homepage
-topics:
-  - Complex and social networks
-  - Linked data / semantic web
-  - NLP, text mining and computational linguistics
-  - Data audiovisualization
-  - Computer music
-  - Sensory stimulation and brainwave entrainment
+# Used for search results, link previews and the footer
+description: >-
+  Physicist (PhD), researcher and software architect building BioSynCare and
+  SSTIM for sensory stimulation, and writing about AI, complex networks, linked
+  data, language, music and spirituality.
+# Homepage topics and projects live in _data/topics.yml and _data/projects.yml.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://ttm.github.io" # the base hostname & protocol for your site
 lang: en
@@ -27,6 +27,7 @@ twitter_username: BioSynCare
 facebook_username: renato.fabbri
 instagram_username: renato.fabbri.renato
 linkedin_username: renatofabbri
+orcid: 0000-0002-9699-629X
 lattes_url: http://lattes.cnpq.br/1840472218825589
 github_username: ttm
 irc_channel: labmacambira
@@ -41,6 +42,7 @@ social:
   name: Renato Fabbri
   links:
     - https://github.com/ttm
+    - https://orcid.org/0000-0002-9699-629X
     - https://www.facebook.com/renato.fabbri
     - https://www.linkedin.com/in/renatofabbri
     - https://www.instagram.com/renato.fabbri.renato

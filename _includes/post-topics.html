@@ -1,0 +1,20 @@
+{%- comment -%}
+  Sets `post_topics` to the space-separated ids of the topics in
+  _data/topics.yml that include.post belongs to (padded with spaces, so
+  `post_topics contains ' ai '` is an exact test).
+{%- endcomment -%}
+{%- assign post_terms = include.post.tags | concat: include.post.categories | join: '|' | downcase | split: '|' -%}
+{%- assign post_title = include.post.title | downcase -%}
+{%- assign post_topics = ' ' -%}
+{%- for topic in site.data.topics -%}
+  {%- assign topic_hit = false -%}
+  {%- for term in topic.match -%}
+    {%- if post_terms contains term -%}{%- assign topic_hit = true -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+  {%- unless topic_hit -%}
+    {%- for word in topic.title_match -%}
+      {%- if post_title contains word -%}{%- assign topic_hit = true -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endunless -%}
+  {%- if topic_hit -%}{%- assign post_topics = post_topics | append: topic.id | append: ' ' -%}{%- endif -%}
+{%- endfor -%}

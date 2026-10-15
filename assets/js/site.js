@@ -267,7 +267,7 @@
     selection.addRange(range);
   }
 
-  /* Homepage post filter ------------------------------------------------- */
+  /* Homepage post filter and topics ------------------------------------ */
 
   var filter = document.querySelector(".post-filter");
   if (filter) {
@@ -275,19 +275,28 @@
     var items = Array.prototype.slice.call(document.querySelectorAll(".post-item"));
     var groups = Array.prototype.slice.call(document.querySelectorAll(".year-group"));
     var empty = document.querySelector(".filter-empty");
+    var status = document.querySelector(".filter-status");
+    var topicLinks = Array.prototype.slice.call(document.querySelectorAll(".topic[data-topic]"));
+    var activeTopic = null;
     var normalize = function (s) {
       return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
     };
     items.forEach(function (item) {
       item._haystack = normalize(item.getAttribute("data-search") || item.textContent);
+      item._topics = " " + (item.getAttribute("data-topics") || "") + " ";
     });
 
-    filter.hidden = false;
-    input.addEventListener("input", function () {
+    var topicName = function (id) {
+      var link = topicLinks.filter(function (a) { return a.getAttribute("data-topic") === id; })[0];
+      return link ? link.querySelector(".topic-name").textContent : id;
+    };
+
+    var applyFilters = function () {
       var terms = normalize(input.value).split(/\s+/).filter(Boolean);
       var shown = 0;
       items.forEach(function (item) {
-        var match = terms.every(function (t) { return item._haystack.indexOf(t) !== -1; });
+        var match = (!activeTopic || item._topics.indexOf(" " + activeTopic + " ") !== -1) &&
+          terms.every(function (t) { return item._haystack.indexOf(t) !== -1; });
         item.hidden = !match;
         if (match) shown++;
       });
@@ -295,7 +304,58 @@
         group.hidden = !group.querySelector(".post-item:not([hidden])");
       });
       if (empty) empty.hidden = shown !== 0;
+      topicLinks.forEach(function (a) {
+        if (a.getAttribute("data-topic") === activeTopic) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+      if (status) {
+        status.textContent = "";
+        status.hidden = !activeTopic;
+        if (activeTopic) {
+          status.appendChild(document.createTextNode(
+            "Showing " + shown + (shown === 1 ? " post" : " posts") + " on " + topicName(activeTopic) + "."));
+          var clear = document.createElement("button");
+          clear.type = "button";
+          clear.textContent = "Show all posts";
+          clear.addEventListener("click", function () { setTopic(null); });
+          status.appendChild(clear);
+        }
+      }
+    };
+
+    // Topics are links to ?topic=id; with JS they filter in place and the
+    // URL keeps the choice, so a filtered view can be shared or reloaded.
+    var setTopic = function (id, scroll) {
+      activeTopic = id;
+      try {
+        var url = new URL(window.location.href);
+        if (id) url.searchParams.set("topic", id); else url.searchParams.delete("topic");
+        history.replaceState(null, "", url.pathname + url.search + (id ? "#posts" : ""));
+      } catch (e) {}
+      applyFilters();
+      if (id && scroll) {
+        var section = document.getElementById("posts");
+        if (section) section.scrollIntoView({ block: "start" });
+      }
+    };
+
+    topicLinks.forEach(function (a) {
+      a.addEventListener("click", function (event) {
+        event.preventDefault();
+        var id = a.getAttribute("data-topic");
+        setTopic(activeTopic === id ? null : id, true);
+      });
     });
+
+    filter.hidden = false;
+    input.addEventListener("input", applyFilters);
+
+    var initial = null;
+    try { initial = new URLSearchParams(window.location.search).get("topic"); } catch (e) {}
+    if (initial && topicLinks.some(function (a) { return a.getAttribute("data-topic") === initial; })) {
+      activeTopic = initial;
+      applyFilters();
+    }
 
     // "/" focuses the filter, as on many sites.
     document.addEventListener("keydown", function (event) {

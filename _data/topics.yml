@@ -1,0 +1,38 @@
+# Topics shown on the homepage. Each one is also a filter for the post list:
+# a post belongs to a topic when one of its tags or categories (lowercase)
+# is listed in `match`, or when its title contains a word in `title_match`.
+- id: sensory
+  name: Sensory stimulation
+  match: [audiovisual stimulation, brainwave entrainment, sensory-stimulation, sensory-augmentation,
+          neurotechnology, neuromodulation, brain-computer-interface, mindfulness, biosyncare, sstim]
+
+- id: ai
+  name: Artificial intelligence
+  match: [ai, artificial-intelligence, llm, prompt engineering, ai safety, ai-safety, agi,
+          superintelligence, singularity, machine learning, alignment]
+  title_match: [swarm]
+
+- id: networks
+  name: Complex & social networks
+  match: [networks, complex systems, power law, social]
+  title_match: [network]
+
+- id: linked-data
+  name: Linked data & semantic web
+  match: [semantic]
+  title_match: [rdf, semantic, linked, sparql]
+
+- id: language
+  name: Language & text mining
+  match: [text, mining, literature]
+
+- id: music
+  name: Computer music & audiovisualization
+  match: [music]
+  title_match: [visualization]
+
+- id: spirit
+  name: Philosophy & spirituality
+  match: [theology, philosophy-of-religion, mysticism, shadow work, jungian psychology, inner work,
+          holy ghost, ecumenism, spirituality, religion, magick, bibbia, fede, consciousness,
+          philosophy of mind, mindfulness]
