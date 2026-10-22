@@ -71,7 +71,7 @@
       heading.appendChild(link);
     });
 
-    content.querySelectorAll("table").forEach(function (table) {
+    content.querySelectorAll("table").forEach(function (table, index) {
       // Some old Markdown tables use fully empty columns as spacers.
       var rows = Array.prototype.slice.call(table.rows);
       var columns = rows.length ? rows[0].cells.length : 0;
@@ -85,10 +85,18 @@
       table.parentNode.insertBefore(wrap, table);
       wrap.appendChild(table);
       if (wrap.scrollWidth > wrap.clientWidth) {
-        // Let keyboard users scroll it too.
+        // Let keyboard users scroll it too. Screen readers list regions by
+        // name, so give each its number and caption or column headings.
+        var name = table.caption ? table.caption.textContent.trim() : "";
+        if (!name && table.tHead && table.tHead.rows.length) {
+          name = Array.prototype.map.call(table.tHead.rows[0].cells, function (cell) {
+            return cell.textContent.trim();
+          }).filter(Boolean).join(", ");
+        }
+        if (name.length > 80) name = name.slice(0, 79) + "…";
         wrap.tabIndex = 0;
         wrap.setAttribute("role", "region");
-        wrap.setAttribute("aria-label", "Table (scrolls horizontally)");
+        wrap.setAttribute("aria-label", "Table " + (index + 1) + (name ? ": " + name : "") + " (scrolls horizontally)");
       }
     });
 
