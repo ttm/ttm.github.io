@@ -35,7 +35,7 @@ e.g. for making networks of collaborators in scientific articles form [Aalto Uni
 and of friendships found in DBpedia.
 
 [aadata]: http://data.aalto.fi/
-[sched]: http://ttm.github.io/doctorate,/plan/2015/12/01/resume-doctorate.html
+[sched]: /doc/plan/2015/12/01/resume-doctorate.html
 [endpoint]: http://200.144.255.210:8082
 [conf]: https://github.com/ttm/percolation/blob/master/percolation/config.py
 [conff]: https://github.com/ttm/percolation/blob/master/misc/configAuto.ttl

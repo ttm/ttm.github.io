@@ -24,10 +24,10 @@ music.
   it and making explicit their appreciation of the work and intentions
   of usage.
 * I learned about recent works of a number of researchers that interests
-  me: [Tiago Tavares](http://www.dca.fee.unicamp.br/~tavares/),
-  [Flávio Schiavoni](http://dcomp.ufsj.edu.br/~fls/),
+  me: [Tiago Tavares](https://web.archive.org/web/20180128210925/http://www.dca.fee.unicamp.br/~tavares/),
+  [Flávio Schiavoni](https://web.archive.org/web/20171231121206/http://dcomp.ufsj.edu.br/~fls/),
   [Marcelo Queiroz](https://www.ime.usp.br/~mqz/)
-  and [José Padovani](http://zepadovani.info/),
+  and [José Padovani](https://web.archive.org/web/20171212211837/http://zepadovani.info/),
   to name just a few.
 * Learned about the possibilities of decomposing a signal
 into AM and FM modulators with Antonio Goulart.
@@ -39,7 +39,7 @@ from [Xavier Serra](https://www.upf.edu/web/xavier-serra).
 * Listened to interesting musical pieces in the daily concerts.
 * I applied to become a member of the
 [Brazilian Committee for Computer
-Music](http://www.sbc.org.br/14-comissoes/385-computacao-musical).
+Music](https://web.archive.org/web/20171031233414/http://www.sbc.org.br/14-comissoes/385-computacao-musical).
 * Some other stuff I don't recall at the moment but might add to this
   list.
 

@@ -64,7 +64,7 @@ Steps:
 - upload files into repo when feasible.
 
 
-[sched]: http://ttm.github.io/doctorate,/plan/2015/12/01/resume-doctorate.html
+[sched]: /doc/plan/2015/12/01/resume-doctorate.html
 [gh]:      https://github.com/OpenLinkedSocialData
 [fjena]:      https://jena.apache.org/documentation/serving_data/
 [sparqlscript]:      https://github.com/ttm/percolation/blob/master/tests/makeBasicStructs.py

@@ -46,7 +46,7 @@ sound reasonably well.
 The idea is simply to multiply one sound by the other sample-by-sample
 and then sum. This is the scalar multiplication of one sound by the
 other, i.e. the magnitude of the projection of one sound into the other.
-* A scientific account of the [AirHackTable](http://wiki.nosdigitais.teia.org.br/AirHackTable)
+* A scientific account of the [AirHackTable](https://web.archive.org/web/20170814195827/http://wiki.nosdigitais.teia.org.br/AirHackTable)
 * Meta-sieves: mathematical structures to be mapped to sound.
 This idea is very incipient and I don't know how much it makes sense
 within the framework proposed by Xenakis.
