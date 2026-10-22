@@ -46,6 +46,7 @@ Without a `description`, search engines and link previews show the post's first 
 Write math as `$$...$$`: inside a sentence it renders inline, and on a paragraph of its own as a
 display equation. `\(...\)` and `\[...\]` do not work here (Markdown drops the backslashes).
 `python3 scripts/math_delimiters.py` reports posts that use them, and `--fix` converts them.
+After each push that touches `_posts/`, the "Check posts" workflow runs the same fix and pushes it.
 Agent instructions for publishing are in `AGENTS.md`.
 
 ## Notes

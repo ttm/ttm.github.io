@@ -1,22 +1,51 @@
-# Flags posts whose math uses \( \) or \[ \], which Markdown on GitHub Pages
-# turns into plain text. It does not block publishing; it marks the commit
-# with a failed check so the post can be fixed with
-#   python3 scripts/math_delimiters.py --fix _posts/<post>.md
+# Fixes posts whose math uses \( \) or \[ \], which Markdown on GitHub Pages
+# turns into plain text. After a push it runs
+#   python3 scripts/math_delimiters.py --fix
+# and, when that changed anything, pushes the fix to master (the site then
+# rebuilds with working formulas). A failed check alone went unnoticed, so
+# the workflow now repairs the post instead of only flagging it.
 name: Check posts
 
 on:
   push:
     branches: [master]
-    paths: ["_posts/**", "scripts/math_delimiters.py"]
+    paths: ["_posts/**", "scripts/math_delimiters.py", ".github/workflows/check-posts.yml"]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+# One run at a time, so two quick pushes don't race to push the same fix.
+concurrency:
+  group: check-posts
+  cancel-in-progress: false
 
 jobs:
   math-delimiters:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Math uses $$...$$
-        run: python3 scripts/math_delimiters.py
+        with:
+          ref: master
+      - name: Convert \( \) and \[ \] math to $$...$$ and push the fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Start from the latest master each time, so a push that lands
+          # meanwhile is fixed too instead of rejecting ours.
+          for attempt in 1 2 3; do
+            git fetch --depth=1 origin master
+            git reset --hard origin/master
+            python3 scripts/math_delimiters.py --fix
+            if git diff --quiet; then
+              echo "All posts write math as \$\$...\$\$."
+              exit 0
+            fi
+            git commit -am "Convert LaTeX math delimiters to \$\$...\$\$" \
+              -m "Kramdown drops the backslashes of \\( \\) and \\[ \\], so these formulas appeared as plain text. Automated fix by the Check posts workflow (scripts/math_delimiters.py --fix)."
+            if git push origin HEAD:master; then
+              git show --stat HEAD
+              exit 0
+            fi
+          done
+          exit 1

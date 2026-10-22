@@ -46,6 +46,10 @@ python3 scripts/math_delimiters.py          # reports LaTeX-style delimiters
 python3 scripts/math_delimiters.py --fix _posts/YOUR-POST.md   # converts them
 ```
 
+If a post reaches `master` with them anyway, the "Check posts" workflow converts
+them and pushes the fix as a commit by `github-actions[bot]`, so pull before your
+next change.
+
 ## Checking the site
 
 ```sh
