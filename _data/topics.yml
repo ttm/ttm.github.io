@@ -12,6 +12,10 @@
           superintelligence, singularity, machine learning, alignment]
   title_match: [swarm]
 
+- id: longevity
+  name: Longevity
+  match: [longevity, longevity-escape-velocity, healthspan, aging, mortality]
+
 - id: networks
   name: Complex & social networks
   match: [networks, complex systems, power law, social]
