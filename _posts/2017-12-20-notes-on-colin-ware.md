@@ -9,7 +9,7 @@ published: true
 Author: Colin Ware
 Third edition
 
-### Preface
+## Preface
 On the beginning, Colin 
 says important facts about dataViz, such as the great bandwidth
 of the visual channel and the proximity of the visual and overall cognition.
@@ -18,7 +18,7 @@ In describing chapter 3, he states that the visual system
 does not measure the amount of light, but changes in light and color.
 This is very similar to the (auditory) relative pitch perception.
 
-### Chap 1
+## Chap 1
 p1: describes the physics-centric view of the sciences
 as shortsighted and having psychology as dummy and sociology
 neighboring astrology.

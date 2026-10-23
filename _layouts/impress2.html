@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
     <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
-<div id="impress">
+<main id="impress">
 
     <!--
         
@@ -58,12 +58,12 @@
         <p>São Carlos Institute of Physics, University of São Paulo</p>
 
         <br/>
-        <img class="frontimage" src="/assets/ifsc.jpeg">
-        <img class="frontimage" src="/assets/cnpq.jpg">
-        <img class="frontimage" src="/assets/undp.jpg">
-        <img class="frontimage" src="/assets/1852.png">
-        <img class="frontimage" src="/assets/NEXOS.png">
-        <img class="frontimage" src="/assets/original-logo.png">
+        <img alt="São Carlos Institute of Physics, University of São Paulo" class="frontimage" src="/assets/ifsc.jpeg">
+        <img alt="CNPq, National Council for Scientific and Technological Development" class="frontimage" src="/assets/cnpq.jpg">
+        <img alt="UNDP, United Nations Development Programme" class="frontimage" src="/assets/undp.jpg">
+        <img alt="Coat of arms of Brazil" class="frontimage" src="/assets/1852.png">
+        <img alt="NEXOS, critical theory and interdisciplinary research" class="frontimage" src="/assets/NEXOS.png">
+        <img alt="Hand-drawn orange logo" class="frontimage" src="/assets/original-logo.png">
     </div>
 
     <!--
@@ -84,26 +84,26 @@
     <div class="step verticalLine" data-x="1000" data-y="-1500">
     <h1>Outline</h1>
     <ul>
-        <li>Introduction</li>
+        <li>Introduction
         <ul>
             <li>complex and human interaction networks</li>
             <li>text mining, visualization, linked data</li>
-        </ul>
-        <li>Materials and methods</li>
+        </ul></li>
+        <li>Materials and methods
         <ul>
             <li>data from email and other sources</li>
             <li>circular statistics of temporal activity</li>
             <li>complex networks: metrics, PCA and Erdös Sectioning</li>
             <li>text mining: adaptation of the Kolmogorov-Smirnov test, Wordnet</li>
-        </ul>
-        <li>Results and discussion</li>
+        </ul></li>
+        <li>Results and discussion
         <ul>
             <li>topological stability</li>
             <li>textual differentiation</li>
             <li>Versinus method for evolutive network visualization</li>
             <li>Linked Open Social Database</li>
             <li>other results</li>
-        </ul>
+        </ul></li>
         <li>Conclusions and further work</li>
     </ul>
        <p class="pnumber">1</p> 
@@ -134,13 +134,13 @@
 
     <div class="step verticalLine" data-x="5000" data-y="-1500">
     <h1>Introduction</h1>
-        <img src="/assets/CienciasComFronteiras.png" height=500>
+        <img alt="Visualization of a large social network: thousands of nodes in colored clusters" src="/assets/CienciasComFronteiras.png" height=500>
        <p class="pnumber">3</p> 
     </div>
 
     <div class="step verticalLine" data-x="7000" data-y="-1500">
     <h1>Introduction</h1>
-    <iframe height="415" width="700"
+    <iframe title="Versinus: audiovisualization of an evolving interaction network (video)" height="415" width="700"
     src="https://www.youtube.com/embed/1EOnEVmqmmc">
     </iframe>
        <p class="pnumber">4</p> 
@@ -154,7 +154,7 @@ Consider \(N\) the number of individuals needed to yield
 <b>more possible networks than atoms in the universe</b>.
 Each edge is a Bernoulli variable: the edge may be present or not.</p>
 <p><br/></p>
-<div lang="latex">
+<div class="latex">
 2^{N \choose 2} > 10^{80} \Rightarrow 
 log_2[2^{N \choose 2}] > log_2(10^{80}) \Rightarrow
 {N \choose 2} > \frac{log_{10}(10^{80})}{log_{10}2} \Rightarrow \nonumber\\
@@ -198,7 +198,7 @@ and the environment in which it subsists.</p>
     <p><br/></p>
     <ul>
         <li>Emails from the Gmane database</li>
-        <li>Data from:</li>
+        <li>Data from:
         <ul style="font-size:80%">
             <li>Facebook</li>
             <li>Twitter</li>
@@ -206,7 +206,7 @@ and the environment in which it subsists.</p>
             <li>Cidade Democrática</li>
             <li>ParticipaBR</li>
             <li>Algorithmic Autoregulation (AA)</li>
-        </ul>
+        </ul></li>
     </ul>
        <p class="pnumber">7</p> 
     </div>
@@ -240,21 +240,21 @@ and the environment in which it subsists.</p>
     <h1>Circular statistics</h1>
 <p>Consider each measure over time:</p>
 
-<div lang="latex" style="font-size:150%">
+<div class="latex" style="font-size:150%">
 \theta=2\pi \frac{measure}{period}\\
 
 z_i= e^{i\theta} \\
 m_n=\frac{1}{N}\sum_{i=1}^N z_i^n \;\;\text{ are the moments}
 </div>
 <p>The norm and angle of the moments:</p>
-<div lang="latex" style="font-size:150%">
+<div class="latex" style="font-size:150%">
     R_n=|m_n| \nonumber \\
     \theta_\mu=Arg(m_1) \\
     \theta_\mu'=\frac{period}{2\pi} \theta_\mu \nonumber
 </div>
 
 <p>The angle is measure of localization and the dispersion is given by:</p>
-<div lang="latex">
+<div class="latex">
     Var(z)=1 - R_1 \nonumber\\
     S(z)= \sqrt{-2\ln(R_1)}\\
     \delta(z)=\frac{1-R_2}{2 R_1^2} \nonumber
@@ -269,22 +269,22 @@ smallest \(b_l\) incidence in the histograms.</p>
     <div class="step verticalLine" data-x="17000" data-y="-1500">
     <h1>Interaction networks attainment</h1>
     <p><br/></p>
-        <img src="/assets/criaRede3_.png" height=350>
+        <img alt="Diagram: when author B responds to a message by author A, a directed edge links them, and the edges form the interaction network" src="/assets/criaRede3_.png" height=350>
        <p class="pnumber">10</p> 
     </div>
 
     <div class="step verticalLine" data-x="19000" data-y="-1500">
     <h1>Erdös sectioning</h1>
-        <img src="/assets/fser__.png" height=200>
-<div lang="latex">
+        <img alt="Degree distribution of a scale-free network split into three sections, periphery, intermediary and hubs, where it crosses a binomial distribution" src="/assets/fser__.png" height=200>
+<div class="latex">
     \sum_{x=k_i}^{k_j} \widetilde{P}(x) < \sum_{x=k_i}^{k_j} P(x) \Rightarrow \text{i is intermediary}
 </div>
 
-<div lang="latex">
+<div class="latex">
     P(k)=\binom{2(N-1)}{k}p_e^k(1-p_e)^{2(N-1)-k}
 </div>
 <p>where</p>
-<div lang="latex">
+<div class="latex">
 p_e=\frac{z}{N(N-1)}
 </div>
        <p class="pnumber">11</p> 
@@ -325,12 +325,12 @@ We also used non-standard measures of asymmetry and disequilibrium.</p>
 
     <div class="step verticalLine" data-x="23000" data-y="-1500">
     <h1>Adaptation of the Kolmogorov-Smirnov two sample test</h1>
-        <img src="/assets/300px-KS2_Example.png" height=150>
+        <img alt="Two empirical cumulative distributions, red and blue, with an arrow marking their largest vertical distance, the Kolmogorov-Smirnov statistic" src="/assets/300px-KS2_Example.png" height=150>
 
-<div lang="latex">
+<div class="latex">
 D_{n,n'} > c(\alpha)\sqrt{\frac{n+n'}{nn'}} \Rightarrow F_{1,n} \neq F_{2,n'}
 </div>
-<div lang="latex">
+<div class="latex">
 c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
 </div>
 <table id="t01">
@@ -349,7 +349,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     <div class="step verticalLine" data-x="25000" data-y="-1500">
     <h1>Audiovisualization of data</h1>
     <br/>
-        <img src="/assets/arteRede.jpg" height=350>
+        <img alt="Screenshots of audiovisual renderings of network data, including a map" src="/assets/arteRede.jpg" height=350>
        <p class="pnumber">14</p> 
     </div>
 
@@ -419,27 +419,27 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     <div class="step verticalLine" data-x="35000" data-y="500">
     <h1>Temporal and topological stability</h1>
     <br/>
-        <img src="/assets/InText-WLAU-S1000__.png" height=300>
+        <img alt="Plots of the fractions of participants in each Erdös sector, by degree, strength and other criteria, as messages accumulate: the fractions stay nearly constant" src="/assets/InText-WLAU-S1000__.png" height=300>
        <p class="pnumber">19</p> 
     </div>
 
     <div class="step verticalLine" data-x="35000" data-y="-3500">
     <h1>Temporal and topological stability</h1>
     <p><br/></p>
-        <img src="/assets/pca.png" height=400>
+        <img alt="Table of principal component analysis of the network metrics: loadings on the first three components" src="/assets/pca.png" height=400>
        <p class="pnumber">20</p> 
     </div>
 
     <div class="step verticalLine" data-x="35000" data-y="2500">
     <h1>Temporal and topological stability</h1>
     <br/>
-        <img src="/assets/circularStats.png" height=250>
+        <img alt="Table of circular mean and dispersion of activity across seconds, minutes, hours, weekdays, days of the month and months" src="/assets/circularStats.png" height=250>
        <p class="pnumber">21</p> 
     </div>
 
     <div class="step verticalLine" data-x="35000" data-y="4500">
     <h1>Temporal and topological stability</h1>
-        <img src="/assets/tableTime.png" height=450>
+        <img alt="Table of the share of activity in each hour of the day, aggregated over 1 to 12 hour periods" src="/assets/tableTime.png" height=450>
        <p class="pnumber">22</p> 
     </div>
 
@@ -464,22 +464,22 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
 
     <div class="step verticalLine" data-x="39000" data-y="-1500">
     <h1>Textual differentiation</h1>
-        <img src="/assets/textDiff.png" height=500>
+        <img alt="Tables and histograms comparing text measures across the Erdös sectors" src="/assets/textDiff.png" height=500>
        <p class="pnumber">24</p> 
     </div>
 
     <div class="step verticalLine" data-x="39000" data-y="500">
     <h1>Textual differentiation</h1>
     <p><br/></p>
-        <img src="/assets/textDiffSents.png" height=350>
-        <img src="/assets/textDiffPOS.png" height=350>
+        <img alt="Table of sentence, character, token and stopword statistics for each Erdös sector" src="/assets/textDiffSents.png" height=350>
+        <img alt="Table of the share of each part of speech (nouns, verbs, adjectives and others) for each Erdös sector" src="/assets/textDiffPOS.png" height=350>
        <p class="pnumber">25</p> 
     </div>
 
     <div class="step verticalLine" data-x="41000" data-y="-1500"></p>
     <h1>Audiovisualization with Versinus</h1>
     <p><br/></p>
-    <iframe height="50%" width="50%"
+    <iframe title="Versinus: audiovisualization of an evolving interaction network (video)" height="50%" width="50%"
     src="https://www.youtube.com/embed/1EOnEVmqmmc">
     </iframe>
     <p>In Versinus (Latim versus+sinus meaning line+sinusoid),
@@ -503,7 +503,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <li>Data-oriented ontology synthesis method.</li>
     </ul>
     <p><br/></p>
-        <img src="/assets/obsPNPS_mesam.png" height=200>
+        <img alt="Ontology diagram: classes connected by labeled properties" src="/assets/obsPNPS_mesam.png" height=200>
        <p class="pnumber">27</p> 
     </div>
 
@@ -610,14 +610,14 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     <p><br/></p>
     <p><br/></p>
     <p><br/></p>
-        <img class="frontimage" src="/assets/ifsc.jpeg">
-        <img class="frontimage" src="/assets/cnpq.jpg">
-        <img class="frontimage" src="/assets/undp.jpg">
-        <img class="frontimage" src="/assets/1852.png">
-        <img class="frontimage" src="/assets/NEXOS.png">
-        <img class="frontimage" src="/assets/original-logo.png">
+        <img alt="São Carlos Institute of Physics, University of São Paulo" class="frontimage" src="/assets/ifsc.jpeg">
+        <img alt="CNPq, National Council for Scientific and Technological Development" class="frontimage" src="/assets/cnpq.jpg">
+        <img alt="UNDP, United Nations Development Programme" class="frontimage" src="/assets/undp.jpg">
+        <img alt="Coat of arms of Brazil" class="frontimage" src="/assets/1852.png">
+        <img alt="NEXOS, critical theory and interdisciplinary research" class="frontimage" src="/assets/NEXOS.png">
+        <img alt="Hand-drawn orange logo" class="frontimage" src="/assets/original-logo.png">
     </div>
-</div>
+</main>
 <script src="/assets/impress.js"></script>
 <script>impress().init();</script>
 </body>

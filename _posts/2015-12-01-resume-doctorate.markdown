@@ -24,7 +24,7 @@ Maybe too much, but it also seems proper to:
 
 Which are scattered on [git repositories][ttmgh] and documents such as my last [pnud product][pnud5].
 
-### Planning for today and the next days
+## Planning for today and the next days
 
 Weekday   || Dec ||| milestones
 ----------||-----|||----------
@@ -42,7 +42,7 @@ Thursday  || 10  ||| review with collabs; evaluate the pertinence of further doc
 To this should follow final adjustments with other interested parties
 and maybe some delivery to peer review journals.
 
-### Further notes
+## Further notes
 
 I should try to integrate this Jekyll instance to aa shouts and other rdf data.
 

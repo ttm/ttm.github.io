@@ -333,7 +333,8 @@
             // First we set up the viewport for mobile devices.
             // For some reason iPad goes nuts when it is not done properly.
             var meta = $( "meta[name='viewport']" ) || document.createElement( "meta" );
-            meta.content = "width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no";
+            // Readers may zoom in (WCAG 1.4.4): no maximum-scale or user-scalable=no.
+            meta.content = "width=device-width, minimum-scale=1";
             if ( meta.parentNode !== document.head ) {
                 meta.name = "viewport";
                 document.head.appendChild( meta );

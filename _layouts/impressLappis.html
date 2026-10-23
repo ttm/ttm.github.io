@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 
 <head>
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
     <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
-<div id="impress">
+<main id="impress">
 
     <!--
         
@@ -57,8 +57,8 @@
         <p>FAPESP, projeto 2017/05838-3</p>
 
         <br/>
-        <img class="frontimage" style="background: white" src="/assets/icmc.png">
-        <img class="frontimage" src="/assets/fapesp.jpg">
+        <img alt="ICMC, Instituto de Ciências Matemáticas e de Computação, USP" class="frontimage" style="background: white" src="/assets/icmc.png">
+        <img alt="FAPESP, Fundação de Amparo à Pesquisa do Estado de São Paulo" class="frontimage" src="/assets/fapesp.jpg">
     </div>
 
     <!--
@@ -79,28 +79,28 @@
     <div class="step verticalLine" data-x="1000" data-y="-1500">
     <h1>Roteiro</h1>
     <ul>
-        <li>Introdução</li>
+        <li>Introdução
         <ul>
             <li>sistemas complexos e redes complexas</li>
             <li>redes em estruturas sociais humanas e na linguagem</li>
-        </ul>
+        </ul></li>
         <li>Materiais</li>
-        <li>Alguns métodos</li>
+        <li>Alguns métodos
         <ul>
             <li>medidas fundamentais/básicas</li>
             <li>PCA</li>
             <li>setorialização de Erdös</li>
             <li>adaptação do teste de Kolmogorov-Smirnov</li>
             <li>wordnet</li>
-        </ul>
-        <li>Alguns resultados e discussão</li>
+        </ul></li>
+        <li>Alguns resultados e discussão
         <ul>
             <li>estabilidade topológica</li>
             <li>diferenciação textual</li>
             <li>audiovisualização de redes</li>
             <li>LOSD: linked open social database</li>
             <li>bots</li>
-        </ul>
+        </ul></li>
         <li>Conclusões e trabalhos futuros</li>
     </ul>
        <p class="pnumber">1</p> 
@@ -108,13 +108,13 @@
 
     <div class="step verticalLine" data-x="5000" data-y="-1500">
     <h1>Introdução</h1>
-        <img src="/assets/CienciasComFronteiras.png" height=500>
+        <img alt="Visualização de uma grande rede social: milhares de nós em agrupamentos coloridos" src="/assets/CienciasComFronteiras.png" height=500>
        <p class="pnumber">2</p> 
     </div>
 
     <div class="step verticalLine" data-x="7000" data-y="-1500">
     <h1>Introdução</h1>
-    <iframe height="415" width="700"
+    <iframe title="Versinus: audiovisualização de uma rede de interação em evolução (vídeo)" height="415" width="700"
     src="https://www.youtube.com/embed/1EOnEVmqmmc">
     </iframe>
        <p class="pnumber">3</p> 
@@ -128,7 +128,7 @@ Seja \(N\) o número de indivíduos necessários para haver
 <b>mais redes possíveis que átomos no universo</b>.
 Cada aresta é uma variável de Bernoulli: a aresta pode estar presente ou não:</p>
 <p><br/></p>
-<div lang="latex">
+<div class="latex">
 2^{N \choose 2} > 10^{80} \Rightarrow 
 log_2[2^{N \choose 2}] > log_2(10^{80}) \Rightarrow
 {N \choose 2} > \frac{log_{10}(10^{80})}{log_{10}2} \Rightarrow \nonumber\\
@@ -207,23 +207,23 @@ e ao meio em que subsiste.</p>
     <div class="step verticalLine" data-x="17000" data-y="-1500">
     <h1>Obtenção das redes de interação</h1>
     <p><br/></p>
-        <img src="/assets/criaRede3_.png" height=350>
+        <img alt="Diagrama: quando o autor B responde a uma mensagem do autor A, uma aresta dirigida os liga, e as arestas formam a rede de interação" src="/assets/criaRede3_.png" height=350>
        <p class="pnumber">8</p> 
     </div>
 
     <div class="step verticalLine" data-x="19000" data-y="-1500">
     <h1>Setorialização de Erdös</h1>
-        <img src="/assets/fser__.png" height=200>
-<div lang="latex">
+        <img alt="Distribuição de graus de uma rede livre de escala dividida em três setores, periferia, intermediários e hubs, onde ela cruza uma distribuição binomial" src="/assets/fser__.png" height=200>
+<div class="latex">
     \sum_{x=k_i}^{k_j} \widetilde{P}(x) < \sum_{x=k_i}^{k_j} P(x) \Rightarrow \text{i \'e intermedi\'ario}
 </div>
 
 <p>com</p>
-<div lang="latex">
+<div class="latex">
     P(k)=\binom{2(N-1)}{k}p_e^k(1-p_e)^{2(N-1)-k}
 </div>
 <p>onde</p>
-<div lang="latex">
+<div class="latex">
 p_e=\frac{z}{N(N-1)}
 </div>
        <p class="pnumber">9</p> 
@@ -261,12 +261,12 @@ Também utilizamos medidas não-padrão de "assimetria" e "disequilíbrio".</p>
 
     <div class="step verticalLine" data-x="23000" data-y="-1500">
     <h1>Adaptação do teste de Kolmogorov-Smirnov de duas amostras</h1>
-        <img src="/assets/300px-KS2_Example.png" height=150>
+        <img alt="Duas distribuições cumulativas empíricas, vermelha e azul, com uma seta marcando a maior distância vertical entre elas, a estatística de Kolmogorov-Smirnov" src="/assets/300px-KS2_Example.png" height=150>
 
-<div lang="latex">
+<div class="latex">
 D_{n,n'} > c(\alpha)\sqrt{\frac{n+n'}{nn'}} \Rightarrow F_{1,n} \neq F_{2,n'}
 </div>
-<div lang="latex">
+<div class="latex">
 c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
 </div>
 <table id="t01">
@@ -285,7 +285,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     <div class="step verticalLine" data-x="25000" data-y="-1500">
     <h1>Audiovisualização dos dados</h1>
     <br/>
-        <img src="/assets/arteRede.jpg" height=350>
+        <img alt="Capturas de tela de audiovisualizações de dados de redes, incluindo um mapa" src="/assets/arteRede.jpg" height=350>
        <p class="pnumber">12</p> 
     </div>
 
@@ -345,27 +345,27 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     <div class="step verticalLine" data-x="35000" data-y="500">
     <h1>Estabilidade temporal e topológica</h1>
     <br/>
-        <img src="/assets/InText-WLAU-S1000__.png" height=300>
+        <img alt="Gráficos das frações de participantes em cada setor de Erdös, por grau, força e outros critérios, à medida que as mensagens se acumulam: as frações ficam quase constantes" src="/assets/InText-WLAU-S1000__.png" height=300>
        <p class="pnumber">17</p> 
     </div>
 
     <div class="step verticalLine" data-x="35000" data-y="-3500">
     <h1>Estabilidade temporal e topológica</h1>
     <p><br/></p>
-        <img src="/assets/pca.png" height=400>
+        <img alt="Tabela da análise de componentes principais das métricas de rede: cargas nas três primeiras componentes" src="/assets/pca.png" height=400>
        <p class="pnumber">18</p> 
     </div>
 
     <div class="step verticalLine" data-x="35000" data-y="2500">
     <h1>Estabilidade temporal e topológica</h1>
     <br/>
-        <img src="/assets/circularStats.png" height=250>
+        <img alt="Tabela de média e dispersão circulares da atividade em segundos, minutos, horas, dias da semana, dias do mês e meses" src="/assets/circularStats.png" height=250>
        <p class="pnumber">19</p> 
     </div>
 
     <div class="step verticalLine" data-x="35000" data-y="4500">
     <h1>Estabilidade temporal e topológica</h1>
-        <img src="/assets/tableTime.png" height=450>
+        <img alt="Tabela da fração da atividade em cada hora do dia, agregada em períodos de 1 a 12 horas" src="/assets/tableTime.png" height=450>
        <p class="pnumber">20</p> 
     </div>
 
@@ -390,22 +390,22 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
 
     <div class="step verticalLine" data-x="39000" data-y="-1500">
     <h1>Diferenciação linguística</h1>
-        <img src="/assets/textDiff.png" height=500>
+        <img alt="Tabelas e histogramas comparando medidas de texto entre os setores de Erdös" src="/assets/textDiff.png" height=500>
        <p class="pnumber">22</p> 
     </div>
 
     <div class="step verticalLine" data-x="39000" data-y="500">
     <h1>Diferenciação linguística</h1>
     <p><br/></p>
-        <img src="/assets/textDiffSents.png" height=350>
-        <img src="/assets/textDiffPOS.png" height=350>
+        <img alt="Tabela de estatísticas de sentenças, caracteres, tokens e stopwords para cada setor de Erdös" src="/assets/textDiffSents.png" height=350>
+        <img alt="Tabela da fração de cada classe gramatical (substantivos, verbos, adjetivos e outras) para cada setor de Erdös" src="/assets/textDiffPOS.png" height=350>
        <p class="pnumber">23</p> 
     </div>
 
     <div class="step verticalLine" data-x="41000" data-y="-1500"></p>
     <h1>Audiovisualização com Versinus</h1>
     <p><br/></p>
-    <iframe height="50%" width="50%"
+    <iframe title="Versinus: audiovisualização de uma rede de interação em evolução (vídeo)" height="50%" width="50%"
     src="https://www.youtube.com/embed/1EOnEVmqmmc">
     </iframe>
     <p>No Versinus (Latim versus+sinus meaning line+sinusoid),
@@ -427,7 +427,7 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
         <li>Método de síntese de ontologias orientado aos dados.</li>
     </ul>
     <p><br/></p>
-        <img src="/assets/obsPNPS_mesam.png" height=200>
+        <img alt="Diagrama de ontologia: classes ligadas por propriedades rotuladas" src="/assets/obsPNPS_mesam.png" height=200>
        <p class="pnumber">25</p> 
     </div>
 
@@ -524,10 +524,10 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
     <p><br/></p>
     <p><br/></p>
     <p><br/></p>
-        <img class="frontimage" style="background: white" src="/assets/icmc.png">
-        <img class="frontimage" src="/assets/fapesp.jpg">
+        <img alt="ICMC, Instituto de Ciências Matemáticas e de Computação, USP" class="frontimage" style="background: white" src="/assets/icmc.png">
+        <img alt="FAPESP, Fundação de Amparo à Pesquisa do Estado de São Paulo" class="frontimage" src="/assets/fapesp.jpg">
     </div>
-</div>
+</main>
 <script src="/assets/impress.js"></script>
 <script>impress().init();</script>
 </body>

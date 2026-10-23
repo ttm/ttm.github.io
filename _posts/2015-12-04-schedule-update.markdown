@@ -10,7 +10,7 @@ started a day after the initial forecast.
 The first task, of making available open and linked social data,
 took 2 days, not one.
 
-### Planning for today and the next days
+## Planning for today and the next days
 
 Weekday   || December  ||| milestones
 ----------||-----------|||----------
