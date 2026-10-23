@@ -8,7 +8,7 @@ published: true
 From September 3rd to 6th
 I participated in the 16th
 Brazilian Symposium on Computer Music
-([SBCM2017](http://compmus.ime.usp.br/sbcm/2017/))
+([SBCM2017](https://web.archive.org/web/20170815113312/http://compmus.ime.usp.br/sbcm/2017/))
 and presented the [Vivace livecoding language and
 platform](https://github.com/ttm/cmj-vivace/raw/master/sbcm/sbcm2017-template.pdf).
 Here is a [screencast where I recorded the presentation when practicing](https://youtu.be/EKUz3M9kPBI). 
@@ -17,7 +17,7 @@ is good enough.
 Here are [the slides](https://github.com/ttm/cmj-vivace/blob/master/sbcm/presentation.md)
 I used.
 Most importantly, for me:
-* I got in touch with the Romanian-American composer [Tipei](http://ems.music.uiuc.edu/people/tipei/).
+* I got in touch with the Romanian-American composer [Tipei](https://web.archive.org/web/20170710114726/http://ems.music.uiuc.edu/people/tipei/).
 He had very interesting thoughts on musical theory, history and computer
 music.
 * People liked the work on Vivace quite a lot and kept asking me about
@@ -26,7 +26,7 @@ music.
 * I learned about recent works of a number of researchers that interests
   me: [Tiago Tavares](https://web.archive.org/web/20180128210925/http://www.dca.fee.unicamp.br/~tavares/),
   [Flávio Schiavoni](https://web.archive.org/web/20171231121206/http://dcomp.ufsj.edu.br/~fls/),
-  [Marcelo Queiroz](https://www.ime.usp.br/~mqz/)
+  [Marcelo Queiroz](https://web.archive.org/web/20160712233938/https://www.ime.usp.br/~mqz/)
   and [José Padovani](https://web.archive.org/web/20171212211837/http://zepadovani.info/),
   to name just a few.
 * Learned about the possibilities of decomposing a signal

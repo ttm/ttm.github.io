@@ -23,9 +23,9 @@ It was mostly important, for me, as a way to enhance and secure directions
 taken in art, technological developments and scientific research.
 
 [tart]:      https://github.com/ttm/articleStabilityInteractionNetworks/raw/master/paper.pdf
-[labicbr]:   http://www.ciudadania20.org/pt-pt/labicbr/  
+[labicbr]:   https://web.archive.org/web/20170517012754/http://www.ciudadania20.org/pt-pt/labicbr/  
 [labicpll]:  https://www.facebook.com/groups/1645390789044342/
-[mbox]:    http://www.ciudadania20.org/pt-pt/colaboradoreslabicbr/
+[mbox]:    https://web.archive.org/web/20170521033517/http://www.ciudadania20.org/pt-pt/colaboradoreslabicbr/
 [repocm]:    https://github.com/ttm/caixamagica 
 [cmp]:   https://github.com/caixamagica/ 
 [cmg]:   https://www.facebook.com/groups/952476861475886/
