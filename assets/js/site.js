@@ -48,10 +48,6 @@
       storageSet("theme", next);
       syncToggle();
       syncThemeColor();
-      // Disqus picks its colors when it loads; reload it to match.
-      if (window.DISQUS && typeof window.DISQUS.reset === "function") {
-        window.DISQUS.reset({ reload: true });
-      }
     });
     if (darkQuery && darkQuery.addEventListener) darkQuery.addEventListener("change", syncToggle);
   }
@@ -435,29 +431,5 @@
       if (main) main.focus({ preventScroll: true });
     });
     updateBackToTop();
-  }
-
-  /* Comments: load Disqus only when the reader gets near them ----------- */
-
-  var thread = document.getElementById("disqus_thread");
-  if (thread && thread.getAttribute("data-shortname")) {
-    var loadDisqus = function () {
-      var script = document.createElement("script");
-      script.src = "https://" + thread.getAttribute("data-shortname") + ".disqus.com/embed.js";
-      script.setAttribute("data-timestamp", String(+new Date()));
-      script.async = true;
-      (document.head || document.body).appendChild(script);
-    };
-    if ("IntersectionObserver" in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        if (entries.some(function (e) { return e.isIntersecting; })) {
-          observer.disconnect();
-          loadDisqus();
-        }
-      }, { rootMargin: "800px 0px" });
-      observer.observe(thread);
-    } else {
-      loadDisqus();
-    }
   }
 })();

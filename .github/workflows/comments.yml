@@ -1,0 +1,63 @@
+# Shows GitHub Discussions as comments under posts. A page's first commenter
+# starts its discussion from the page; scripts/comments.py writes all
+# comments to _data/comments.json, which _includes/comments.html renders.
+# This workflow runs it whenever a discussion or comment changes (and daily),
+# and pushes the result to master; the site then rebuilds.
+name: Comments
+
+on:
+  discussion:
+    types: [created, edited, deleted, category_changed]
+  discussion_comment:
+    types: [created, edited, deleted]
+  push:
+    branches: [master]
+    paths: ["scripts/comments.py", ".github/workflows/comments.yml"]
+  schedule:
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  discussions: read
+
+# One run at a time, so two events don't race to push the same update.
+concurrency:
+  group: comments
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --quiet pyyaml==6.0.2
+      - name: Export comments and push them
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Start from the latest master each time, so a push that lands
+          # meanwhile is included instead of rejecting ours.
+          for attempt in 1 2 3; do
+            git fetch --depth=1 origin master
+            git reset --hard origin/master
+            python scripts/comments.py
+            if git diff --quiet; then
+              echo "Comments are up to date."
+              exit 0
+            fi
+            git commit -am "Update comments from GitHub Discussions" \
+              -m "Automated by the Comments workflow (scripts/comments.py)."
+            if git push origin HEAD:master; then
+              git show --stat HEAD
+              exit 0
+            fi
+          done
+          exit 1

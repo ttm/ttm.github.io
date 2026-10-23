@@ -31,7 +31,8 @@ orcid: 0000-0002-9699-629X
 lattes_url: http://lattes.cnpq.br/1840472218825589
 github_username: ttm
 irc_channel: labmacambira
-disqus_shortname: rfabbrihomepage
+# Comments are GitHub Discussions of this repository (see scripts/comments.py).
+discussions_url: https://github.com/ttm/ttm.github.io/discussions
 
 # jekyll-seo-tag
 logo: /assets/apple-touch-icon.png

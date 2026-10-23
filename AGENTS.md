@@ -29,6 +29,9 @@ published: true
 - Never change the `date` or URL of a published post. If a URL must change, add
   `redirect_from:` with the old path.
 - Do not add a hand-written table of contents; long posts get one automatically.
+- Posts get a comments section backed by GitHub Discussions (see `README.md`);
+  `comments: false` hides it. Never rename a published post's file: comments
+  are matched to posts by the file's path.
 
 ## Math
 

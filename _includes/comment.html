@@ -1,0 +1,19 @@
+{%- comment -%}
+  One comment from _data/comments.json or _data/comments_archive.json; its
+  html was sanitized by scripts/comments.py. Read it as include.comment: an
+  assign here would be shadowed by the caller's loop variable.
+{%- endcomment %}
+<p class="comment-meta">
+  {%- if include.comment.author_url %}
+  <a class="comment-author" href="{{ include.comment.author_url }}" rel="nofollow ugc">{{ include.comment.author | escape }}</a>
+  {%- else %}
+  <span class="comment-author">{{ include.comment.author | escape }}</span>
+  {%- endif %}
+  <span class="meta-sep" aria-hidden="true">·</span>
+  <a class="comment-date" href="{% if include.comment.link %}{{ include.comment.link }}{% else %}#{{ include.comment.id }}{% endif %}"><time datetime="{{ include.comment.date }}">{{ include.comment.date | date: "%b %-d, %Y" }}</time></a>
+  {%- if include.comment.source == "disqus" %}
+  <span class="meta-sep" aria-hidden="true">·</span>
+  <span class="comment-source">from Disqus</span>
+  {%- endif %}
+</p>
+<div class="comment-body">{{ include.comment.html }}</div>

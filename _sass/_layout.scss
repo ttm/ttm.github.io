@@ -1037,6 +1037,132 @@
 
 .comments {
   margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-sans);
+}
+
+.comments-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-list,
+.comment-replies {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.comment {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.comment-replies {
+  margin-top: 0.75rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+
+  .comment {
+    padding: 0.5rem 0;
+    border-bottom: 0;
+  }
+}
+
+.comment-meta {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+
+  .meta-sep {
+    margin: 0 0.35rem;
+  }
+}
+
+.comment-author {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.comment-date {
+  color: inherit;
+}
+
+.comment-body {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+
+  > * + * {
+    margin-top: 0.6rem;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.4rem;
+  }
+
+  blockquote {
+    padding-left: 0.9rem;
+    border-left: 3px solid var(--border-strong);
+    color: var(--muted);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: 0.75rem 0.9rem;
+    border-radius: var(--radius);
+    background: var(--surface);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+  }
+}
+
+.comments-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.comments-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-weight: 500;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
 }
 
 

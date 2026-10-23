@@ -1,11 +1,57 @@
-{%- if page.comments != false and site.disqus_shortname -%}
-<section class="comments" aria-label="Comments">
-  {%- comment -%}
-    Disqus is loaded by site.js only when the reader scrolls near this
-    element. Its config is left at the defaults (URL-based thread lookup)
-    so existing comment threads keep matching their pages.
-  {%- endcomment %}
-  <div id="disqus_thread" data-shortname="{{ site.disqus_shortname }}"></div>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{%- comment -%}
+  Comments are GitHub Discussions. A page's first commenter starts its
+  discussion from the button below (GitHub's form, prefilled with a link to
+  the page and a marker with its source path); scripts/comments.py, run by the
+  "Comments" workflow, exports the discussions to _data/comments.json.
+  Comments from the Disqus years are kept in _data/comments_archive.json.
+  Both are keyed by the page's source path.
+{%- endcomment -%}
+{%- if page.comments != false -%}
+{%- assign thread = site.data.comments[page.path] -%}
+{%- assign comment_list = "" | split: "" -%}
+{%- if site.data.comments_archive[page.path] %}{% assign comment_list = comment_list | concat: site.data.comments_archive[page.path] %}{% endif -%}
+{%- if thread.comments %}{% assign comment_list = comment_list | concat: thread.comments %}{% endif -%}
+{%- assign comment_count = comment_list.size -%}
+{%- for c in comment_list %}{% assign comment_count = comment_count | plus: c.replies.size %}{% endfor -%}
+{%- if thread.discussion -%}
+  {%- assign comment_url = thread.discussion -%}
+{%- else -%}
+  {%- capture new_body -%}
+Re: [{{ page.title }}]({{ page.url | absolute_url }})
+
+<!-- Keep this line: it shows your comment under the post. comments-for: {{ page.path }} -->
+
+{% endcapture -%}
+  {%- capture comment_url -%}
+{{ site.discussions_url }}/new?category=general&title={{ page.title | url_encode }}&body={{ new_body | url_encode }}
+  {%- endcapture -%}
+{%- endif %}
+<section class="comments" aria-labelledby="comments-title">
+  <h2 id="comments-title" class="comments-title">Comments{% if comment_count > 0 %} <span class="section-count">{{ comment_count }}</span>{% endif %}</h2>
+  {%- if comment_list.size > 0 %}
+  <ol class="comment-list">
+    {%- for c in comment_list %}
+    <li class="comment" id="{{ c.id }}">
+      {%- include comment.html comment=c %}
+      {%- if c.replies.size > 0 %}
+      <ol class="comment-replies">
+        {%- for r in c.replies %}
+        <li class="comment" id="{{ r.id }}">
+          {%- include comment.html comment=r %}
+        </li>
+        {%- endfor %}
+      </ol>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ol>
+  {%- endif %}
+  <p class="comments-cta">
+    <a class="comments-button" href="{{ comment_url }}">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
+      {% if thread.discussion %}Join the discussion on GitHub{% else %}Comment on GitHub{% endif %}
+    </a>
+    <span class="comments-note">You need a GitHub account. Your comment appears here within a few minutes.</span>
+  </p>
 </section>
 {%- endif -%}
