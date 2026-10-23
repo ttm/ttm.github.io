@@ -1,5 +1,10 @@
 <head>
   <meta charset="utf-8" />
+  <script>
+    // GitHub Pages still answers plain HTTP for this site (its "Enforce
+    // HTTPS" setting is off); move such visits to HTTPS.
+    if (location.protocol === "http:" && location.hostname === "ttm.github.io") location.replace("https:" + location.href.slice(5));
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
