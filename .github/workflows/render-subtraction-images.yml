@@ -1,0 +1,65 @@
+name: Render subtraction newsletter PNGs
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "assets/subtraction-intelligence-cover.svg"
+      - "assets/subtraction-information-to-understanding.svg"
+      - "assets/subtraction-simplification-vs-displacement.svg"
+      - ".github/workflows/render-subtraction-images.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-subtraction-newsletter-images
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SVG renderer
+        run: python -m pip install --disable-pip-version-check "CairoSVG==2.8.2" "Pillow==11.3.0"
+      - name: Render and validate three PNG images
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import cairosvg
+          from PIL import Image
+          names = (
+              "subtraction-intelligence-cover",
+              "subtraction-information-to-understanding",
+              "subtraction-simplification-vs-displacement",
+          )
+          for name in names:
+              source = Path("assets") / f"{name}.svg"
+              target = source.with_suffix(".png")
+              cairosvg.svg2png(url=str(source), write_to=str(target), output_width=1920, output_height=1080)
+              with Image.open(target) as image:
+                  image.verify()
+              with Image.open(target) as image:
+                  assert image.size == (1920, 1080), (name, image.size)
+                  assert image.format == "PNG", (name, image.format)
+              print(f"{target}: {target.stat().st_size:,} bytes, 1920 x 1080")
+          PY
+      - name: Commit rendered images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/subtraction-intelligence-cover.png assets/subtraction-information-to-understanding.png assets/subtraction-simplification-vs-displacement.png
+          if git diff --cached --quiet; then
+            echo "PNGs already up to date."
+            exit 0
+          fi
+          git commit -m "Add 1920x1080 PNG cover and two editorial diagrams"
+          git pull --rebase origin master
+          git push origin HEAD:master
